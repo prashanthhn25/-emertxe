@@ -1,0 +1,96 @@
+Linux Module
+1. Write a basic script for printing all the files related information in present working directory 
+(eg: size, permission, etc)
+2. Read n and generate 
+	1
+	12
+	123
+	1234
+3. Read n and generate 
+	1
+	23	
+	456
+	78910
+4. Write script for scp and ssh
+5. Write script for addition of two numbers for real numbers also
+6. Write script for arithmetic calculator using command line arguments
+7. Write script to compare larger integer value from a n number of arguments using command line arguments
+8. Write a script to print the given number in reverse order i/p: 1234 o/p: 4321
+9. Write a s to delete an empty line from a file. Take file name from user
+10. Write a script to perform arithmetic operation on given number depending on the operator 
+eg: i/p 1234+ then o/p : 10
+11. Read n and generate fibonacii nos <= n
+12. Write a script to print the length of each and every string using arrays
+13. Write a script to print chess board this two will print
+Black [echo -e -n "\033[40m""",
+white [echo -e -n "\033[47m""", 	
+blank [echo -e -n "\033[0m""", 
+14. Write a script to sort a given number in ascending and descending order. 
+Ask whether to display in ascending/descending 
+15. Write a script to print the following information
+ --> 1. currently logged user
+ --> 2. your shell directory
+ --> 3. home directory
+ --> 4. os name and version
+ --> 5. current working directory
+ --> 6. number of users logged in
+ --> 7. show all available shells in your system
+ --> 8. Hard disk information
+ --> 9. cpu information
+ --> 10. memory information
+ --> 11. file system information
+ --> 12. currently running process
+ 16. Write a script to rename a file/directory replaced by lower/upper case letters
+ directory --> DIRECTORY
+ TestFile --> testfile
+ 17. Write a script to rename current working directory with given name.
+ Enter the name for the directory
+ change current to this new name entered
+ 18. Given album name this script renames the photos in them properly by inserting index numbers. 
+ eg: given file numbers (DSN001.jpg, DSN002.jpg) as linux_class_photos_001.jpg, linux_class_photos_002.jpg
+ 19. Read n and print the greatest fibonacii no <= n
+ 20. Write a script to print contents of file from given line number to next given number of lines.
+ eg: if we called this script as script.sh and run as ./script 5 5 myfile, here print contents of 
+ 'myfile' file from line number 5 to next 5 lines of that file
+ 21. display the longest and shortest usernames on the system 
+ (usernames are in the first field in /etc/passwd)
+ 22. Write a script to find all the .swp files found in yur system
+ 23. Write a script to find all .swp files from given directory
+ 24. Write a script for generating random 8-character passwords including alpha numeric characters
+ 25. Write a script that takes any number of directories as command line arguments 
+ and then lists the contents  of each of these directories
+ 26. Write a script sayHello, put this script into yur startup file called .bash_profile, 
+ the script should run as soon as you logon to system, and it print any one of teh following messages depending on system time.
+ --> "Good Morning" (9.00 AM 1 PM)
+ --> "Good Afternoon" (2.00 PM 5 PM) 
+ --> "Good Evening" (5.00 PM 9 PM)
+ --> "Good Night" (9.00 PM 9 AM)
+ 27. Shell script to convert lower to upper and upper to lower 
+ --> Enter any string in lowercase : cRiCkEt
+ --> Lower to Upper converted o/p : CRICKET
+ --> upper to Lower converted o/p : cricket
+ 28. The script should output each directory name prior to listing the files within the directory
+ 29. use an address range negation to print only the fifth line of your /etc/passwd file
+ Hint: Use teh delet editing command
+ 30. Use pipes and redirection to create an infinite feedback loop, where the final output becomes
+ the input again to the command line. Be surre to stop this command before it fills your hard disk.
+ (Hint: tail command)
+ 31. Write a short script that outputs its process number and waits, allowing you to view the 
+ contents of the Linux/proc in another shell window. i.e, this script should remain at rest long enough that
+ you can view the contents of the process-specifc directory for that process
+ 32. Use recursive function to print each argument passed to function, regardless of how many arguments are passed.
+you are to echo only the first positional argument (echo $1)
+33. Write a script to determine whether a given file system or mount point is mounted, and 
+output the amount of free space on the file system, if it is mounted. if the file system is not mounted, then the script 
+should output error
+34. Write a script to show the output same as ls command. Directory name should pass using command line arguments
+35. Write a script to locks down file permission for a particular directory.
+(remove all permission for groups and others)
+36. Display the names of any filesystem which have less than 10% free space available (df command)
+37. Count the number of users with user IDs between 500 and 10000 on the system
+38. For each directory in the $PATH, display the number of executable files in that directory
+39. Write a script to search a user present in your system
+40. Write a script to replace 20% lines in a c file randomly with the pattern <-DEL->
+  
+ 
+ 

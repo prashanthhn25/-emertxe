@@ -1,0 +1,68 @@
+1. exercise1.sh : ***pattern generation [E]
+2. exercise2.sh : ***pattern generation [8]
+3. exercise3.c  : ***To find the max of two numbers
+4. exercise4.c  : ***To find the middle of three numbers
+5. exercise5.c  : ***To check whether a character is in upper case/lower case/digit using if statement
+6. exercise6.c  : Basics -> switch case, default and fall through
+7. exercise7.c  : Basics -> signed and unsigned , pre and post decrement/decrement, decimal, octal, hexa, unsigned, char format specifiers 
+8. exercise8.c  : Basics -> printf, pre and post decrement /increment 
+9. exercise9.c  : Basics -> pre and post increment, if statement
+10.exercise10.c : Basics -> switch statement, default break and fall through, scanf and integral constant
+11.exercise11.c : Basics -> switch statement - To check for Vowel, default break and fall through, getchar()
+12.exercise12.c : Basics -> while loop, do-while loop, pre and post increment counter 
+13.exercise13.c : Basics -> Pattern Generation [pyramid]
+14.exercise14.c : Basics -> Pattern Generation [diamond]
+15.exercise15.c : Basics -> for loop,  
+16.exercise16.c : Basics -> for loop, pre/post decrement/increment, condition evaluation (0-false), signed char, double (format specifier), infinite for loop, inner for loops
+17.exercise17.c : ***pattern generation [$$$***$$$]
+18.exercise18.c : Basics -> continue, break, for loop, inner for loops, infinte loop
+19.exercise19.c : Basics -> do-while, continue, break, scanf, for and while
+20.exercise20.c : Basics -> compilation error for break and continue
+21.exercise21.c : ***To check whether a character is in upper case/lower case/digit using switch case
+22.exercise22.c : ***To check for Prime number
+23.exercise23.c : Basics -> Precedence, pre post increment
+24.exercise24.c : Basics -> Type Conversions -Implicit and Explicit, Switch case for integral const
+25.exercise25.c : ***To Convert Farhen to Celcius { [(double)5/9*(F-32)] = C }
+26.exercise26.c : Basics -> if and arithmetic operator [ / % * + - (binary)]
+27.exercise27.c : Basics -> if and logical operator [! (unary) && (binary) || (binary)]
+28.exercise28.c : Basics -> if and relational operator [[==, !=, <=, >=, <. > ]
+29.exercise29.c : Basics -> if and assignment operator [= += -= *= /= %= &= ~= |= <<= >>= ], o check if -->TRUE /FALSE Evaluation, Right Shift, Left Shift [<<= >>=]	
+30.exercise30.c : Basics -> Bitwise operator- shift Undefined Behavior, [&, |, ^, ~], ***Byte Swapping Example
+31.exercise31.c : ***To count the number of 1s in a given number
+32.exercise32.c : ***To print bits of given number [from right to left]
+33.exercise33.c : ***To swap nibble of given number
+34.exrecise34.c : Quiz2 
+35.exercise35.c : Basics -> sizeof() Operator, Ternary Operator, Comma
+36.exercise36.c : Basics -> array, sizeof array, poosible initializations, compilation warning and errors (pedantic errors)
+37.exercise37.c : Basics -> Functions
+38.exercise38.c : ***To find the average of elements stored in an array
+		--> element should be 5 and of int type
+		--> element should be accepted from the user
+39.exercise39.c : ***To find the largest array element
+40.exercise40.c : ***To compare two arrays, element by element, 
+		--> print its comparison result as TRUE or FALSE
+		--> both array elements should be accepted from the user 
+		--> array could be of same size
+41.exercise41.c : ***To print bits of given number [from left to right] 
+		--> start masking from 31st bit for int (4byte)
+		--> & mask with given num to get only that bit
+		--> check for 0/1 for that bit and print accordingly
+---------------------
+Assignments
+1. assignment1.c  :To check whether a given number is odd or even and it's signed-ness (use nested if)
+2. assignment2.c  :Read n and print the greatest fibonacii no <= n
+3. assignment3.c  :Read n and check for perfectness
+4. assignment4.c  :Print all ASCII characters
+5. assignment5.c  :Print sizes of all basic data types of C
+6. assignment6.c  :Sieve of Eratosthenes
+7. assignment7.c  :Read 3 numbers a, r, n. Generate AP, GP, HP
+8. assignment8.c  :Print Hello world in X formation
+9. assignment9.c  :
+10.assignment10.c :Read n and generate fibonacci nos <=n
+11.assignment11.c :Read n and n number of ints; print median of those
+12.assignment12.c :Given a number between 1-365(incl), find which day it is
+13.assignment13.c :
+14.assignment14.c :Bitwise program to check a number is even or odd
+15.assignment15.c :
+16.assignment16.c :
+ 
