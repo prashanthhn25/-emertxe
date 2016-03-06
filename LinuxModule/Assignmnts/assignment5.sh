@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Script for addition of two numbers for real numbers
 #

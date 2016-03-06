@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Read n and generate a pattern
 #   1

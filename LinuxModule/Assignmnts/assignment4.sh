@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Script for scp and ssh
 #
