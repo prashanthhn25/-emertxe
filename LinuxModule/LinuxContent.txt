@@ -16,9 +16,8 @@ Linux Module
 6. Write script for arithmetic calculator using command line arguments
 7. Write script to compare larger integer value from a n number of arguments using command line arguments
 8. Write a script to print the given number in reverse order i/p: 1234 o/p: 4321
-9. Write a s to delete an empty line from a file. Take file name from user
-10. Write a script to perform arithmetic operation on given number depending on the operator 
-eg: i/p 1234+ then o/p : 10
+9. Write a script to delete an empty line from a file. Take file name from user
+10. Write a script to perform arithmetic operation on given number depending on the operator  [eg: i/p 1234+ then o/p : 10]
 11. Read n and generate fibonacii nos <= n
 12. Write a script to print the length of each and every string using arrays
 13. Write a script to print chess board this two will print
