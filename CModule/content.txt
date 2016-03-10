@@ -63,6 +63,6 @@ Assignments
 12.assignment12.c :Given a number between 1-365(incl), find which day it is
 13.assignment13.c :
 14.assignment14.c :Bitwise program to check a number is even or odd
-15.assignment15.c :
-16.assignment16.c :
+15.assignment15.c :Implement your own ctype library. (ctype_lib.c)
+16.assignment16.c :Implement bitwise functions. (bitwise_lib.c)
  
