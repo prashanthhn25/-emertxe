@@ -153,11 +153,11 @@
  */
 
 #include <stdio.h>
-#include "ctype_lib.c"
+#include "bitwise_lib.c"
 
 int main()
 {
-    int choice, givenNum, n, pos;
+    int choice, givenNum, n, pos, val;
     char option;
     
     do
@@ -168,20 +168,61 @@ int main()
         printf("Choice: ");
         scanf("%d", &choice);
         
-        /* Read number num from user */
-        printf("Enter num	\t: ");
-        scanf("", &givenNum);
-        
-        /* Read number n from user */
-        printf("Enter n	\t: ");
-        scanf("", &n);
-        
-        /* Read number n from user */
-        printf("Enter pos \t: ");
-        scanf("", &pos);
-        
-        /* To test get_nbits(int num, int n) */
-        get_nbits(givenNum, n);
+        switch (choice) {
+            case 1:
+                
+                /* Read number num from user */
+                printf("Enter num\t: ");
+                scanf("%d", &givenNum);
+                
+                /* Read number n from user */
+                printf("Enter n	\t: ");
+                scanf("%d", &n);
+                
+                /* To test get_nbits(int num, int n) */
+                printf("Value get_nbits(%d, %d) ->  %d \n", givenNum, n, get_nbits(givenNum, n));
+                break;
+                
+            case 2:
+                
+                /* Read number num from user */
+                printf("Enter num\t: ");
+                scanf("%d", &givenNum);
+                
+                /* Read number n from user */
+                printf("Enter n	\t: ");
+                scanf("%d", &n);
+                
+                /* Read number val from user */
+                printf("Enter val \t: ");
+                scanf("%d", &val);
+                
+                /* To test get_nbits(int num, int n) */
+                printf("Value set_nbits(%d, %d, %d) ->  %d \n", givenNum, n, val, set_nbits(givenNum, n, val));
+                break;
+            
+            case 3:
+                
+                /* Read number num from user */
+                printf("Enter num\t: ");
+                scanf("%d", &givenNum);
+                
+                /* Read number n from user */
+                printf("Enter n	\t: ");
+                scanf("%d", &n);
+                
+                /* Read number pos from user */
+                printf("Enter pos \t: ");
+                scanf("%d", &pos);
+                
+                /* To test get_nbits(int num, int n) */
+                printf("Value set_nbits(%d, %d, %d) ->  %d \n", givenNum, n, pos, get_nbits_from_pos(givenNum, n, pos));
+                break;
+                
+            default: printf("Invalid Choice \n");
+                break;
+        }
+
         
         /* Prompt for Continue option */
         printf("Continue (y/n): ");
