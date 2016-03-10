@@ -7,7 +7,7 @@
  *      -> int get_nbits_from_pos(int num, int n, int pos);
  *      -> int set_nbits_from_pos(int num, int n, int pos, int val);
  *      -> int toggle_bits_from_pos(int num, int n, int pos);
- *      -> int print_bits(unsigned int num, int n);
+ *      -> void print_bits(unsigned int num, int n);
  */
 
 /*
@@ -95,10 +95,118 @@ int get_nbits_from_pos(int num, int n, int pos)
     }
     
     /* shift mask to position pos */
-    mask2 = (mask << pos);
+    mask2 = (mask << (pos-n+1));
     
     /* AND the num with only shifted n bits of 1's 
-     *  to get n bit's value from position pos */
-    result = (num & mask2);
+     *  to get n bit's value from position pos 
+     *  and right shift the value (pos-n+1) to get only that
+     */
+    
+    result = ((num & mask2) >> (pos-n+1));
     return result;
+}
+
+/*
+ *  Fetch n number of bits from LSB of val.
+ *  Place those fetched bits from pos positionth bit of num 
+ *  and return new value of num.
+ *
+ *  Example: If num is 12, n is 3, pos is 4 and val is 20
+ *
+ *
+ *                  7 6 5 4 3 2 1 0
+ *                  ---------------
+ *          20 ->   0 0 0 1 0 1 0 0
+ *                            -----
+ *          12 ->	0 0 0 0 1 1 0 0
+ *                        -----
+ *
+ *  return value->  0 0 0 1 0 0 0 0
+ *
+ *  So function should return 16 (1 0 0 0 0).
+ */
+int set_nbits_from_pos(int num, int n, int pos, int val)
+{
+    int replaceValue, shiftNum, shiftReplace, result;
+    
+    /* Fetch n number of bits from LSB of val */
+    replaceValue = get_nbits(val, n);
+    
+    /* Right Shift pos position bit of num */
+    shiftNum = num >> (pos-n+1);
+    
+    /* Do replacement */
+    shiftReplace = set_nbits(shiftNum, n, replaceValue);
+    
+    /* Left shift the replaced Value back to position pos */
+    shiftNum = shiftReplace << (pos-n+1);
+    
+    /* Fetch the lost bits from num when right shifted */
+    replaceValue = get_nbits(num, (pos-n+1));
+    
+    /* To get final result */
+    result = replaceValue | shiftNum;
+    
+    return result;
+}
+
+/*
+ *  Invert the n number of bits from pos positionth bit of num.
+ *  Return the new value of num
+ *
+ *  Example: If num is 10, n is 3, and pos is 5
+ *
+ *                      7 6 5 4 3 2 1 0
+ *                      ---------------
+ *              10 ->   0 0 0 0 1 0 1 0
+ *                          -----
+ *
+ *      return value->  0 0 1 1 0 0 1 0
+ *
+ *  So the function should return 50 (0 0 1 1 0 0 1 0)
+ *
+ */
+int toggle_bits_from_pos(int num, int n, int pos)
+{
+    int reverseNum, replaceValue, result;
+    
+    /* Get n number of bits from pos positionth bit of num */
+    reverseNum = get_nbits_from_pos(num, n, pos);
+    
+    /* Toggle the bits that needs to be replaced */
+    replaceValue = ~reverseNum;
+    
+    /* Set the toggled n bits from from pos positionth bit of num */
+    result = set_nbits_from_pos(num, n, pos, replaceValue);
+    
+    return result;
+}
+
+/*
+ *  Print n number of bits of num from LSB end.
+ *
+ *  Example: If num is 10 and n is 12, 
+ *       then print last 12 bits of binary representation of 10.
+ *
+ *
+ *  The output should be -> 0 0 0 0 0 0 0 0 1 0 1 0
+ */
+void print_bits(unsigned int num, int n)
+{
+    int i, iter=num, bit, mask;
+    int bits[32]= { 0 };
+    
+    /* Print the n bit binary representation of num */
+    for ( i = 0 ; iter != 0; iter>>=1 )
+    {
+        bits[i] = (iter & 01);
+        i++;
+    }
+     printf("\n");
+    
+    /* Print bits */
+    for (i = (n-1); i >= 0; i--) {
+        printf("%d ", bits[i]);
+    }
+    printf("\n");
 }

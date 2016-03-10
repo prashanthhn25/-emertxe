@@ -6,7 +6,7 @@
  *  int get_nbits_from_pos(int num, int n, int pos);
  *  int set_nbits_from_pos(int num, int n, int pos, int val);
  *  int toggle_bits_from_pos(int num, int n, int pos);
- *  int print_bits(unsigned int num, int n);
+ *  void print_bits(unsigned int num, int n);
  *
  *  Implement a library named bitwise_lib.c which contain 
  *  all above mentioned functions.
@@ -197,7 +197,7 @@ int main()
                 printf("Enter val \t: ");
                 scanf("%d", &val);
                 
-                /* To test get_nbits(int num, int n) */
+                /* To test set_nbits(int num, int n, int val) */
                 printf("Value set_nbits(%d, %d, %d) ->  %d \n", givenNum, n, val, set_nbits(givenNum, n, val));
                 break;
             
@@ -215,8 +215,73 @@ int main()
                 printf("Enter pos \t: ");
                 scanf("%d", &pos);
                 
-                /* To test get_nbits(int num, int n) */
-                printf("Value set_nbits(%d, %d, %d) ->  %d \n", givenNum, n, pos, get_nbits_from_pos(givenNum, n, pos));
+                /* To test get_nbits_from_pos(int num, int n, int pos) */
+                printf("Value get_nbits_from_pos(%d, %d, %d) ->  %d \n", givenNum, n, pos, get_nbits_from_pos(givenNum, n, pos));
+                break;
+                
+            case 4:
+                
+                /* Read number num from user */
+                printf("Enter num\t: ");
+                scanf("%d", &givenNum);
+                
+                /* Read number n from user */
+                printf("Enter n	\t: ");
+                scanf("%d", &n);
+                
+                /* Read number pos from user */
+                printf("Enter pos \t: ");
+                scanf("%d", &pos);
+                
+                /* Read number val from user */
+                printf("Enter val \t: ");
+                scanf("%d", &val);
+                
+                /* To test int set_nbits_from_pos(int num, int n, int pos, int val) */
+                printf("Value int set_nbits_from_pos(%d, %d, %d, %d) ->  %d \n", givenNum, n, pos, val, set_nbits_from_pos(givenNum, n, pos, val));
+                break;
+                
+            case 5:
+                
+                /* Read number num from user */
+                printf("Enter num\t: ");
+                scanf("%d", &givenNum);
+                
+                /* Read number n from user */
+                printf("Enter n	\t: ");
+                scanf("%d", &n);
+                
+                /* Read number pos from user */
+                printf("Enter pos \t: ");
+                scanf("%d", &pos);
+                
+                
+                /* To test int toggle_bits_from_pos(int num, int n, int pos) */
+                printf("Value int toggle_bits_from_pos(%d, %d, %d) ->  %d \n", givenNum, n, pos, toggle_bits_from_pos(givenNum, n, pos));
+                break;
+                
+            case 6:
+                
+                /* Read number num from user */
+                printf("Enter num\t: ");
+                scanf("%d", &givenNum);
+                
+                /* Read number n from user */
+                printf("Enter n	\t: ");
+                scanf("%d", &n);
+                
+                /* Error Check */
+                /* If n is greater than integer size, n value is size of integer */
+                
+                if (n > 32)
+                {
+                    n = 32;
+                }
+                
+                
+                /* To test void print_bits(unsigned int num, int n) */
+                printf("Value int print_bits(%d, %d) ->\n", givenNum, n);
+                print_bits(givenNum, n);
                 break;
                 
             default: printf("Invalid Choice \n");

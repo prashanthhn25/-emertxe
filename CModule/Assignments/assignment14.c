@@ -42,7 +42,8 @@ int main()
         (givenNum > 0) ? printf("+%d -> ", givenNum) : printf("%d -> ", (givenNum));
         
         /* Print the 32 bit binary representation of n and -n */
-        for ( i = 31; i >= 0; i-- ) {
+        for ( i = 31; i >= 0; i-- )
+        {
             mask = 1 << i; /* masking */
             bit = mask & givenNum; /* to get the MSB */
             bit == 0 ? printf("0"): printf("1"); /* print bits */
@@ -53,7 +54,8 @@ int main()
         (givenNum > 0) ? printf("%d -> ", (givenNum * -1)) : printf("+%d -> ", (givenNum * -1));
         
         /* Print the 32 bit binary representation of n and -n */
-        for ( i = 31; i >= 0; i-- ) {
+        for ( i = 31; i >= 0; i-- )
+        {
             mask = 1 << i; /* masking */
             bit = mask & (givenNum * -1); /* to get the MSB */
             bit == 0 ? printf("0"): printf("1");  /* print bits */
