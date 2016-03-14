@@ -6,7 +6,7 @@
  *  int get_nbits_from_pos(int num, int n, int pos);
  *  int set_nbits_from_pos(int num, int n, int pos, int val);
  *  int toggle_bits_from_pos(int num, int n, int pos);
- *  void print_bits(unsigned int num, int n);
+ *  void print_nbits(unsigned int num, int n);
  *
  *  Implement a library named bitwise_lib.c which contain 
  *  all above mentioned functions.
@@ -163,7 +163,7 @@ int main()
     do
     {
         /* Read the choice of bitwise manipulation */
-        printf("Enter the choice\n\t1. get_nbits\n\t2. set_nbits\n\t3. get_nbits_from_pos\n\t4. set_nbits_from_pos\n\t5. toggle_bits_from_pos\n\t6. print_bits\n");
+        printf("Enter the choice\n\t1. get_nbits\n\t2. set_nbits\n\t3. get_nbits_from_pos\n\t4. set_nbits_from_pos\n\t5. toggle_bits_from_pos\n\t6. print_nbits\n");
         
         printf("Choice: ");
         scanf("%d", &choice);
@@ -280,8 +280,8 @@ int main()
                 
                 
                 /* To test void print_bits(unsigned int num, int n) */
-                printf("Value int print_bits(%d, %d) ->\n", givenNum, n);
-                print_bits(givenNum, n);
+                printf("Value int print_nbits(%d, %d) ->\n", givenNum, n);
+                print_nbits(givenNum, n);
                 break;
                 
             default: printf("Invalid Choice \n");

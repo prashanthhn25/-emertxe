@@ -1,3 +1,4 @@
+#include <limits.h>
 /* Function Prototypes and Definitions to do bitwise
  *  manipulations 
  *  
@@ -8,6 +9,9 @@
  *      -> int set_nbits_from_pos(int num, int n, int pos, int val);
  *      -> int toggle_bits_from_pos(int num, int n, int pos);
  *      -> void print_bits(unsigned int num, int n);
+ *
+ *      -> int circular_right_shift(int num, int n);
+ *      -> int circular_left_shift(int num, int n);
  */
 
 /*
@@ -128,21 +132,31 @@ int get_nbits_from_pos(int num, int n, int pos)
 int set_nbits_from_pos(int num, int n, int pos, int val)
 {
     int replaceValue, shiftNum, shiftReplace, result;
+    //printf("num=%d, n=%d, pos=%d, val = %d\n", num, n, pos, val);
     
     /* Fetch n number of bits from LSB of val */
     replaceValue = get_nbits(val, n);
+    //printf("replaceValue = %d\n", replaceValue);
     
     /* Right Shift pos position bit of num */
     shiftNum = num >> (pos-n+1);
+    //printf("shiftNum = %d\n", shiftNum);
+    
     
     /* Do replacement */
     shiftReplace = set_nbits(shiftNum, n, replaceValue);
+    //printf("shiftReplace = %d\n", shiftReplace);
+    
     
     /* Left shift the replaced Value back to position pos */
     shiftNum = shiftReplace << (pos-n+1);
+    //printf("shiftNum = %d\n", shiftNum);
+    
     
     /* Fetch the lost bits from num when right shifted */
     replaceValue = get_nbits(num, (pos-n+1));
+    //printf("replaceValue = %d\n", replaceValue);
+    
     
     /* To get final result */
     result = replaceValue | shiftNum;
@@ -191,22 +205,149 @@ int toggle_bits_from_pos(int num, int n, int pos)
  *
  *  The output should be -> 0 0 0 0 0 0 0 0 1 0 1 0
  */
-void print_bits(unsigned int num, int n)
+
+ void print_nbits(unsigned int num, int n)
+ {
+ int i, iter=num, bit, mask;
+ int bits[31]= { 0 };
+ 
+ /* Print the n bit binary representation of num */
+ for ( i = 0 ; iter != 0; iter>>=1 )
+ {
+ bits[i] = (iter & 01);
+ i++;
+ }
+ printf("\n");
+ 
+ /* Print bits */
+ for (i = (n-1); i >= 0; i--) {
+ printf("%d ", bits[i]);
+ }
+ printf("\n");
+ }
+
+
+/*
+ *  Print bits of a given num
+ */
+void print_bits(unsigned int num)
 {
-    int i, iter=num, bit, mask;
-    int bits[32]= { 0 };
+    int i, bit, mask;
     
     /* Print the n bit binary representation of num */
-    for ( i = 0 ; iter != 0; iter>>=1 )
+    for ( i = 31 ; i >= 0; i-- )
     {
-        bits[i] = (iter & 01);
-        i++;
+        mask = 1<<i;
+        bit = mask & num;
+        /* Print bits */
+        bit == 0? printf("0"): printf("1");
     }
      printf("\n");
+
+}
+
+/*
+ *  Circular right shift : Right Shift num, n times
+ *  For right shifting, the shifted bits
+ *      come at left most side.
+ *  Example: If num is 12, and n is 3,
+ *  12 		->
+ *  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0
+ *
+ *  new number 	->
+ *  1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+ *
+ */
+
+
+int circular_right_shift(int num, int n)
+{
+    /*
+     * Logic with example for POSITIVE NUMBER:
+     * if num = 12, and n = 4
+     *
+     *  num : 00000000000000000000000000001100
+     *  a: To right shift n bits of the num
+     *   (num << (32 - n))
+     *        01000000000000000000000000000000
+     *  b: To get all the bits except n msb bits of num
+     *  mask: ~(0xffffffff << (32 - n))
+     *        00001111111111111111111111111111
+     *  c: To get the shifted bits except n msb bits of num
+     *  (num >> n) & (~(0xffffffff << (32 - n)))
+     *        00001111111111111111111111111111
+     *
+     *   OR step a with step c to get result
+     *  (((num >> n) & (~(0xffffffff << (32 - n)))) | (num << (32 - n)))
+     *      11000000000000000000000000000000
+     *
+     *  Logic with example for POSITIVE NUMBER:
+     *  if num = -12, and n = 4
+     *
+     *  num : 11111111111111111111111111110100
+     *  a: To right shift n bits of the num
+     *   (num << (32 - n))
+     *        01000000000000000000000000000000
+     *  b: To get all the bits except n msb bits of num
+     *  mask: ~(0xffffffff << (32 - n))
+     *        00001111111111111111111111111111
+     *  c: To get the shifted bits except n msb bits of num
+     *  (num >> n) & (~(0xffffffff << (32 - n)))
+     *        00001111111111111111111111111111
+     *
+     *   OR step a with step c to get result
+     *  (((num >> n) & (~(0xffffffff << (32 - n)))) | (num << (32 - n)))
+     *      01001111111111111111111111111111
+     */
     
-    /* Print bits */
-    for (i = (n-1); i >= 0; i--) {
-        printf("%d ", bits[i]);
-    }
-    printf("\n");
+    return  (((num >> n) & (~(0xffffffff << (32 - n)))) | (num << (32 - n)));
+
+}
+
+/*
+ *  Circular left shift : Left Shift num, n times
+ *  For left shifting, the shifted bits
+ *      come at right most side.
+ */
+int circular_left_shift(int num, int n)
+{
+    /*
+     * Logic with example for POSITIVE NUMBER:
+     * if num = 12, and n = 4
+     *
+     *  num : 00000000000000000000000000001100
+     *  To get n Lsb bits of num:
+     *  mask: ~(0xFFFFFFFF << n)
+     *      00000000000000000000000000001111
+     *  To remove the extra 1s when negative number is considered
+     *  mask2: ((num >> (0x1F & (32 + ~n + 1))))
+     *      00000000000000000000000000000000
+     *  To get the n MSB number that needs rotation
+     *  (((num >> (0x1F & (32 + ~n + 1))) & ~(0xFFFFFFFF << n)))
+     *      00000000000000000000000000000000
+     *  OR with (num << n) to get the result
+     *  (num << n) | ((num >> (0x1F & (32 + ~n + 1))) & ~(0xFFFFFFFF << n))
+     *      00000000000000000000000011000000
+     *
+     *
+     *  Logic with example for NEGATIVE NUMBER:
+     * if num = -12, and n = 4
+     *
+     *  num : 11111111111111111111111111110100
+     *  To get n Lsb bits of num:
+     *  mask: ~(0xFFFFFFFF << n)
+     *      00000000000000000000000000001111
+     *  To get the extra 1s when negative number is considered
+     *  mask2: ((num >> (0x1F & (32 + ~n + 1))))
+     *      11111111111111111111111111111111
+     *  To get the n MSB number that needs rotation
+     *  (((num >> (0x1F & (32 + ~n + 1))) & ~(0xFFFFFFFF << n)))
+     *      00000000000000000000000000001111
+     *  OR with (num << n) to get the result
+     *  (num << n) | ((num >> (0x1F & (32 + ~n + 1))) & ~(0xFFFFFFFF << n))
+     *      11111111111111111111111101001111
+     */
+    
+    return (num << n) | ((num >> (0x1F & (32 + ~n + 1))) & ~(0xFFFFFFFF << n));
+   
 }
