@@ -1,0 +1,2 @@
+my_file has totally 7 words
+No words

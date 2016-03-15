@@ -24,7 +24,7 @@ int main()
 	}
 	else 
 	{
-		printf("Non of the above are alpha nummeric");
+		printf("Non of the above are alpha nummeric\n");
 	}
 
 }

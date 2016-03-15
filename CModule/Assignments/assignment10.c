@@ -64,10 +64,12 @@ int main()
         while (fib1 <= givenNum)
         {
             printf("%d ", fib1);
+            /* take the first fib into temp */
             temp = fib1;
+            /* fib1 will be sum of fib1 and fib2 */
             fib1 += fib2;
-            fib2 = temp;
-        }
+            /* fib2 will be the value of previous fib1 value */
+            fib2 = temp;        }
         printf("\n");
         
         /* Prompt for Continue option */

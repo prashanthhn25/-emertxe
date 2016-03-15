@@ -26,11 +26,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define f(x) (x*(x-1))
-
 int main(int argc, char **argv)
 {
-    int n, op, returnValue;
+    int n, returnValue;
     static char buf[16];
     
     char c;
@@ -51,32 +49,31 @@ int main(int argc, char **argv)
         if (n <= 0)
         {
             returnValue = 1;
-            //exit (1);
         }
         else
         {
-            op = f(n);
+            if (n == 1)
+            {
+                returnValue = 1;
+            }
+            else
+            {
+                sprintf(buf, "%d", n - 1);
+                /* pt is the pointer to the value in buf */
+                char *pt = buf;
+                
+                /* take the value stored in address of previous value (n-1) */
+                char **pt2 = &pt - 1;
+                
+                /* Call main function from main for calculating factorial */
+                returnValue = main(2, pt2) * n;
+            }
+            
         }
         printf("Factorial of %d: %d \n", n, returnValue);
-        printf("Continue (y/n): \n");
-        scanf("\n%c", &c);
-        if (c == 'y')
-        {
-            sprintf(buf, "%d", n - 1);
-            /* pt is the pointer to the value in buf */
-            char *pt = buf;
-            /* take the value stored in address of previous value (n-1) */
-            char **pt2 = &pt - 1;
-            
-            /* Call main function from main for calculating factorial */
-            returnValue = main(2, pt2) * n;
-        }
-        else
-        {
-            exit (1);
-        }
-        
+
         return returnValue;
+    
 }
 
 

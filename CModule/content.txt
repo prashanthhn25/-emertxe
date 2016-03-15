@@ -57,12 +57,29 @@ Assignments
 6. assignment6.c  :Sieve of Eratosthenes
 7. assignment7.c  :Read 3 numbers a, r, n. Generate AP, GP, HP
 8. assignment8.c  :Print Hello world in X formation
-9. assignment9.c  :
+9. assignment9.c  :Given a number between 1-365 (incl), find which day is it
 10.assignment10.c :Read n and generate fibonacci nos <=n
 11.assignment11.c :Read n and n number of ints; print median of those
-12.assignment12.c :Given a number between 1-365(incl), find which day it is
-13.assignment13.c :
-14.assignment14.c :Bitwise program to check a number is even or odd
+12.assignment12.c :Verify type promotion table using sizeof.
+Given a number between 1-365(incl), find which day it is
+13.assignment13.c :Bitwise program to check a number is even or odd
+14.assignment14.c :Print bits of signed & unsigned types and check for 2’s complement.
 15.assignment15.c :Implement your own ctype library. (ctype_lib.c)
-16.assignment16.c :Implement bitwise functions. (bitwise_lib.c)
- 
+16.assignment16.c :Implement bitwise functions Tests. (bitwise_lib.c)
+17.assignment17.c :Read int i, 0 <= a <= b <= 31, n, put the (b-a+1)lsb's of n into i[b:a]. (bitwise_lib.c)
+18.assignment18.c :Circular right & left shift the num by n.
+19.assignment19.c :Write a C program to swap two variables by using pass by reference method.
+20.assignment20.c :Average of n numbers by taking input in 3 different ways.(assignment20b.c, assignment20c.c  )
+21.assignment21.c :Recursive factorial without using any other function than main
+22.assignment22.c :Write the functions for post and pre increment, passing int pointer as their parameter.
+23.assignment23.c :Fibonacci with using its recursive relation
+24.assignment24.c :Write a program to count number of characters, words and lines, entered through stdin.
+25.assignment25.c :Replacing each string of one or more blanks by a single blank on stream.
+26.assignment26.c :Read input till eof in a file and print no of words read.
+27.assignment27.c :Copy one file into another 
+28.assignment28.c :Concatenate two files, as ./your_cat file1 file2 [filenew] and like the command ’cat’
+29.assignment29.c : 
+30.assignment30.c : 
+31.assignment31.c : 
+32.assignment32.c : 
+

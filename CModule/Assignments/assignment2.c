@@ -24,8 +24,11 @@ int main()
     /* generate the fibonacii numbers <= givenNum */
     while (fib1 <= givenNum)
     {
+        /* take the first fib into temp */
         temp = fib1;
+        /* fib1 will be sum of fib1 and fib2 */
         fib1 += fib2;
+        /* fib2 will be the value of previous fib1 value */
         fib2 = temp;
     }
     printf("%d\n", fib2);

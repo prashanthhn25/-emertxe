@@ -1,0 +1,8 @@
+write_file access is to be checked
+my_file has totally 7 words
+No words
+ÿread_file has something
+ÿmy_file has totally 7 words
+No words
+ÿread_file has something
+ÿ

@@ -111,6 +111,14 @@ int main()
                 
                 break;
                 
+            case 2:
+                printf("Please run ./assignment20b <nos> \n");
+                break;
+                
+            case 3:
+                printf("From shell export a variable which contain numbers. export arr= 1 2 3 4. \nPlease run ./assignment20c \n");
+                break;
+                
             default:
                 printf("Invalid choice \n");
                 break;
@@ -131,5 +139,4 @@ int main()
     } while (1);
    	return 0;
 }
-
 
