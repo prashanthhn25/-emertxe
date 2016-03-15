@@ -25,38 +25,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define STORAGE 255
+
+/* Function prototype */
 int read_int(char *w);
 
-int main(int argc, char **argv)
+int main()
 {
+    int c;
     char option;
-    int c, input[150000], i;
     
     do
     {
-        i=0;
+        /* clear the buffer everytime you try to store */
+        char s[STORAGE] = { 0 };
         
-        printf("Enter the number: ");
+        /* enter the value */
+        (void) printf("Enter the number: ");
         
-        rewind(stdin);
-        while (( c = getchar()) != '\n') {
-            c = getchar();
-            input[i] = c;
-            i++;
-        }
-        
-        printf("Number = %d\n", read_int(&input));
+        /* read the value similar to scanf */
+        read_int(s);
+        /* print the value that is stored in s after reading */
+        printf("Number = %s \n", s);
         
         /* Prompt for Continue option */
         printf("Continue (y/n): ");
         
-        /* read_int() works same as scanf so \n will be considered 
-         *  to avoid that add getchar() again
-         */
-        //option = read_int();
-        //printf("option = %d\n", read_int());
+        /* same as scanf */
+        read_int(s);
+        option = *s;
         
-        scanf("\n%c", &option);
+        //scanf("\n%c", &option);
         
         if ( option == 'y' )
         {
@@ -66,26 +65,27 @@ int main(int argc, char **argv)
         {
             break;
         }
-        
-    } while (1);
-    
+
+    } while(1);
     return 0;
-    
 }
 
 /* behave like scanf("%d", &i) */
 int read_int(char *w)
 {
+    int i, ch;
     
-    int c;
+    /* to clear the stream from the newline*/
+    rewind(stdin);
     
-    /* to clear the stream */
-    /* get the character */
-    //c = getchar();
-    c = *ch;
-    
-    /* return the value not it's ASCII 
-     * char to int
+    /* till new line is reached, collect the characters 
+     * in s whose reference is passed 
      */
-    return c - '0' ;
+    for (i=0; ((ch = getchar()) != '\n'); i++)
+    {
+       
+        w[i] = ch;
+    }
+    
+    return 1 ;
 }

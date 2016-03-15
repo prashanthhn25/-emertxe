@@ -8,6 +8,7 @@
  *      -> int get_nbits_from_pos(int num, int n, int pos);
  *      -> int set_nbits_from_pos(int num, int n, int pos, int val);
  *      -> int toggle_bits_from_pos(int num, int n, int pos);
+ *      -> void print_nbits(unsigned int num, int n);
  *      -> void print_bits(unsigned int num, int n);
  *
  *      -> int circular_right_shift(int num, int n);
