@@ -78,7 +78,7 @@ Given a number between 1-365(incl), find which day it is
 26.assignment26.c :Read input till eof in a file and print no of words read.
 27.assignment27.c :Copy one file into another 
 28.assignment28.c :Concatenate two files, as ./your_cat file1 file2 [filenew] and like the command ’cat’
-29.assignment29.c : 
+29.assignment29.c :Write a function read_int to read an integer like scanf().
 30.assignment30.c : 
 31.assignment31.c : 
 32.assignment32.c : 
