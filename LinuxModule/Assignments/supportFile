@@ -1,5 +1,41 @@
-Filesystem    512-blocks      Used  Available Capacity  iused     ifree %iused  Mounted on
-/dev/disk1    1951190584 445615656 1505062928    23% 55765955 188132866   23%   /
-devfs                364       364          0   100%      630         0  100%   /dev
-map -hosts             0         0          0   100%        0         0  100%   /net
-map auto_home          0         0          0   100%        0         0  100%   /home
+#include <stdio.h>
+<--DEL-->
+int main(int argc, char **argv)
+<--DEL-->
+    int c;
+    int words = 0;
+    
+    FILE *fp;
+    if (argc == 1)
+    {
+        printf("Usage: ./assignment26 <filename>\n");
+        return -1;
+<--DEL-->
+<--DEL-->
+    {
+        fp = fopen(argv[1], "r");
+        if (NULL == fp)
+<--DEL-->
+            perror("fopen");
+            return -1;
+        }
+    }
+    while ((c = fgetc(fp)) != EOF)
+    {
+        if (c == ' ' || c == '\n' || c == '\t')
+        {
+            ++words;
+             c = fgetc(fp);
+            if (c == ' ' || c == '\n' || c == '\t')
+            {
+<--DEL-->
+<--DEL-->
+            //ungetc(c,fp);
+<--DEL-->
+        }
+    }
+    fclose(fp);
+    printf("Word Count in %s === %d\n", argv[1], words);
+    return 0;
+ }
+
