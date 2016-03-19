@@ -1,0 +1,18 @@
+echo "file exists"
+	if [[ $firstLetter = [[:lower:]] ]]
+	then
+		echo "Already in correct format"
+		exit 0
+	elif  [[ $firstLetter = [[:upper:]] ]]
+	then 
+		small=`echo $firstLetter | tr [:upper:] [:lower:]`
+		newName=${small}${path:1}
+
+		#check if the given file/directory path starts with alphabets or not
+		if [ -f $newName -o -d $newName ]
+		then
+			echo "Error: $newName file/directory currently exists."
+			exit 1
+		else
+			mv "$path" "$newName"		
+		fi
