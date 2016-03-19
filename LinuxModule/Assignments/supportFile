@@ -1,10 +1,5 @@
-This file is used to check for assignment 9
-Add empty lines to check 
-
-There are few empty lines
-
-
-
-
-finally!!
-
+Filesystem    512-blocks      Used  Available Capacity  iused     ifree %iused  Mounted on
+/dev/disk1    1951190584 445615656 1505062928    23% 55765955 188132866   23%   /
+devfs                364       364          0   100%      630         0  100%   /dev
+map -hosts             0         0          0   100%        0         0  100%   /net
+map auto_home          0         0          0   100%        0         0  100%   /home
