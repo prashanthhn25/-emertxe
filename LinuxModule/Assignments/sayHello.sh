@@ -1,7 +1,14 @@
 #!/bin/bash
 <<COMMENT
 scriptname: sayHello.sh
-This script runs as soon as you logon to the syatem, and it prints the message depening on system time. 
+This script runs as soon as you logon to the system, and it prints the message depening on system time.
+
+NOTE:
+When bash is invoked, it firs reads and executes commands from file /ec/profile, if that file exits.
+After reading that file, it looks for ~/.bash_profile, ~/.bash_login,and ~/.profile, in that order, and reads and executes commands from the first one that exists and is readable.
+
+The --noprofile option may be used when the shell is started to inhibit this behavior.
+
 COMMENT
 
 sysHTime=`date +%H`
