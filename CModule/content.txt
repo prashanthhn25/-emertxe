@@ -79,7 +79,7 @@ Given a number between 1-365(incl), find which day it is
 27.assignment27.c :Copy one file into another 
 28.assignment28.c :Concatenate two files, as ./your_cat file1 file2 [filenew] and like the command ’cat’
 29.assignment29.c :Write a function read_int to read an integer like scanf().
-30.assignment30.c : 
-31.assignment31.c : 
+30.assignment30.c :Print bits of float & double. 
+31.assignment31.c :Generate a n*n magic square (n is odd +ve no.) 
 32.assignment32.c : 
 
