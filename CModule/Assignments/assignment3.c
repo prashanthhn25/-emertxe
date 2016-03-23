@@ -30,7 +30,7 @@
 int main()
 {
 	int givenNum, i, sum = 0, flag = 0;
-    char ch;
+    char option;
     
     do
     {
@@ -38,12 +38,11 @@ int main()
         printf("Enter a number: ");
         scanf("%d", &givenNum);
 
-        /* Error check for negative numbers and zero */
+        /* Error check for negative numbers and zero also for out of range values */
         if (givenNum <= 0)
         {
-            printf("Error: Invaid number\n");
-            printf("Usage: Provide a positive number\n");
-            return 0;
+            printf("Error: Invaid number. Give only Positive numbers < 2000000000. \n");
+            return 1;
         }
     
         /* Check the number is perfect number or not and print it */
@@ -66,9 +65,9 @@ int main()
         
         /* ask the user whether to continue or not */
         printf("Continue(y/n): ");
-        scanf("\n%s",&ch);
+        scanf("\n%s",&option);
         
-        if (ch == 'y')
+        if (option == 'y')
         {
             sum = 0;
             flag = 0;

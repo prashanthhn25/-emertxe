@@ -9,7 +9,7 @@
  *      -> int set_nbits_from_pos(int num, int n, int pos, int val);
  *      -> int toggle_bits_from_pos(int num, int n, int pos);
  *      -> void print_nbits(unsigned int num, int n);
- *      -> void print_bits(unsigned int num);
+ *      -> void print_bits(unsigned int num, int n);
  *
  *      -> int circular_right_shift(int num, int n);
  *      -> int circular_left_shift(int num, int n);
@@ -62,11 +62,11 @@ int set_nbits(int num, int n, int val)
 {
     int result, mask, mask2, i;
     mask = 0x01; /* Mask */
-    mask2 = 0xff;
+    mask2;
     for (i = 1 ; i < n; i++) {
         mask |= (0x01 << i); /* Mask */
-        mask2 = (0xff << i); /* Mask */
     }
+	mask2= ~mask;
     /* mask n bits of num with 0s, 
      * get only n bits of val
      * OR the above two values
@@ -209,23 +209,22 @@ int toggle_bits_from_pos(int num, int n, int pos)
 
  void print_nbits(unsigned int num, int n)
  {
-     int i, iter=num, bit, mask;
-     int bits[31]= { 0 };
+ int i, iter=num, bit, mask;
+ int bits[31]= { 0 };
  
-     /* Print the n bit binary representation of num */
-     for ( i = 0 ; iter != 0; iter>>=1 )
-     {
-         bits[i] = (iter & 01);
-         i++;
-     }
-     printf("\n");
+ /* Print the n bit binary representation of num */
+ for ( i = 0 ; iter != 0; iter>>=1 )
+ {
+ bits[i] = (iter & 01);
+ i++;
+ }
+ printf("\n");
  
-     /* Print bits */
-     for (i = (n-1); i >= 0; i--)
-     {
-         printf("%d ", bits[i]);
-     }
-     printf("\n");
+ /* Print bits */
+ for (i = (n-1); i >= 0; i--) {
+ printf("%d ", bits[i]);
+ }
+ printf("\n");
  }
 
 

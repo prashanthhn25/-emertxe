@@ -36,7 +36,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define LIMIT 15000
+#define LIMIT 200000
 
 int main()
 {
@@ -46,6 +46,7 @@ int main()
     
     do
     {
+		num = 0;
         numArray[0] = 0;
         numArray[1] = 0;
     
@@ -54,10 +55,10 @@ int main()
         scanf("%d", &num);
     
         /* Error Check */
-        if (num < 2)
+        if (num < 2 || num > 200)
         {
-            printf("Error: Enter number > 2\n");
-            return 0;
+            printf("Error: Enter only positive numbers > 2 less than 200 \n");
+            return 1;
         }
     
         /* Arrange the numbers from 2 to num in sequential way */

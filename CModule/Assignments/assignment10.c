@@ -40,23 +40,18 @@ int main()
         flag = 0;
         
         /* Do error checking */
-        do
+        
+        /* Read positive number n from user. */
+        printf("Enter a Positive Number: ");
+        scanf("%d", &givenNum);		
+			
+        /* Negative number check */
+        if ((givenNum < 0) || (givenNum > 2000000000))
         {
-            /* Read positive number n from user. */
-            printf("Enter a Positive Number: ");
-            scanf("%d", &givenNum);
-            
-            /* Negative number check */
-            if (givenNum < 0)
-            {
-                flag = 1;
-            }
-            else
-            {
-                flag = 0;
-            }
-        } while (flag);
-    
+			printf("Error: Invalid Number. Retry\n");
+            continue;
+        }
+        
         /* Print all fibonacci numbers from 0 to givenNum */
         printf("Fibonacci series between 0 and %d --->\n", givenNum);
         
@@ -69,7 +64,8 @@ int main()
             /* fib1 will be sum of fib1 and fib2 */
             fib1 += fib2;
             /* fib2 will be the value of previous fib1 value */
-            fib2 = temp;        }
+            fib2 = temp;       
+		}
         printf("\n");
         
         /* Prompt for Continue option */

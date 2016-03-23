@@ -36,18 +36,29 @@ int main()
         printf("Enter the number: ");
         scanf("%d", &givenNum);
     
-        
-        /* Check the zeroth bit(on LSB end) of the number */
-        if (givenNum & 0x01) {
-            /* if last bit is 1, number is odd */
-            printf ("Entered number %d is odd.\n", givenNum);
-        }
-        /* if last bit is zero, number is even */
-        else
+        /* Error Check for each number */
+		if ((givenNum <= -200000000) || (givenNum > 200000000))
         {
-            printf ("Entered number %d is even.\n", givenNum);
-        }
-        
+			printf("Error: Invalid Number. Retry\n");
+			continue;	
+        } 
+		else
+		{
+			/* Check the zeroth bit(on LSB end) of the number */
+			if (givenNum & 0x01) {
+				/* if last bit is 1, number is odd */
+				printf ("Entered number %d is odd.\n", givenNum);
+			}
+			/* if last bit is zero, number is even */
+			else if(givenNum != 0)
+			{
+				printf ("Entered number %d is even.\n", givenNum);
+			}
+			else 
+			{
+				printf ("Entered number %d is zero.\n", givenNum);
+			}
+		}	
         /* Prompt for Continue option */
         printf("Continue (y/n): ");
         scanf("\n%c", &option);

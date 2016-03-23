@@ -47,23 +47,18 @@ int main()
     do
     {
         
-        do
-        {
-            /* Read a positive number n from user */
-            printf("Enter a positive number: ");
-            scanf("%d", &n);
         
-            /* Error Check for each number */
-            /* if n is negative number or zero, repeat */
-            if (n <= 0)
-            {
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        } while (1);
+        /* Read a positive number n from user */
+        printf("Enter a positive number: ");
+        scanf("%d", &n);
+      
+        /* Error Check for each number */
+        /* if n is negative number or zero, repeat */
+		if ((n <= 0) || (n > 200000000))
+        {
+			printf("Error: Invalid Number. Retry\n");
+			continue;	
+        }     
     
         /* Read n number of integers from user */
         for ( i = 0; i < n; i++)

@@ -4,7 +4,7 @@
  *  a. Implement any 4 functions from ctype library.
  *      -> my_isalpha
  *      -> my_isalnum
- *      -> my_isxdigit
+ *      -> my_isdigit
  *      -> my_iscntrl
  *
  *  b. Read a character from user.
@@ -51,7 +51,7 @@ int main()
         my_isalnum(givenCharacter) ? printf("my_isalnum: Success\n"):printf("my_isalnum: Failed\n");
         
         /* Test for int my_isxdigit(int var) function by passing givenCharacter */
-        my_isxdigit(givenCharacter) ? printf("my_isxdigit: Success\n"):printf("my_isxdigit: Failed\n");
+        my_isdigit(givenCharacter) ? printf("my_isdigit: Success\n"):printf("my_isdigit: Failed\n");
         
         /* Test for int my_iscntrl(int var) function by passing givenCharacter */
         my_iscntrl(givenCharacter) ? printf("my_iscntrl: Success\n"):printf("my_iscntrl: Failed\n");

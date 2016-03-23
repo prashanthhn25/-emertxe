@@ -38,6 +38,14 @@ int main()
         printf("Enter the number: ");
         scanf("%d", &givenNum);
     
+		/* Error Check for each number */
+        if ((givenNum <= -200000000) || (givenNum > 200000000))
+        {
+			printf("Error: Invalid Number. Retry\n");
+			continue;	
+        }     
+    
+	
         /* To print the + for positive n */
         (givenNum > 0) ? printf("+%d -> ", givenNum) : printf("%d -> ", (givenNum));
         

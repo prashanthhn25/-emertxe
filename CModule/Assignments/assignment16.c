@@ -155,6 +155,9 @@
 #include <stdio.h>
 #include "bitwise_lib.c"
 
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
 int main()
 {
     int choice, givenNum, n, pos, val;
@@ -175,10 +178,24 @@ int main()
                 printf("Enter num\t: ");
                 scanf("%d", &givenNum);
                 
+				/* Error Check for limit */
+				if ((givenNum <= MINVAL) || (givenNum > MAXVAl))
+				{
+					printf("Error:givenNum is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* Read number n from user */
                 printf("Enter n	\t: ");
                 scanf("%d", &n);
                 
+				/* Error Check for n */
+				if ((n < 0) || (n > 32))
+				{
+					printf("Error:n is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* To test get_nbits(int num, int n) */
                 printf("Value get_nbits(%d, %d) ->  %d \n", givenNum, n, get_nbits(givenNum, n));
                 break;
@@ -189,14 +206,35 @@ int main()
                 printf("Enter num\t: ");
                 scanf("%d", &givenNum);
                 
+				/* Error Check for limit */
+				if ((givenNum <= MINVAL) || (givenNum > MAXVAl))
+				{
+					printf("Error:givenNum is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* Read number n from user */
                 printf("Enter n	\t: ");
                 scanf("%d", &n);
                 
+				/* Error Check for n */
+				if ((n < 0) || (n > 32))
+				{
+					printf("Error:n is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* Read number val from user */
                 printf("Enter val \t: ");
                 scanf("%d", &val);
                 
+				/* Error Check for limit */
+				if ((val <= MINVAL) || (val > MAXVAl))
+				{
+					printf("Error:val is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* To test set_nbits(int num, int n, int val) */
                 printf("Value set_nbits(%d, %d, %d) ->  %d \n", givenNum, n, val, set_nbits(givenNum, n, val));
                 break;
@@ -207,14 +245,35 @@ int main()
                 printf("Enter num\t: ");
                 scanf("%d", &givenNum);
                 
+				/* Error Check for limit */
+				if ((givenNum <= MINVAL) || (givenNum > MAXVAl))
+				{
+					printf("Error:givenNum is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* Read number n from user */
                 printf("Enter n	\t: ");
                 scanf("%d", &n);
                 
+				/* Error Check for n */
+				if ((n < 0) || (n > 32))
+				{
+					printf("Error:n is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* Read number pos from user */
                 printf("Enter pos \t: ");
                 scanf("%d", &pos);
                 
+				/* Error Check for pos */
+				if ((pos < 0) || (pos > 32))
+				{
+					printf("Error:pos is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* To test get_nbits_from_pos(int num, int n, int pos) */
                 printf("Value get_nbits_from_pos(%d, %d, %d) ->  %d \n", givenNum, n, pos, get_nbits_from_pos(givenNum, n, pos));
                 break;
@@ -225,18 +284,46 @@ int main()
                 printf("Enter num\t: ");
                 scanf("%d", &givenNum);
                 
+				/* Error Check for limit */
+				if ((givenNum <= MINVAL) || (givenNum > MAXVAl))
+				{
+					printf("Error:givenNum is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* Read number n from user */
                 printf("Enter n	\t: ");
                 scanf("%d", &n);
                 
+				/* Error Check for n */
+				if ((n < 0) || (n > 32))
+				{
+					printf("Error:n is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* Read number pos from user */
                 printf("Enter pos \t: ");
                 scanf("%d", &pos);
                 
+				/* Error Check for pos */
+				if ((pos < 0) || (pos > 32))
+				{
+					printf("Error:pos is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* Read number val from user */
                 printf("Enter val \t: ");
                 scanf("%d", &val);
                 
+				/* Error Check for limit */
+				if ((val <= MINVAL) || (val > MAXVAl))
+				{
+					printf("Error:val is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* To test int set_nbits_from_pos(int num, int n, int pos, int val) */
                 printf("Value int set_nbits_from_pos(%d, %d, %d, %d) ->  %d \n", givenNum, n, pos, val, set_nbits_from_pos(givenNum, n, pos, val));
                 break;
@@ -247,15 +334,35 @@ int main()
                 printf("Enter num\t: ");
                 scanf("%d", &givenNum);
                 
+				/* Error Check for limit */
+				if ((givenNum <= MINVAL) || (givenNum > MAXVAl))
+				{
+					printf("Error:givenNum is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* Read number n from user */
                 printf("Enter n	\t: ");
                 scanf("%d", &n);
                 
+				/* Error Check for n */
+				if ((n < 0) || (n > 32))
+				{
+					printf("Error:n is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* Read number pos from user */
                 printf("Enter pos \t: ");
                 scanf("%d", &pos);
                 
-                
+                /* Error Check for pos */
+				if ((pos < 0) || (pos > 32))
+				{
+					printf("Error:pos is Invalid Number. Retry\n");
+					return 1;	
+				}
+				
                 /* To test int toggle_bits_from_pos(int num, int n, int pos) */
                 printf("Value int toggle_bits_from_pos(%d, %d, %d) ->  %d \n", givenNum, n, pos, toggle_bits_from_pos(givenNum, n, pos));
                 break;
@@ -266,6 +373,13 @@ int main()
                 printf("Enter num\t: ");
                 scanf("%d", &givenNum);
                 
+				/* Error Check for limit */
+				if ((givenNum <= MINVAL) || (givenNum > MAXVAl))
+				{
+					printf("Error:givenNum is Invalid Number. Retry\n");
+					return 1;	
+				} 
+				
                 /* Read number n from user */
                 printf("Enter n	\t: ");
                 scanf("%d", &n);

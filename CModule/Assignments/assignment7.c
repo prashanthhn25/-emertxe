@@ -61,50 +61,90 @@ int main()
 {
     int AP, GP, HP, a, r, n;
     int i, j;
-    
-    /* Read a, r, n */
-    printf("Read the values: \n");
-    printf("a = ");
-    scanf("%d", &a);
-    printf("r = ");
-    scanf("%d", &r);
-    printf("n = ");
-    scanf("%d", &n);
-    
-    /* Check Errors */
-    /* Negative numbers are invalid */
-    if (n < 0) {
-        printf("Not valid number\n");
-        return 0;
-    }
-    
-    /* More than LIMIT is invalid */
-    if (n > LIMIT) {
-        printf("Not valid number\n");
-        return 0;
-    }
-    
-    
-    /* Arithmetic Progression */
-    printf("AP = ");
-    for ( i = 0; i < n; i++ ) {
-        printf("%d, ", a+i*r);
-    }
-    printf("\n");
-    
-    /* Geometric Progression */
-    printf("GP = ");
-    for ( i = 0; i < n; i++ ) {
-        printf("%d, ", (int) (a * pow(r,i)));
-    }
-    printf("\n");
-    
-    /* Harmonic Progression */
-    printf("HP = ");
-    for ( i = 0; i < n; i++ ) {
-        printf("%f, ", (double)1/(a+i*r));
-    }
-    printf("\n");
-    
+    char option;
+	
+	do
+	{
+	
+		/* Read a, r, n */
+		printf("Read the values: \n");
+		printf("a = ");
+		scanf("%d", &a);
+			printf("r = ");
+		scanf("%d", &r);
+		/* More than LIMIT is invalid */
+		if (a > 200000000)
+			{
+			printf("a is Not valid number\n");
+			return 1;
+		}
+			if (a < -200000000) 
+			{
+			printf("a is Not valid number\n");
+			return 1;
+		}
+			
+		
+		/* More than LIMIT is invalid */
+		if ((r > 20000) || (r < -20000))
+		{
+			printf("r is Not valid number\n");
+			return 1;
+		}
+			
+		printf("n = ");
+		scanf("%d", &n);
+		
+		/* Check Errors */
+			/* Negative numbers are invalid */
+		if ( n < 0 ) 
+			{
+			printf("n is Not valid number\n");
+			return 1;
+		}
+		
+		/* More than LIMIT is invalid */
+		if (n > LIMIT)
+			{
+			printf("n is  Not valid number\n");
+			return 1;
+		}
+		
+		
+		/* Arithmetic Progression */
+		printf("AP = ");
+		for ( i = 0; i < n; i++ ) {
+			printf("%d, ", a+i*r);
+		}
+		printf("\n");
+		
+		/* Geometric Progression */
+		printf("GP = ");
+		for ( i = 0; i < n; i++ ) {
+			printf("%d, ", (int) (a * pow(r,i)));
+		}
+		printf("\n");
+		
+		/* Harmonic Progression */
+		printf("HP = ");
+		for ( i = 0; i < n; i++ ) {
+			printf("%f, ", (double)1/(a+i*r));
+		}
+		printf("\n");
+		
+		/* check for continue */
+        printf("Continue (y/n): ");
+        scanf("\n%c", &option);
+        
+        if ( option == 'y' )
+        {
+            continue;
+        } else
+        {
+            break;
+        }
+        
+    } while (1);
+		
     return 0;
 }	
