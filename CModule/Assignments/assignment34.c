@@ -1,29 +1,18 @@
 /*  
- * Q. Implement atoi(const char *s)
+ * Q. Implement i) int getword(char *word)
  *
- *  a. The function will recieve a string and covert the 
- *  number stored in the string into exact integer number.
- *  b. And return the number.
+ *  a. Create a function named getword.
+ *  b. Function should read a string from user and 
+ *      store them in the char address.
+ *  c. Function should return the length of word.
  *
  *
  *  Sample Execution
  *  ----------------
  *
- *  Enter the string: 1986
+ *  Enter the Word: Hello Dennis Ritchie
  *
- *  You entered the number 1986
- *
- *  Continue(y/n): y
- *
- *  Enter the string: I am 20
- *
- *  You entered the number 0
- *
- *  Continue(y/n): y
- *
- *  Enter the string: 1986 July 10
- *
- *  You entered the number 1986
+ *  You entered Hello
  *
  *  Continue(y/n):
  *
@@ -36,29 +25,20 @@
 #define MAXVAL 2000000000
 #define MINVAL -2000000000
 
-#define isNum(x) (((x) >= '0') && ((x) <= '9'))? 1:0
-
-int my_atoi(char * myInput);
+int getword(char *word);
 int main()
 {
-    char myInput[MAXLEN];
+    char word[MAXLEN];
     char option;
     
     do
     {
         /* Enter the string and store */
-        printf("Enter the string: ");
-        fgets (myInput, MAXLEN, stdin);
+        printf("Enter the Word: ");
+        fgets (word, MAXLEN, stdin);
         
-        /* Check for out of range */
-        
-        if ((my_atoi(myInput) <= MINVAL) || (my_atoi(myInput) <= MAXVAL))
-        {
-            printf("Error: Out of range\n");
-            return 1;
-        }
-        /* Call my_atoi and print the output*/
-        printf("You entered the number %d\n", my_atoi(myInput));
+        /* Call getword and print the output*/
+        printf("You entered %d\n", getword(word));
         
         /* Prompt for Continue option */
         printf("Continue (y/n): ");
