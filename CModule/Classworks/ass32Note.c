@@ -110,6 +110,7 @@ int main()
     char character;
     float fnum;
     double dnum;
+    char * pointerIndex[8];
     
     /* Allocate 8 consecutive bytes in memory */
     char * const ptr = (char *) malloc(8 * sizeof(char));
@@ -122,6 +123,7 @@ int main()
     /* To take the memory pointer for usage */
     pointerTodataTypeValue = (char *)ptr;
     endValuepointerTodataTypeValue = (char *)(ptr+sizeof(pointerTodataTypeValue)-1);
+    //printf("Initially pointer address --> %p \n",pointerTodataTypeValue);
     
     do
     {
@@ -149,18 +151,29 @@ int main()
                         printf("Enter the %s : \n", *(typeMenu+typechoice-1));
                         scanf("%d", &num);
                         
+                        //printf("before adding pointer: --> %p \n",pointerTodataTypeValue);
+                        
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 4)
                         {
                             printf("Error: End of memeory. Cannot add. \n" );
                             break;
                         }
+                        //printf("elementCount = %d\n, ", elementCount);
+                        *(pointerIndex+elementCount) = pointerTodataTypeValue;
                         
                         displayVal[elementCount].baseAddress = pointerTodataTypeValue;
                         displayVal[elementCount].dataType = *(typeMenu+typechoice-1);
                         
                         add_Element((typeMenu+typechoice-1), &num, pointerTodataTypeValue, sizeof(num));
                         
+                        //printf("updated in mem --> %d \n",  *((int *)pointerTodataTypeValue));
+                        
+                        printf("content of %p has %d \n", pointerIndex, *((int *)pointerTodataTypeValue));
+                        
+                        //printf("size of content of pointerTodataTypeValue = %lu\n", sizeof(*((int *)pointerTodataTypeValue)));
                         pointerTodataTypeValue+=sizeof(*((int *)pointerTodataTypeValue));
+                        
+                        //printf("after pointer increment : %p\n",pointerTodataTypeValue);
                         
                         break;
                         
@@ -168,18 +181,29 @@ int main()
                         printf("Enter the %s : \n", *(typeMenu+typechoice-1));
                         scanf("\n%c", &character);
                         
+                        //printf("left mem space--> %ld \n",  (endValuepointerTodataTypeValue-pointerTodataTypeValue));
+                        
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 1)
                         {
                             printf("Error: End of memeory. Cannot add. \n" );
                             break;
                         }
                         
+                        *(pointerIndex+elementCount) = pointerTodataTypeValue;
+                        
                         displayVal[elementCount].baseAddress = pointerTodataTypeValue;
                         displayVal[elementCount].dataType = *(typeMenu+typechoice-1);
                         
                         add_Element((typeMenu+typechoice-1), &character, pointerTodataTypeValue, sizeof(character));
                         
+                        //printf("updated in mem --> %d \n",  *((char *)pointerTodataTypeValue));
+                        
+                        printf("content of %p has %c \n", pointerIndex, *((int *)pointerTodataTypeValue));
+                        
+                        
+                        //printf("size of content of pointerTodataTypeValue = %lu\n", sizeof(*((char *)pointerTodataTypeValue)));
                         pointerTodataTypeValue+=sizeof(*((char *)pointerTodataTypeValue));
+                        //printf("after pointer increment --> %p \n",pointerTodataTypeValue);
                         
                         break;
                         
@@ -188,19 +212,30 @@ int main()
                         printf("Enter the %s : \n", *(typeMenu+typechoice-1));
                         scanf("%f", &fnum);
                         
+                        //printf("left mem space--> %ld \n",  (endValuepointerTodataTypeValue-pointerTodataTypeValue));
+                        
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 4)
                         {
                             printf("Error: End of memeory. Cannot add. \n" );
                             break;
                         }
                         
+                        *(pointerIndex+elementCount) = pointerTodataTypeValue;
+                        
                         displayVal[elementCount].baseAddress = pointerTodataTypeValue;
                         displayVal[elementCount].dataType = *(typeMenu+typechoice-1);
-                       
+                        
                         
                         add_Element((typeMenu+typechoice-1), &fnum, pointerTodataTypeValue, sizeof(fnum));
                         
+                        //printf("updated in mem --> %d \n",  *((float *)pointerTodataTypeValue));
+                        
+                        printf("content of %p has %f \n", pointerIndex, *((float *)pointerTodataTypeValue));
+                        
+                        
+                        //printf("size of content of pointerTodataTypeValue = %lu\n", sizeof(*((float *)pointerTodataTypeValue)));
                         pointerTodataTypeValue+=sizeof(*((float *)pointerTodataTypeValue));
+                        //printf("after pointer increment --> %p \n",pointerTodataTypeValue);
                         
                         break;
                         
@@ -208,18 +243,29 @@ int main()
                         printf("Enter the %s : \n", *(typeMenu+typechoice-1));
                         scanf("%lf", &dnum);
                         
+                        //printf("left mem space--> %ld \n",  (endValuepointerTodataTypeValue-pointerTodataTypeValue));
+                        
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 8)
                         {
                             printf("Error: End of memeory. Cannot add. \n" );
                             break;
                         }
                         
+                        *(pointerIndex+elementCount) = pointerTodataTypeValue;
+                        
                         displayVal[elementCount].baseAddress = pointerTodataTypeValue;
                         displayVal[elementCount].dataType = *(typeMenu+typechoice-1);
                         
                         add_Element((typeMenu+typechoice-1), &dnum, pointerTodataTypeValue, sizeof(dnum));
                         
+                        //printf("updated in mem --> %d \n",  *((double *)pointerTodataTypeValue));
+                        
+                        printf("content of %p has %lf \n", pointerIndex, *((double *)pointerTodataTypeValue));
+                        
+                        
+                        //printf("size of content of pointerTodataTypeValue = %lu\n", sizeof(*((double *)pointerTodataTypeValue)));
                         pointerTodataTypeValue+=sizeof(*((double *)pointerTodataTypeValue));
+                        //printf("after pointer increment --> %p \n",pointerTodataTypeValue);
                         
                         break;
                         
@@ -236,7 +282,7 @@ int main()
                 {
                     if (*(displayVal[count].dataType) == 'c')
                     {
-                         printf("%d: %p --> %c (char) \n", count,(displayVal[count].baseAddress), (char) *(displayVal[count].baseAddress));
+                        printf("%d: %p --> %c (char) \n", count,(displayVal[count].baseAddress), (char) *(displayVal[count].baseAddress));
                     }
                     if (*(displayVal[count].dataType) == 'i')
                     {

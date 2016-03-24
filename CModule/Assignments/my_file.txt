@@ -1,64 +1,64 @@
-/*  
- * Q. Write a function read_int to read an integer.
- *
- *  a. read_int function should exactly behave like scanf("%d", &i)
- *  b. Implement read_int fuction without using scanf function.
- *
- *  Hint: Use getchar instead.
- *
- *  Concepts to apply:
- *  ------------------
- *  Pointer Concepts.
- *  getchar function
- *
- *  Sample Execution
- *  ----------------
- *
- *  Enter the number: 212
- *
- *  Number = 212
- *
- *  Continue(y/n):
- *
- */
-
 #include <stdio.h>
 #include <stdlib.h>
+#include "ntype_lib.c"
 
-int read_int(char *w);
 
-int main(int argc, char **argv)
+#define ARR_ROW 4
+#define ARR_COL 10000
+
+static int elementCount = 0;
+
+struct displayData
 {
+    char *baseAddress;
+    char *dataType;
+};
+
+void add_Element(char (* typeOfData)[], void *ptr, void *ptr2, int size);
+
+int main()
+{
+    int choice, typechoice, count;
+    ;
     char option;
-    int c, input[150000], i;
+    
+    static void * pointerTodataTypeValue;
+    void * endValuepointerTodataTypeValue;
+    
+    int num;
+    char character;
+    float fnum;
+    double dnum;
+    char * pointerIndex[8];
+    
+    char * const ptr = (char *) malloc(8 * sizeof(char));
+    
+    if (NULL == ptr)
+    {
+        printf("Error: Memory allocation failed\n");
+        return 1;
+    }
+    pointerTodataTypeValue = (char *)ptr;
+    endValuepointerTodataTypeValue = (char *)(ptr+sizeof(pointerTodataTypeValue)-1);
+    //printf("Initially pointer address --> %p \n",pointerTodataTypeValue);
     
     do
     {
-        i=0;
         
-        printf("Enter the number: ");
+    
+   
+    char mainMenu[ARR_ROW][ARR_COL] = { "Add element", "Remove element", "Display element", "Exit from the program" };
+    
+    char typeMenu[ARR_ROW][ARR_COL] = { "int", "char", "float", "double" };
+    
+    print_Menu(mainMenu, ARR_ROW);
+    printf("Choice ---> ");
+    scanf("%d", &choice);
+   
+        printf("Continue(y/n): ");
+        scanf("\n%s",&option);
         
-        rewind(stdin);
-        while (( c = getchar()) != '\n') {
-            c = getchar();
-            input[i] = c;
-            i++;
-        }
-        
-        printf("Number = %d\n", read_int(&input));
-        
-        /* Prompt for Continue option */
-        printf("Continue (y/n): ");
-        
-        /* read_int() works same as scanf so \n will be considered 
-         *  to avoid that add getchar() again
-         */
-        //option = read_int();
-        //printf("option = %d\n", read_int());
-        
-        scanf("\n%c", &option);
-        
-        if ( option == 'y' )
+        if (option == 'y')
         {
             continue;
         }
@@ -70,22 +70,20 @@ int main(int argc, char **argv)
     } while (1);
     
     return 0;
-    
 }
 
-/* behave like scanf("%d", &i) */
-int read_int(char *w)
+void add_Element(char (* typeOfData)[], void *ptr, void *ptr2, int size)
 {
+    int i;
+    char *a = ptr;
+    char *b = ptr2;
     
-    int c;
+    elementCount++;
     
-    /* to clear the stream */
-    /* get the character */
-    //c = getchar();
-    c = *ch;
-    
-    /* return the value not it's ASCII 
-     * char to int
-     */
-    return c - '0' ;
+    printf("element %d Entering the %s : \n", elementCount, *(typeOfData));
+    for (i = 0; i < size; i++)
+    {
+        b[i] = a[i];
+    }
+   
 }
