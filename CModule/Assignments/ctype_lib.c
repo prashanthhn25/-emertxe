@@ -4,7 +4,7 @@
  *  functions in ctype library.
  *      -> my_isalpha
  *      -> my_isalnum
- *      -> my_isxdigit
+ *      -> my_isdigit
  *      -> my_iscntrl
  */
 
@@ -39,7 +39,7 @@ int my_isalnum(int var)
  * To check if the passed character is alpabet or digit or not.
  * If true returns 1 else 0
  */
-int my_isxdigit(int var)
+int my_isdigit(int var)
 {
     if( var >= '0' && var <= '9' )
     {
