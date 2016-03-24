@@ -30,9 +30,11 @@
 
 #include <stdio.h>
 
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
 /* Function prototype */
 void swap_generic(void * aptr, void * bptr, int size);
-
 
 int main()
 {
@@ -45,10 +47,26 @@ int main()
         printf("Enter a: ");
         scanf("%d", &a);
         
-        /* Read number b from user */
+		/* Error Check for limit */
+		if ((a <= MINVAL) || (a > MAXVAl))
+		{
+			printf("Error: a is Invalid Number. Retry\n");
+			return 1;	
+		} 
+	   
+	   
+		/* Read number b from user */
         printf("Enter b: ");
         scanf("%d", &b);
-        
+		
+		
+		/* Error Check for limit */
+		if ((b <= MINVAL) || (b > MAXVAl))
+		{
+			printf("Error: b is Invalid Number. Retry\n");
+			return 1;	
+		} 
+		
         /* Call a swap function by passing address of both a & b */
         swap_generic(&a, &b, sizeof(a));
         
@@ -77,7 +95,8 @@ void swap_generic(void * aptr, void * bptr, int size)
     int i;
     char temp;
     
-    for ( i = 0; i < size; i++ ) {
+    for ( i = 0; i < size; i++ ) 
+	{
         temp = * (char *) aptr;
         * (char *) aptr++ = * (char *) bptr;
         * (char *) bptr++ = temp;

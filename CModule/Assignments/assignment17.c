@@ -37,6 +37,9 @@
 #include <stdio.h>
 #include "bitwise_lib.c"
 
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
 int main()
 {
     int n, a, b, i, result;
@@ -48,6 +51,13 @@ int main()
         printf("Enter number n: ");
         scanf("%d", &n);
     
+		/* Error Check for limit */
+		if ((n <= MINVAL) || (n > MAXVAl))
+		{
+			printf("Error:n is Invalid Number. Retry\n");
+			return 1;	
+		} 
+		
         /* Read number a from user(0 < a < 31) */
         printf("Enter number a: ");
         scanf("%d", &a);
@@ -74,6 +84,13 @@ int main()
         printf("Enter number i: ");
         scanf("%d", &i);
     
+		/* Error Check for limit */
+		if ((i <= MINVAL) || (i > MAXVAl))
+		{
+			printf("Error:i is Invalid Number. Retry\n");
+			return 1;	
+		} 
+		
         /* Call set_nbits_from_pos function by passing i,
         *  b - a + 1, b and n as arguments.
         */

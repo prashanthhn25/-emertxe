@@ -24,6 +24,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "ctype_lib.c"
 
 #define STORAGE 255
 
@@ -32,34 +33,33 @@ int read_int(char *w);
 
 int main()
 {
-    int c;
+    int c, i;
     char option;
-    
+ 	
     do
     {
-        /* clear the buffer everytime you try to store */
-        char s[STORAGE] = { 0 };
         
+        /* clear the buffer everytime you try to store */
+		char s[STORAGE] = {0} ;
+	
         /* enter the value */
-        (void) printf("Enter the number: ");
+        printf("Enter the number: ");
         
         /* read the value similar to scanf */
         read_int(s);
+		
         /* print the value that is stored in s after reading */
         printf("Number = %s \n", s);
         
         /* Prompt for Continue option */
         printf("Continue (y/n): ");
-        
-        /* same as scanf */
-        read_int(s);
-        option = *s;
-        
-        //scanf("\n%c", &option);
+         
+        scanf("\n%c", &option);
         
         if ( option == 'y' )
         {
-            continue;
+			getchar(); /* to remove the newline */
+			continue;
         }
         else
         {
@@ -75,16 +75,21 @@ int read_int(char *w)
 {
     int i, ch;
     
-    /* to clear the stream from the newline*/
-    rewind(stdin);
-    
     /* till new line is reached, collect the characters 
      * in s whose reference is passed 
      */
+	
     for (i=0; ((ch = getchar()) != '\n'); i++)
     {
-       
-        w[i] = ch;
+		if(my_isdigit(ch))
+		{
+			w[i] = ch;
+		}
+		else
+		{
+			printf("Error: Invalid number\n");
+			exit(1);
+		}
     }
     
     return 1 ;

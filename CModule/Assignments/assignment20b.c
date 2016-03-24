@@ -72,6 +72,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
 int main(int argc, char **argv)
 {
     int i;
@@ -91,6 +94,13 @@ int main(int argc, char **argv)
         /*  Calculate average of entered numbers and print it on the screen */
         for (i = 0; i < argc; i++)
         {
+			/* Error Check for limit */
+			if (((atoi(argv[i])) <= MINVAL) || ((atoi(argv[i])) > MAXVAl))
+			{
+				printf("Error: value is Invalid Number. Retry\n");
+				return 1;	
+			} 	
+		
             sum += atoi(argv[i]);
         }
         

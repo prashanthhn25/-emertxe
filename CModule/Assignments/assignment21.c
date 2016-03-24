@@ -26,6 +26,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
 int main()
 {
     static int returnValue, flag = 1, num, n, temp =1;
@@ -34,6 +37,13 @@ int main()
     {
         printf("Enter n: ");
         scanf("%d", &num);
+		
+		/* Error Check for limit */
+		if ((num < 0) || (num > MAXVAl))
+		{
+			printf("Error: num is Invalid Number. Retry\n");
+			return 1;	
+		} 		
 		flag = 0;
 	}	
 	

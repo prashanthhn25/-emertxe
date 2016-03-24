@@ -24,6 +24,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
 /* function prototype */
 void fibonacci(int givenNum);
 
@@ -32,7 +35,7 @@ int main(int argc, char **argv)
     int num;
     
     /* Do error checking for arg count */
-    if (argc < 2)
+    if (argc != 2)
     {
         printf("Invalid entry: ./assignment23 <no>\n");
         exit(1);
@@ -40,6 +43,14 @@ int main(int argc, char **argv)
     else
     {
         num = atoi(argv[1]);
+		
+		/* Error Check for limit */
+		if ((num < 0) || (num > MAXVAl))
+		{
+			printf("Error: num is Invalid Number. Retry\n");
+			return 1;	
+		} 
+		
         fibonacci(num);
     }
     

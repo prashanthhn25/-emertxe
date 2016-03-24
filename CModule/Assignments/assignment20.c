@@ -70,7 +70,10 @@
 
 #include <stdio.h>
 
-int main()
+#define MAXVAl 200000000
+#define MINVAL -200000000
+
+int main(int argc, char **argv)
 {
     int n, number[15000], choice, i;
     char option;
@@ -85,8 +88,7 @@ int main()
         printf("\t 1. Scan from keyboard.\n\t 2. Take command line args\n\t 3. Take environment variable args.\n");
         printf("Choice: ");
         scanf("%d", &choice);
-        
-        
+               
         switch (choice)
         {
             case 1:
@@ -94,11 +96,25 @@ int main()
                 printf("Enter the total number of integers\t: ");
                 scanf("%d", &n);
                 
+				/* Error Check for limit */
+				if ((n < 0) || (n > 20))
+				{	
+					printf("Error: n is Invalid Number. Retry\n");
+					return 1;	
+				} 
+	   
                 /* Read n numbers from user.*/
                 for (i = 0; i < n; i++)
                 {
                     printf("Enter the integer [%d]\t:", i);
                     scanf("%d", &number[i]);
+					/* Error Check for limit */
+					if ((number[i] <= MINVAL) || (number[i] > MAXVAl))
+					{
+						printf("Error: value is Invalid Number. Retry\n");
+						return 1;	
+					} 
+	   
                 }
                
                 /*  Calculate average of entered numbers and print it on the screen */
