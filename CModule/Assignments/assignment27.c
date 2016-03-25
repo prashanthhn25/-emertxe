@@ -56,6 +56,7 @@ int main(int argc, char **argv)
         if (NULL == fp2)
         {
             perror("fopen");
+            fclose(fp1); /* clean exit */
             return -1;
         }
     }

@@ -45,7 +45,7 @@ int main(int argc, char **argv)
         num = atoi(argv[1]);
 		
 		/* Error Check for limit */
-		if ((num < 0) || (num > MAXVAl))
+		if ((num < 0) || (num > MAXVAL))
 		{
 			printf("Error: num is Invalid Number. Retry\n");
 			return 1;	

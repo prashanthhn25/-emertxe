@@ -35,7 +35,7 @@ int main()
 {
     int c, i;
     char option;
- 	
+ 
     do
     {
         
@@ -47,7 +47,7 @@ int main()
         
         /* read the value similar to scanf */
         read_int(s);
-		
+        
         /* print the value that is stored in s after reading */
         printf("Number = %s \n", s);
         
@@ -74,6 +74,8 @@ int main()
 int read_int(char *w)
 {
     int i, ch;
+    w[0] = '0';
+    //int intVal = 0, s = 1;
     
     /* till new line is reached, collect the characters 
      * in s whose reference is passed 
@@ -81,16 +83,23 @@ int read_int(char *w)
 	
     for (i=0; ((ch = getchar()) != '\n'); i++)
     {
+        /* check for negative value */
+        if ( ch == '-')
+        {
+            /* If first digit is -, let s = 1 and start i from next */
+            //s = -1;
+            w[0] = '-';
+            i++;
+            ch = getchar();
+        }
+        
 		if(my_isdigit(ch))
 		{
 			w[i] = ch;
+            //intVal = intVal*10 + ch - '0';
 		}
-		else
-		{
-			printf("Error: Invalid number\n");
-			exit(1);
-		}
+		
     }
-    
-    return 1 ;
+    //printf("%d\n", (s * intVal));
+    return 0 ;
 }

@@ -8,8 +8,8 @@
 
 #include <stdio.h>
 
-#define MAX 20000000000
-#define MIN -20000000000
+#define MAX 200000000
+#define MIN -200000000
 
 int main()
 {

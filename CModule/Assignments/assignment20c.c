@@ -73,9 +73,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAXLEN 15000
+
 int main(int argc, char *argv[], char *envp[])
 {
-    int count, i, number[15000];
+    int count, i, number[MAXLEN];
     float average, sum;
     
     char *arr;

@@ -72,7 +72,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXVAl 200000000
+#define MAXVAL 200000000
 #define MINVAL -200000000
 
 int main(int argc, char **argv)
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
         for (i = 0; i < argc; i++)
         {
 			/* Error Check for limit */
-			if (((atoi(argv[i])) <= MINVAL) || ((atoi(argv[i])) > MAXVAl))
+			if (((atoi(argv[i])) <= MINVAL) || ((atoi(argv[i])) > MAXVAL))
 			{
 				printf("Error: value is Invalid Number. Retry\n");
 				return 1;	

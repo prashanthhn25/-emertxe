@@ -26,6 +26,8 @@
  */
 
 #include <stdio.h>
+#define MAXVAL 200000000
+
 
 int main()
 {
@@ -46,7 +48,7 @@ int main()
         scanf("%d", &givenNum);		
 			
         /* Negative number check */
-        if ((givenNum < 0) || (givenNum > 2000000000))
+        if ((givenNum < 0) || (givenNum > MAXVAL))
         {
 			printf("Error: Invalid Number. Retry\n");
             continue;

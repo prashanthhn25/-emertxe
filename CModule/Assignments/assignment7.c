@@ -56,6 +56,8 @@
 #include <math.h>
 
 #define LIMIT 20 /* Maximum limit on numbers 'n' */
+#define MAXVAL 200000000
+#define MINVAL -200000000
 
 int main()
 {
@@ -73,12 +75,12 @@ int main()
 			printf("r = ");
 		scanf("%d", &r);
 		/* More than LIMIT is invalid */
-		if (a > 200000000)
+		if (a > MAXVAL)
 			{
 			printf("a is Not valid number\n");
 			return 1;
 		}
-			if (a < -200000000) 
+			if (a < MINVAL) 
 			{
 			printf("a is Not valid number\n");
 			return 1;

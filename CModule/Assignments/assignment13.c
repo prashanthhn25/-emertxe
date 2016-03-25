@@ -24,6 +24,8 @@
  */
 
 #include <stdio.h>
+#define MAXVAL 200000000
+#define MINVAL -200000000
 
 int main()
 {
@@ -37,7 +39,7 @@ int main()
         scanf("%d", &givenNum);
     
         /* Error Check for each number */
-		if ((givenNum <= -200000000) || (givenNum > 200000000))
+		if ((givenNum <= MINVAL) || (givenNum > MAXVAL))
         {
 			printf("Error: Invalid Number. Retry\n");
 			continue;	

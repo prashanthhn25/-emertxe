@@ -37,6 +37,7 @@
 
 #include <stdio.h>
 #define LIMIT 15000 /* Limit for array */
+#define MAXVAL 200000000
 
 int main()
 {
@@ -54,7 +55,7 @@ int main()
       
         /* Error Check for each number */
         /* if n is negative number or zero, repeat */
-		if ((n <= 0) || (n > 200000000))
+		if ((n <= 0) || (n > MAXVAL))
         {
 			printf("Error: Invalid Number. Retry\n");
 			continue;	

@@ -33,8 +33,8 @@
 #include <stdlib.h>
 
 #define MAXLEN 256
-#define MAXVAL 2000000000
-#define MINVAL -2000000000
+#define MAXVAL 200000000
+#define MINVAL -200000000
 
 #define isNum(x) (((x) >= '0') && ((x) <= '9'))? 1:0
 
@@ -50,13 +50,6 @@ int main()
         printf("Enter the string: ");
         fgets (myInput, MAXLEN, stdin);
         
-        /* Check for out of range */
-        
-        if ((my_atoi(myInput) <= MINVAL) || (my_atoi(myInput) <= MAXVAL))
-        {
-            printf("Error: Out of range\n");
-            return 1;
-        }
         /* Call my_atoi and print the output*/
         printf("You entered the number %d\n", my_atoi(myInput));
         
@@ -110,6 +103,11 @@ int my_atoi(char *myInput)
     /* check for each char */
     for (; myInput[i] != '\0' ; i++)
     {
+        /* If it is not starting with a num */
+        if (!isNum(myInput[i]))
+        {
+            break;
+        }
         /* check if it is a number */
         if (isNum(myInput[i]))
         {
@@ -123,6 +121,14 @@ int my_atoi(char *myInput)
         }
     }
 
+    /* Check for out of range */
+    
+    if (((s * intVal) < MINVAL) || ((s * intVal) > MAXVAL))
+    {
+        printf("Error: Out of range\n");
+        exit(1);
+    }
+    
     /* return the int value multiplied by the sign s */
     return (s * intVal);
 }

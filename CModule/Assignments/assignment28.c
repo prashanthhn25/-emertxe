@@ -59,6 +59,8 @@ int main(int argc, char **argv)
         if (NULL == fp2)
         {
             perror("file2 fopen");
+            /* flush the buffer and close the file*/
+            fclose(fp1); /* clean exit */
             return -1;
         }
         
@@ -66,6 +68,11 @@ int main(int argc, char **argv)
         /* calling function to do filecopy */
         filecopy(fp1, stdout);
         filecopy(fp2, stdout);
+        
+        /* flush the buffer and close the file*/
+        fclose(fp1);
+        fclose(fp2);
+        
     }
     else if (argc == 4)
     {
@@ -84,6 +91,9 @@ int main(int argc, char **argv)
         if (NULL == fp2)
         {
             perror("file2 fopen");
+            /* flush the buffer and close the file*/
+            fclose(fp1); /* clean exit */
+
             return -1;
         }
         
@@ -94,6 +104,10 @@ int main(int argc, char **argv)
         if (NULL == fp3)
         {
             perror("file3 fopen");
+            /* flush the buffer and close the file*/
+            fclose(fp1);
+            fclose(fp2);
+            
             return -1;
         }
         
@@ -105,6 +119,11 @@ int main(int argc, char **argv)
         /* calling function to do filecopy */
         filecopy(fp1, fp3);
         filecopy(fp2, fp3);
+        
+        /* flush the buffer and close the file*/
+        fclose(fp1);
+        fclose(fp2);
+        fclose(fp3);
     }
     else
     {
@@ -113,11 +132,6 @@ int main(int argc, char **argv)
         printf("Usage: ./assignment28 \n");
         return -1;
     }
-    
-    /* flush the buffer and close the file*/
-    fclose(fp1);
-    fclose(fp2);
-    fclose(fp3);
     
     return 0;
     
