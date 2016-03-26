@@ -39,8 +39,6 @@
 #define MAXVAL 20000000
 #define MINVAL -20000000
 
-#define FLOATBITS 32
-
 void sortFloatNumbers(float array[], int floatCount);
 void swap_generic(void * aptr, void * bptr, int size);
 
@@ -48,7 +46,6 @@ int main()
 {
     int floatCount, i, j;
     float store[MAXLEN];
-    float lastElem;
     
     
     printf("Enter the count of float elements need to store: ");
@@ -103,8 +100,6 @@ void sortFloatNumbers(float array[], int floatCount)
             }
         }
     }
-    
-
 }
 
 void swap_generic(void * aptr, void * bptr, int size)
