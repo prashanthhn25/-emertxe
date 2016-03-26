@@ -151,7 +151,7 @@ int main()
                         
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 4)
                         {
-                            printf("Error: End of memeory. Cannot add. \n" );
+                            printf("Error: End of memeory. Cannot add int. \n" );
                             break;
                         }
                         
@@ -170,7 +170,7 @@ int main()
                         
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 1)
                         {
-                            printf("Error: End of memeory. Cannot add. \n" );
+                            printf("Error: End of memeory. Cannot add char. \n" );
                             break;
                         }
                         
@@ -190,7 +190,7 @@ int main()
                         
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 4)
                         {
-                            printf("Error: End of memeory. Cannot add. \n" );
+                            printf("Error: End of memeory. Cannot add float. \n" );
                             break;
                         }
                         
@@ -210,7 +210,7 @@ int main()
                         
                         if ((endValuepointerTodataTypeValue-pointerTodataTypeValue+1) < 8)
                         {
-                            printf("Error: End of memeory. Cannot add. \n" );
+                            printf("Error: End of memeory. Cannot add double. \n" );
                             break;
                         }
                         
@@ -264,10 +264,13 @@ int main()
         
         if (option == 'y')
         {
+            
             continue;
         }
         else
         {
+            free(ptr);
+            pointerTodataTypeValue = NULL;
             break;
         }
         
