@@ -7,6 +7,10 @@
  *      -> char * my_strstr(char *string, char *substring);
  *      -> int my_strcmp(char *s1, char *s2);
  *      -> int my_strncmp(char *s1, char *s2, int nletter);
+ *      -> char * my_strtok(char * str, char * sep);
+ *      -> void print_reverseStringNonRec(char *s1);
+ *      -> void print_reverseStringRec(char *s1);
+ *      -> void my_squeeze(char *string, char *substring);
  */
 
 #include <string.h>
@@ -48,7 +52,7 @@ int checkgetStringFromUser(char *string)
 
 
 
-/* Swaps int, String, float, cha, double, array */
+/* Swaps int, String, float, char, double, array */
 void swap_generic(void * aptr, void * bptr, int size)
 {
     int i;
@@ -303,3 +307,74 @@ char * my_strtok(char * str, char * sep)
     
 }
 
+/*
+ *  Read a string and print it in reverse order without storing
+ *  in an array.
+ *  Without modifying that string, print it in reverse order.
+ *  Non-recursively
+ */
+void print_reverseStringNonRec(char *s1)
+{
+    int len, i;
+    
+    len = strlen(s1) - 1;
+    for (i = len; i >= 0; i--)
+    {
+        printf("%c", s1[i]);
+    }
+    
+}
+
+/*
+ *  Read a string and print it in reverse order without storing
+ *  in an array.
+ *  Without modifying that string, print it in reverse order.
+ *  Recursively
+ */
+void print_reverseStringRec(char *s1)
+{
+    if(*s1)
+    {
+        print_reverseStringRec(s1+1);
+        printf("%c", *s1);
+    }
+    
+}
+
+/*  Deletes each character in s1 that matches any
+ *  character in the string s2 and returns that new string
+ *  if no match.
+ */
+void my_squeeze(char *string, char *substring)
+{
+    int i, j, k;
+    int flag;
+    
+    /* keep track of letters in string */
+    for (i = j = 0; string[i] != '\0'; i++)
+    {
+        /* for every new letter reset flag */
+        flag = 0;
+        /* check for substring letters in string
+         * if flag is set, then before checking for next letter
+         *  of substring delete the letter from string
+         */
+        for (k = 0; substring[k] != '\0' && !flag; k++)
+        {
+            if (substring[k] == string[i])
+            {
+                /* if the letters are same set flag to delete */
+                flag = 1;
+            }
+        }
+        /* shift string letters as deleted, i.e,
+         *  dont copy that letter as it was a match */
+        if (!flag)
+        {
+            string[j++] = string[i];
+        }
+    }
+    /* add '\0' to end the string after deletion of substring match */
+    string[j] = '\0';
+    
+}

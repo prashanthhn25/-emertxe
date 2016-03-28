@@ -77,29 +77,6 @@
  *
  *  String1 and string2 differ
  *
- *  memmove
- *  -------
- *  a. Read an array of integers from user.
- *  b. Read two locations and number of bytes to copy from user.
- *  c. Copy the content of location1 to location2.
- *
- *  Hint: Read man memmove
- *  Note: Implement as standard function memmove
- *
- *  Concepts to apply:
- *  ------------------
- *  void pointer concepts
- *
- *  Sample Execution:
- *  -----------------
- *
- *  Enter array of 5 integers: 10 20 30 40 50
- *
- *  Enter location1: 3
- *  Enter location2: 0
- *  Number of bytes to copy: 8
- *
- *  Array: 30 40 30 40 50
  *
  */
 
@@ -110,8 +87,6 @@
 
 
 #define MAXSTRINGLEN 255
-
-//char * my_strtok(char * str, char * sep);
 
 int main()
 {
