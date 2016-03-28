@@ -9,10 +9,9 @@
  *      -> void print_Menu(char sptr[][MAX_COL], int rows);
  *      -> void fibonacci(int givenNum);
  *      -> int itoa(int n, char *s);
- *      -> void sortFloatNumbers(float array[], int floatCount);
- *      -> void swap_generic(void * aptr, void * bptr, int size)
  */
 
+#include <stdio.h>
 #define MAX_COL 10000
 
 /*
@@ -142,34 +141,4 @@ int itoa(int n, char *s)
     rewind(stdin);
     return count;
     
-}
-
-/* Sorting floating numbers - Bubble sort using generic swap */
-void sortFloatNumbers(float array[], int floatCount)
-{
-    int i, j;
-    
-    for (i = 0; i < floatCount; i++)
-    {
-        for (j = 0; j < floatCount - i - 1; j++)
-        {
-            if (array[j] > array[j+1])
-            {
-                swap_generic((array+j), (array+j+1), sizeof(float));
-            }
-        }
-    }
-}
-
-void swap_generic(void * aptr, void * bptr, int size)
-{
-    int i;
-    char temp;
-    
-    for ( i = 0; i < size; i++ )
-    {
-        temp = * (char *) aptr;
-        * (char *) aptr++ = * (char *) bptr;
-        * (char *) bptr++ = temp;
-    }
 }
