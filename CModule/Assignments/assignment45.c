@@ -40,7 +40,9 @@ union Storage
     double doubleStore[MAXLEN];
 };
 
-float calc_mean(void *aptr, int no_of_elements, int size_l);
+float calc_int_mean(int aptr[], int no_of_elements);
+float calc_float_mean(float aptr[], int no_of_elements);
+float calc_double_mean(double aptr[], int no_of_elements);
 
 int main(int argc, char **argv)
 {
@@ -89,7 +91,43 @@ int main(int argc, char **argv)
             }
             
             /* Pass them to calc mean function */
-            printf("The mean value: %f", calc_mean(store.intStore, len, sizeof(int)));
+            printf("The mean value: %f\n", calc_int_mean(store.intStore, len));
+            break;
+            
+        case 2:
+            /*  Enter the elements into the array */
+            for (i = 0; i < len; i++)
+            {
+                scanf("%f", &store.floatStore[i]);
+                
+                /* Error Check for limit */
+                if (((store.floatStore[i]) < MINVAL) || ((store.floatStore[i]) > MAXVAL))
+                {
+                    printf("Error: Element value is Out of range. Retry\n");
+                    return 1;
+                }
+            }
+            
+            /* Pass them to calc mean function */
+            printf("The mean value: %f\n", calc_float_mean(store.floatStore, len));
+            break;
+
+        case 3:
+            /*  Enter the elements into the array */
+            for (i = 0; i < len; i++)
+            {
+                scanf("%lf", &store.doubleStore[i]);
+                
+                /* Error Check for limit */
+                if (((store.doubleStore[i]) < MINVAL) || ((store.doubleStore[i]) > MAXVAL))
+                {
+                    printf("Error: Element value is Out of range. Retry\n");
+                    return 1;
+                }
+            }
+            
+            /* Pass them to calc mean function */
+            printf("The mean value: %f\n", calc_double_mean(store.doubleStore, len));
             break;
             
         default:
@@ -99,7 +137,56 @@ int main(int argc, char **argv)
     return 0;
 }
 
-float calc_mean(void *aptr, int no_of_elements, int size_l)
+float calc_int_mean(int aptr[], int no_of_elements)
 {
-    return -1;
+    float mean, sum;
+    int i;
+    
+    sum = 0;
+    
+    /*  Compute the mean of all elements */
+    for (i = 0; i < no_of_elements; i++)
+    {
+        sum += aptr[i];
+    }
+    
+    mean = sum / no_of_elements;
+    
+    return mean;
+}
+
+float calc_float_mean(float aptr[], int no_of_elements)
+{
+    float mean, sum;
+    int i;
+    
+    sum = 0;
+    
+    /*  Compute the mean of all elements */
+    for (i = 0; i < no_of_elements; i++)
+    {
+        sum += aptr[i];
+    }
+    
+    mean = sum / no_of_elements;
+    
+    return mean;
+}
+
+float calc_double_mean(double aptr[], int no_of_elements)
+{
+    float mean, sum;
+    int i;
+    
+    sum = 0;
+    
+    /*  Compute the mean of all elements */
+    for (i = 0; i < no_of_elements; i++)
+    {
+        sum += aptr[i];
+    }
+    
+    mean = sum / no_of_elements;
+    
+    return mean;
 }
