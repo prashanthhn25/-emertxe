@@ -66,7 +66,7 @@ int main()
     }
     
     
-    /* Printing the float elements in sorted order. */
+    /* Printing the person elements in sorted order. */
     printf("After sorting: ");
     sortPersonName(storenPerson, nPerson);
    

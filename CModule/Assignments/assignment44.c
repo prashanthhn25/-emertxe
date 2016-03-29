@@ -55,12 +55,16 @@ int compare_int(void *a, void *b);
 int compare_char(void *a, void *b);
 int compare_float(void *a, void *b);
 int compare_double(void *a, void *b);
+int compare_string(void *a, void *b);
+
+void string_sort(char * array[], int no_of_elements, int size_l);
 
 void generic_sort(void* aptr, int no_of_elements, int (*compare_fp)(void *, void *), int size_len);
 
 int generic_binarySearch(void *val, void *aptr, int no_of_element, int (*compare_fp)(void *, void *), int size_length);
 
-int char_binarySearch(char val, char *aptr, int no_of_element);
+int string_binarySearch(char *val, char *array[], int no_of_element, int size_length)
+;
 
 union Storage
 {
@@ -68,36 +72,28 @@ union Storage
     int intStore[MAXLEN];
     char charStore[MAXLEN];
     double doubleStore[MAXLEN];
-    
-    int searchIntVal;
-    float searchFloatVal;
-    char searchCharVal;
-    double searchDoubleVal;
-    
+
+    char searchStringVal[MAXLEN];
 };
 
 int main(int argc, char **argv)
 {
     int len;
-    char *types[6] = {"int", "Char", "Float", "Double"};
+    char *types[6] = {"int", "Char", "Float", "Double", "String"};
     int choice, i;
-    
-    union Storage store;
-    
-    float floatStore[MAXLEN];
-    int intStore[MAXLEN];
-    char charStore[MAXLEN];
-    double doubleStore[MAXLEN];
+    char **StringStore;
     
     int searchIntVal;
     float searchFloatVal;
     char searchCharVal;
     double searchDoubleVal;
     
+    union Storage store;
+    
     /* Do arg count check */
     if (argc != 2)
     {
-        printf("Invalid entry: ./assignment44 <length_of_array>");
+        printf("Invalid entry: ./assignment44 <length_of_array>\n");
         exit(1);
     }
     else
@@ -111,8 +107,28 @@ int main(int argc, char **argv)
         }
     }
     
+    /* Memory to store len Strings */
+    char ** const sptr = (char**)malloc(sizeof(char*) * len);
+    
+    if (NULL == sptr) {
+        printf("Error: Malloc allocation Failure \n");
+        return 1;
+    }
+    
+    /* Memory to save each names of maxlen */
+    for (i = 0; i < len; i++)
+    {
+        sptr[i] = (char*)malloc(sizeof(char) * (MAXLEN+1));
+        
+        if (NULL == sptr[i]) {
+            printf("Error: Malloc allocation Failure for Person [%d] \n", i);
+            return 1;
+        }
+        
+    }
+    
     /* Read the type of data to search */
-    printf("1. INT \n2. Char \n3. Float \n4. Double \n");
+    printf("1. INT \n2. Char \n3. Float \n4. Double \n5. String\n");
     printf("Choice: ");
     scanf("%d", &choice);
     
@@ -146,23 +162,23 @@ int main(int argc, char **argv)
             
             /* Read the key element to search */
             printf("\nEnter the key element to search: ");
-            scanf("%d", &store.searchIntVal);
+            scanf("%d", &searchIntVal);
             
             /* Error Check for limit */
-            if ((store.searchIntVal < MINVAL) || (store.searchIntVal > MAXVAL))
+            if ((searchIntVal < MINVAL) || (searchIntVal > MAXVAL))
             {
                 printf("Error: Search Element value is Out of range. Retry\n");
                 return 1;
             }
             
             /* To search for the key and Return the position in the sorted array. */
-            if ( (generic_binarySearch(&store.searchIntVal, &store.intStore, len, compare_int, sizeof(int))) == -1)
+            if ( (generic_binarySearch(&searchIntVal, &store.intStore, len, compare_int, sizeof(int))) == -1)
             {
                 printf("Element not found\n");
             }
             else
             {
-                printf("Element %d is at position %d of sorted array. \n", store.searchIntVal, (generic_binarySearch(&store.searchIntVal, &store.intStore, len, compare_int, sizeof(int))) );
+                printf("Element %d is at position %d of sorted array. \n", searchIntVal, (generic_binarySearch(&searchIntVal, &store.intStore, len, compare_int, sizeof(int))) );
             }
             
             break;
@@ -195,10 +211,9 @@ int main(int argc, char **argv)
             
             /* Read the key element to search */
             printf("\nEnter the key element to search: ");
-            scanf("\n%c", &store.searchCharVal);
-            printf("%c", store.searchCharVal);
+            scanf("\n%c", &searchCharVal);
             
-            if ((store.searchCharVal < ' ') || (store.searchCharVal > '~'))
+            if ((searchCharVal < ' ') || (searchCharVal > '~'))
             {
                 /* Error Check for char */
                 printf("Error: Element is not a char. Retry\n");
@@ -212,15 +227,14 @@ int main(int argc, char **argv)
             
             /* To search for the key and Return the position in the sorted array. */
             
-            if ((char_binarySearch(store.searchCharVal, store.charStore, len)) == -1)
+            if ( (generic_binarySearch(&searchCharVal, &store.charStore, len, compare_char, sizeof(char))) == -1)
             {
                 printf("Element not found\n");
             }
             else
             {
-                printf("Element %c is at position %d of sorted array. \n", store.searchCharVal, (char_binarySearch(store.searchCharVal, store.charStore, len)) );
+                printf("Element %c is at position %d of sorted array. \n", searchCharVal, (generic_binarySearch(&searchCharVal, &store.charStore, len, compare_char, sizeof(char))) );
             }
-            
             break;
         case 3:
             /* Initialise the array of mentioned type with variables
@@ -250,23 +264,23 @@ int main(int argc, char **argv)
             
             /* Read the key element to search */
             printf("\nEnter the key element to search: ");
-            scanf("%f", &store.searchFloatVal);
+            scanf("%f", &searchFloatVal);
             
             /* Error Check for limit */
-            if ((store.searchFloatVal < MINVAL) || (store.searchFloatVal > MAXVAL))
+            if ((searchFloatVal < MINVAL) || (searchFloatVal > MAXVAL))
             {
                 printf("Error: Search Element value is Out of range. Retry\n");
                 return 1;
             }
             
             /* To search for the key and Return the position in the sorted array. */
-            if ( (generic_binarySearch(&store.searchFloatVal, &store.floatStore, len, compare_float, sizeof(float))) == -1)
+            if ( (generic_binarySearch(&searchFloatVal, &store.floatStore, len, compare_float, sizeof(float))) == -1)
             {
                 printf("Element not found\n");
             }
             else
             {
-                printf("Element %f is at position %d of sorted array. \n", store.searchFloatVal, (generic_binarySearch(&store.searchFloatVal, &store.floatStore, len, compare_float, sizeof(float))) );
+                printf("Element %f is at position %d of sorted array. \n", searchFloatVal, (generic_binarySearch(&searchFloatVal, &store.floatStore, len, compare_float, sizeof(float))) );
             }
             
             break;
@@ -297,30 +311,88 @@ int main(int argc, char **argv)
             
             /* Read the key element to search */
             printf("\nEnter the key element to search: ");
-            scanf("%lf", &store.searchDoubleVal);
+            scanf("%lf", &searchDoubleVal);
             
             /* Error Check for limit */
-            if ((store.searchDoubleVal < MINVAL) || (store.searchDoubleVal > MAXVAL))
+            if ((searchDoubleVal < MINVAL) || (searchDoubleVal > MAXVAL))
             {
                 printf("Error: Search Element value is Out of range. Retry\n");
                 return 1;
             }
             
             /* To search for the key and Return the position in the sorted array. */
-            if ( (generic_binarySearch(&store.searchDoubleVal, &store.doubleStore, len, compare_double, sizeof(double))) == -1)
+            if ( (generic_binarySearch(&searchDoubleVal, &store.doubleStore, len, compare_double, sizeof(double))) == -1)
             {
                 printf("Element not found\n");
             }
             else
             {
-                printf("Element %lf is at position %d of sorted array. \n", store.searchDoubleVal, (generic_binarySearch(&store.searchDoubleVal, &store.doubleStore, len, compare_double, sizeof(double))) );
+                printf("Element %lf is at position %d of sorted array. \n", searchDoubleVal, (generic_binarySearch(&searchDoubleVal, &store.doubleStore, len, compare_double, sizeof(double))) );
+            }
+            
+            break;
+        case 5:
+            
+            StringStore = sptr;
+            
+            /* Initialise the array of mentioned type with variables
+             *      read from user.
+             */
+            for (i = 0; i < len; i++)
+            {
+                printf("%d.", i);
+                /* check for only printable char */
+                scanf("%s", StringStore[i]);
+                
+                /* check for strings with maxlen */
+                if (strlen(StringStore[i]) > MAXLEN) {
+                    printf("Error:  %d th string length is > MAXLEN. Retry\n", i);
+                    return 1;
+                }
+            }
+            
+            /* Sort the element in ascending order and print */
+            printf("After sorting: ");
+            
+            string_sort(StringStore, len, MAXLEN);
+            for (i = 0; i < len; i++)
+            {
+                printf("%s ", StringStore[i]);
+            }
+            
+            /* Read the key element to search */
+            printf("\nEnter the key element to search: ");
+            scanf("%s", store.searchStringVal);
+            
+            /* check for strings with maxlen */
+            if (strlen(store.searchStringVal) > MAXLEN) {
+                printf("Error:  %d th string length is > MAXLEN. Retry\n", i);
+                fflush(stdin);
+                fseek(stdin, 0L, SEEK_SET);
+                return 1;
+            }
+            fflush(stdin);
+            fseek(stdin, 0L, SEEK_SET);
+            
+            /* To search for the key and Return the position in the sorted array. */
+            
+            if ( (string_binarySearch(store.searchStringVal, StringStore, len, MAXLEN)) == -1)
+            {
+                printf("Element not found\n");
+            }
+            else
+            {
+                printf("Element %s is at position %d of sorted array. \n", store.searchStringVal, (string_binarySearch(store.searchStringVal, StringStore, len, MAXLEN)) );
             }
             
             break;
             
-        default:
+        default: printf("Invalid Option\n");
             break;
     }
+    
+    free(sptr);
+    StringStore = NULL;
     return 0;
 }
 
@@ -335,8 +407,16 @@ int compare_int(void *a, void *b)
 /* Compare char */
 int compare_char(void *a, void *b)
 {
-    const char *c = (char *)a;
-    const char *d = (char *)b;
+    if (*(char *)b < *(char *)a) return 5;
+    if (*(char *)b > *(char *)a) return -5;
+    return 0;
+}
+
+/* Compare String */
+int compare_string(void *a, void *b)
+{
+    char const *c = (char *)a;
+    char const *d = (char *)b;
     return strcmp(c, d);
 }
 
@@ -372,6 +452,22 @@ void generic_sort(void* aptr, int no_of_elements, int (*compare_fp)(void *, void
     }
 }
 
+/* Sorting strings - Bubble sort using generic swap */
+void string_sort(char * array[], int no_of_elements, int size_l)
+{
+    int i, j;
+    
+    for (i = 0; i < no_of_elements; i++)
+    {
+        for (j = 0; j < no_of_elements - i - 1; j++)
+        {
+            if ((strcmp(*(array+j), *(array+j+1)) > 0 ))
+            {
+                swap_generic(*(array+j), *(array+j+1), size_l);
+            }
+        }
+    }
+}
 
 /* Generic Binary Search */
 int generic_binarySearch(void *val, void *aptr, int no_of_element, int (*compare_fp)(void *, void *), int size_length)
@@ -394,43 +490,34 @@ int generic_binarySearch(void *val, void *aptr, int no_of_element, int (*compare
             low = mid+1;
         }
         
-        printf("comapre:%c and %c--> %d \n", *(char *)val, *(char *)(aptr + (mid) * (size_length)), compare_fp(val, (aptr + (mid) * (size_length))));
-        printf("try: %d\n", compare_char(&temptest1, &temptest2));
     }
-    
+  
     return (compare_fp(val, (aptr + (low) * (size_length))) == 0)? low: -1;
 }
 
-/* Binary Search for char */
-int char_binarySearch(char val, char *aptr, int no_of_element)
+/* String Binary Search */
+
+int string_binarySearch(char *val, char *array[], int no_of_element, int size_length)
 {
-    int low, high, mid;
-    char tempVal, result;
+    int low, high, mid,i;
     
     low = 0;
-    high = no_of_element - 1;
+    high = no_of_element -1;
     
-    while(low <= high)
+    while(low < high)
     {
         mid = (low + high) / 2;
-        tempVal = *(aptr + mid);
-        printf("mid: %d--> %d \n", mid, (strcmp(&val, &tempVal)) );
-        
-        if ((strcmp(&val, &tempVal)) < 0)
+       
+        if (compare_string((val), *(array + (mid))) <= 0)
         {
-            high = mid - 1;
+            high = mid;
         }
         else
         {
             low = mid+1;
         }
-        
     }
-    printf("2low = %d: 2high = %d:\n", low,high);
-    /* yet to do */
-    result = *(aptr + low);
-    //if ((strcmp(&val, aptr[low])) == 0)
-    printf("val: %d,result: %d-->%d\n", val, result, strcmp(&val, &result));
-    return -1;
-}
+    
+    return (compare_string((val), *(array + (low))) == 0)? low: -1;
 
+}
