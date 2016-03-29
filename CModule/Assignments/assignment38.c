@@ -40,6 +40,7 @@
 #define MINVAL -20000000
 
 void sortFloatNumbers(float array[], int floatCount);
+void sortFloatNumbersWithoutModify(float array[], int floatCount);
 void swap_generic(void * aptr, void * bptr, int size);
 
 int main()
@@ -73,8 +74,10 @@ int main()
     
     /* Printing the float elements in sorted order. */
     printf("After sorting: ");
-    sortFloatNumbers(store, floatCount);
+    //sortFloatNumbers(store, floatCount);
+    sortFloatNumbersWithoutModify(store, floatCount);
     
+    printf("After sorting Original Array: ");
     for (i = 0; i < floatCount; i++)
     {
         printf("%f ", store[i]);
@@ -84,6 +87,38 @@ int main()
     return 0;
 }
 
+void sortFloatNumbersWithoutModify(float array[], int floatCount)
+{
+    /* Array of pointers */
+    float *ptr[floatCount];
+    int i, j;
+    
+    /* Initialize each element such that ptr[i] = &array[i] */
+    for (i = 0; i < floatCount; i++)
+    {
+        ptr[i] = &array[i];
+    }
+    
+    /* Sorting Using Bubble Sort */
+    for (i = 0; i < floatCount; i++)
+    {
+        for (j = 0; j < floatCount - i - 1; j++)
+        {
+            if (array[j] > array[j+1])
+            {
+                /* Swap adresses in Array of Pointers */
+                swap_generic((ptr+j), (ptr+j+1), sizeof(float));
+            }
+        }
+    }
+    
+    /* Print the values stored in Array of pointers */
+    for (i = 0; i < floatCount; i++)
+    {
+        printf("%f ", *(ptr[i]));
+    }
+    printf("\n");
+}
 
 /* Sorting floating numbers - Bubble sort using generic swap */
 void sortFloatNumbers(float array[], int floatCount)

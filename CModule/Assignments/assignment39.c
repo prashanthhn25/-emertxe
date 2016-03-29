@@ -13,12 +13,13 @@
 #define MAXNAMES 256
 #define MAXLEN 32
 
-void sortPersonName(char * array[], int personCount);
+void sortPersonNameASCII(char * array[], int personCount);
+void sortPersonNameLength(char * array[], int personCount);
 void swap_generic(void * aptr, void * bptr, int size);
 
 int main()
 {
-    int nPerson, i, j;
+    int nPerson, i, j, choice;
     
     char **storenPerson;
     
@@ -65,15 +66,38 @@ int main()
         }
     }
     
+    printf("Enter the option to sort\n");
+    printf("1. Alphabetically(ASCII) \n2. String length\n ");
+    printf("Choice: ");
+    scanf("%d", &choice);
     
-    /* Printing the person elements in sorted order. */
-    printf("After sorting: ");
-    sortPersonName(storenPerson, nPerson);
-   
-    for (i = 0; i < nPerson; i++)
-    {
-        printf("%s ", storenPerson[i]);
+    switch (choice) {
+        case 1:
+            /* Printing the person elements in sorted order. */
+            printf("After sorting (ASCII): ");
+            sortPersonNameASCII(storenPerson, nPerson);
+            
+            for (i = 0; i < nPerson; i++)
+            {
+                printf("%s ", storenPerson[i]);
+            }
+
+            break;
+        case 2:
+            /* Printing the person elements in sorted order. */
+            printf("After sorting (Length): ");
+            sortPersonNameLength(storenPerson, nPerson);
+            
+            for (i = 0; i < nPerson; i++)
+            {
+                printf("%s ", storenPerson[i]);
+            }
+            
+            break;
+        default:
+            break;
     }
+    
     
     free(sptr);
     storenPerson = NULL;
@@ -83,8 +107,10 @@ int main()
 }
 
 
-/* Sorting floating numbers - Bubble sort using generic swap */
-void sortPersonName(char * array[], int personCount)
+/* Sorting Person Name by Alphabetically(ASCII) -
+ *  Bubble sort using generic swap 
+ */
+void sortPersonNameASCII(char * array[], int personCount)
 {
     int i, j;
     
@@ -93,6 +119,25 @@ void sortPersonName(char * array[], int personCount)
         for (j = 0; j < personCount - i - 1; j++)
         {
             if ((strcmp(*(array+j), *(array+j+1)) > 0 ))
+            {
+                swap_generic(*(array+j), *(array+j+1), MAXLEN);
+            }
+        }
+    }
+}
+
+/* Sorting Person Name by Alphabetically(Length) -
+ *  Bubble sort using generic swap
+ */
+void sortPersonNameLength(char * array[], int personCount)
+{
+    int i, j;
+    
+    for (i = 0; i < personCount; i++)
+    {
+        for (j = 0; j < personCount - i - 1; j++)
+        {
+            if ( strlen(*(array+j)) > strlen(*(array+j+1)) )
             {
                 swap_generic(*(array+j), *(array+j+1), MAXLEN);
             }
