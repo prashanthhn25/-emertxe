@@ -31,14 +31,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "ntype_lib.c"
 
 #define MAXLEN 256
 #define MAXVAL 200000000
 #define MINVAL -200000000
 
-#define isNum(x) (((x) >= '0') && ((x) <= '9'))? 1:0
 
-int my_atoi(char * myInput);
 int main()
 {
     char myInput[MAXLEN];
@@ -69,66 +68,4 @@ int main()
 
     } while(1);
     return 0;
-}
-
-
-/*The function will recieve a string and covert the
- *  number stored in the string into exact integer number.
- *  b. And return the number.
- */
-int my_atoi(char *myInput)
-{
-    
-    int s = 1, intVal = 0, i = 0;
-    
-    /* check for boundary condition */
-    if ( '\0' == *myInput )
-    {
-        return 0;
-    }
-    
-    /* check for negative value */
-    if ( myInput[0] == '-')
-    {
-        /* If first digit is -, let s = 1 and start i from next */
-        s = -1;
-        i++;
-    }
-    else if ( myInput[0] == '+')
-    {
-        /* If first digit is +, let s = 1 and start i from next */
-        s = 1;
-        i++;
-    }
-    /* check for each char */
-    for (; myInput[i] != '\0' ; i++)
-    {
-        /* If it is not starting with a num */
-        if (!isNum(myInput[i]))
-        {
-            break;
-        }
-        /* check if it is a number */
-        if (isNum(myInput[i]))
-        {
-            /* update intVal by adding new value with 10* previous val - the ASCII value of 0 */
-            intVal = intVal*10 + myInput[i] - '0';
-        }
-        /* To check to break, as we only iterate till first word */
-        if ((myInput[i] == ' ') || (myInput[i] == '\t') || (myInput[i] == '\n'))
-        {
-            break;
-        }
-    }
-
-    /* Check for out of range */
-    
-    if (((s * intVal) < MINVAL) || ((s * intVal) > MAXVAL))
-    {
-        printf("Error: Out of range\n");
-        exit(1);
-    }
-    
-    /* return the int value multiplied by the sign s */
-    return (s * intVal);
 }
