@@ -37,25 +37,39 @@
 
 int my_printf(char *fmt, ...);
 
+void print(char *s);
 void print_char(char buf);
-void print_int(char *s);
+void print_int(int intbuf);
 void print_string(char *s);
+void print_hexa(int intbuf);
+void print_octal(int intbuf);
 
 int main()
 {
-    int i = -10;
+    int i;
     
-    //my_printf("Hello World?c\n");
-    //my_printf("The character is %c\n", 'B');
+    i = getchar();
     
-    //printf("The character is %s\n", "Nanditha");
-    //my_printf("The character is %s\n", "Nanditha");
+    my_printf("Hello World?c\n");
+    my_printf("The character is %c\n", 'B');
     
-    //printf("The number is %d\n", i);
+    printf("The character is %s\n", "Nanditha12!@ ");
+    my_printf("The character is %s\n", "Nanditha12!@ ");
+    
+    printf("The number is %d\n", i);
     my_printf("The number is %d\n", i);
     
-    //printf("The number is %x\n", i);
-    //my_printf(""The number is %x\n", i);
+    printf("The number is %x\n", i);
+    my_printf("The number is %x\n", i);
+    
+    printf("The number is %o\n", i);
+    my_printf("The number is %o\n", i);
+    
+    printf("The number is %#x\n", i);
+    my_printf("The number is %#x\n", i);
+    
+    printf("The number is %#o\n", i);
+    my_printf("The number is %#o\n", i);
     
     return 0;
 }
@@ -85,16 +99,40 @@ int my_printf(char *format, ...)
             
             if ( *format == 'd')
             {
-                intbuf = va_arg(ap, int);
-                itoa(intbuf, value);
-                print_int(value);
+                print_int(va_arg(ap, int));
                 format++;
             }
             
             if ( *format == 's')
             {
-                svalue = va_arg(ap, char *);
-                print_string(svalue);
+                print_string(va_arg(ap, char *));
+                format++;
+            }
+            
+            if ( *format == '#')
+            {
+                putchar('0');
+                format++;
+                if ( *format == 'x')
+                {
+                    putchar('x');
+                    print_hexa(va_arg(ap, int));
+                    format++;
+                }
+                if ( *format == 'o')
+                {
+                    print_octal(va_arg(ap, int));
+                    format++;
+                }
+             }
+            if ( *format == 'x')
+            {
+                print_hexa(va_arg(ap, int));
+                format++;
+            }
+            if ( *format == 'o')
+            {
+                print_octal(va_arg(ap, int));
                 format++;
             }
         }
@@ -113,21 +151,37 @@ void print_char(char buf)
     putchar(buf);
 }
 
-void print_int(char *s)
+void print_int(int intbuf)
 {
-    while(*s)
-    {
-        putchar(*s);
-        s++;
-    }	
+    char value[255];
+    itoa(intbuf, value);
+    print(value);
 }
 
 void print_string(char *s)
 {
+   print(s);
+}
+
+void print_hexa(int intbuf)
+{
+    char value[255];
+    itob(intbuf, value, 16);
+    print(value);
+}
+
+void print_octal(int intbuf)
+{
+    char value[255];
+    itob(intbuf, value, 8);
+    print(value);
+}
+
+void print(char *s)
+{
     while(*s)
     {
         putchar(*s);
         s++;
-        
     }
 }

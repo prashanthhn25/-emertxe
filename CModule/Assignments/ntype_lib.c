@@ -9,9 +9,11 @@
  *      -> void print_Menu(char sptr[][MAX_COL], int rows);
  *      -> void fibonacci(int givenNum);
  *      -> int itoa(int n, char *s);
+ *      -> void itob(int n, char *s, int b);
  */
 
 #include <stdio.h>
+#include <string.h>
 #define MAX_COL 10000
 
 /*
@@ -142,3 +144,33 @@ int itoa(int n, char *s)
     return count;
     
 }
+
+/* Converts n value into it's base value and stores in String
+ *
+ */
+void itob(int n, char s[], int b)
+{
+    int i, sign;
+    int temp, j;
+    
+    char symbols[] = "0123456789abcdefghijklmnopqrstuvwxyz";
+    
+    if (2 > b || b > strlen(symbols) )
+        return;     /* not a valid base */
+    
+    sign = n;
+    i = 0;
+    do {            /* generate symbols in reverse order */
+        s[i++] = symbols[abs(n % b)];   /* get next symbols */
+    } while (n /= b);                   /* delete it */
+    if (sign < 0)
+        s[i++] = '-';
+    s[i] = '\0';
+    
+    for (i = 0, j = strlen(s)-1; i < j; i++, j--) {
+        temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+    }
+}
+

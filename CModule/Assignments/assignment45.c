@@ -29,8 +29,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define add(x, y) (x) + (y)
-
 #define MAXLEN 150
 #define MAXVAL 20000000
 #define MINVAL -20000000
@@ -42,9 +40,11 @@ union Storage
     double doubleStore[MAXLEN];
 };
 
-float calc_int_mean(void* aptr, int no_of_elements, int size_len);
-float calc_float_mean(void *aptr, int no_of_elements, int size_len);
-float calc_double_mean(double aptr[], int no_of_elements);
+float calc_int_mean(void* aptr, int no_of_elements);
+float calc_float_mean(void *aptr, int no_of_elements);
+float calc_double_mean(void *aptr, int no_of_elements);
+
+float (* calc_mean[3])(void *, int) = {calc_int_mean, calc_float_mean, calc_double_mean};
 
 int main(int argc, char **argv)
 {
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     }
     
     /* Read the type of data to store */
-    printf("1. INT \n2. Float \n3. Double \n");
+    printf("1. Int \n2. Float \n3. Double \n");
     printf("Choice: ");
     scanf("%d", &choice);
     
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
             }
             
             /* Pass them to calc mean function */
-            printf("The mean value: %f\n", calc_int_mean(store.intStore, len, sizeof(int)));
+            printf("The mean value: %f\n", calc_mean[choice - 1](store.intStore, len));
             
             break;
             
@@ -112,7 +112,7 @@ int main(int argc, char **argv)
             }
             
             /* Pass them to calc mean function */
-            printf("The mean value: %f\n", calc_float_mean(store.floatStore, len, sizeof(float)));
+            printf("The mean value: %f\n", calc_mean[choice - 1](store.floatStore, len));
             break;
 
         case 3:
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
             }
             
             /* Pass them to calc mean function */
-            printf("The mean value: %f\n", calc_double_mean(store.doubleStore, len));
+            printf("The mean value: %f\n", calc_mean[choice - 1](store.doubleStore, len));
             break;
             
         default:
@@ -140,22 +140,17 @@ int main(int argc, char **argv)
     return 0;
 }
 
-float calc_int_mean(void* aptr, int no_of_elements, int size_len)
+float calc_int_mean(void* aptr, int no_of_elements)
 {
     float mean, sum;
     int i;
-    
-    int temp;
    
     sum = 0;
     
     /*  Compute the mean of all elements */
     for (i = 0; i < no_of_elements; i++)
     {
-        temp = * (((char *) aptr)+i*size_len);
-        printf("%d\n", temp);
-        sum = add(sum, * (((char *) aptr)+i*size_len));
-        //sum += aptr[i];
+        sum += *(((int*)aptr) + i);
     }
     
     mean = sum / no_of_elements;
@@ -163,20 +158,16 @@ float calc_int_mean(void* aptr, int no_of_elements, int size_len)
     return mean;
 }
 
-float calc_float_mean(void *aptr, int no_of_elements, int size_len)
+float calc_float_mean(void *aptr, int no_of_elements)
 {
     float mean, sum;
     int i;
-    
-    float temp;
+
     sum = 0;
     
     /*  Compute the mean of all elements */
     for (i = 0; i < no_of_elements; i++)
     {
-        temp = * (((char *) aptr) + i * size_len);
-        printf("%f\n", temp);
-        //sum = add(sum, * (((char *) aptr)+i*size_len));
         sum += *(((float*)aptr) + i);
     }
     
@@ -185,7 +176,7 @@ float calc_float_mean(void *aptr, int no_of_elements, int size_len)
     return mean;
 }
 
-float calc_double_mean(double aptr[], int no_of_elements)
+float calc_double_mean(void *aptr, int no_of_elements)
 {
     float mean, sum;
     int i;

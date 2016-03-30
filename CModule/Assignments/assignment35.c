@@ -31,7 +31,7 @@ int main()
 {
     char strBuf[MAXLEN];
     char option;
-    int number =0;
+    int number = 0;
     
     do
     {
