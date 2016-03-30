@@ -1,0 +1,91 @@
+Image Stegnography (LSB):
+
+->Hiding Information
+
+-> file (txt) 
+-> transfer
+-> store in this carrier (image.bmp) 
+-> check for capacity to handle the txt with this .bmp file, if no, then change the .bmp file that is compatible
+
+-> Manipulate LSB bit of each byte 
+
+:: 1 byte from .txt(binary format) and 1 byte from .bmp
+
+eg:  00101011 and 10111111
+
+:: change from the LSB of the bytes of .bmp from MSB(n) of .txt byte
+:: next byte LSB of .bmp from next MSB(n-1) of .txt 
+i.e 
+eg: 00101011 and 10111110
+    00101011 	
+-> 1byte .txt--> 8 byte .bmp
+
+-> final image is .bmp file which is encrypted format
+
+
+Decoding::
+
+-->input: encrpt.bmp and other txt file 
+
+header of the .bmp file [first 54 bytes]
+
+::--> copy the header file from actual .bmp file to encrypted file from 54 byte
+
+starting from 55th byte, copy one by one from .txt to LSb
+
+-> transfer the size of .bmp 
+eg: .txt is 4byte, then 32 byte in .bmp is changed
+--> pass the size of secret file [so 32 is for ]
+
+--> from 86th bit, 
+
+
+
+-----------------------------------------------
+
+ Encryption::
+
+1st 54 bytes--> header
+next (sizeof(int)= i.e size of file which is int value) * 8 --> reserved for size encrpytion
+next bytes --> data encryption till the last byte of .txt file
+remaining bytes in actual .bmp is copied as is
+
+pass parameters through command line [-e for encryption]
+lsb_steg -e secret.txt image.bmp encrypted.bmp [if not present,
+ else create the output encrpt.bmp as default and save in that]
+
+
+---------------------------------------------
+sinfo -->
+
+----------------------------------------------
+
+Decrytion:: encryted.bmp
+
+1st 54 bytes --> not interested ignore
+next 32 bytes will give the size --> get the size
+for next size*8 bytes, extract the LSbs and get the actual data by merging
+rest ignore
+
+./lsb_steg -d encrpted.bmp message.txt [if .txt is not specified, create one and save the output in that]
+-------------------------------------------
+
+
+NOTE:
+
+fread a nd fwrite {for reading .bmp}
+
+hexdump test.bmp {hex dump }p
+eog test.bmp &
+xxd -r
+
+xxd text.bmp > text.txt
+
+/*change msg*/
+%s/ f/ 1/g
+
+
+xxd -r text.txt test_msg_modi.bmp
+
+/* change lsb*/
+%s /ffff/fffe/g 

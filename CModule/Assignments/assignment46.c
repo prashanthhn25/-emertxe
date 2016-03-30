@@ -143,6 +143,7 @@ int my_printf(char *format, ...)
         }
     }
     
+    va_end(ap);
     return -1;
 }
 
