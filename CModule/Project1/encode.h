@@ -38,14 +38,15 @@ typedef struct _EncodeInfo
 
 /* Encoding function prototype */
 
+/* Get error message */
+void print_usage_error(char * message);
+void print_file_error(char * message);
+
 /* Check operation type */
 OperationType check_operation_type(char *argv[]);
 
 /* Read and validate Encode args from argv */
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo);
-
-/* Perform the encoding */
-Status do_encoding(EncodeInfo *encInfo);
 
 /* Get File pointers for i/p and o/p files */
 Status open_files(EncodeInfo *encInfo);
@@ -62,25 +63,37 @@ uint get_file_size(FILE *fptr);
 /* Copy bmp image header */
 Status copy_bmp_header(FILE * fptr_src_image, FILE *fptr_dest_image);
 
-/* Store Magic String */
-Status encode_magic_string(const char *magic_string, EncodeInfo *encInfo);
-
-/* Encode secret file extenstion */
-Status encode_secret_file_extn(const char *file_extn, EncodeInfo *encInfo);
-
 /* Encode secret file size */
 Status encode_secret_file_size(long file_size, EncodeInfo *encInfo);
 
 /* Encode secret file data*/
 Status encode_secret_file_data(EncodeInfo *encInfo);
 
-/* Encode function, which does the real encoding */
-Status encode_data_to_image(char *data, int size, FILE *fptr_src_image, FILE *fptr_stego_image);
+/*Helper*/
+void getMSB(char data, char *MSBbits);
 
 /* Encode a byte into LSB of image data array */
 Status encode_byte_tolsb(char data, char *image_buffer);
 
 /* Copy remaining image bytes from src to stego image after encoding */
 Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest);
+
+
+
+/* Perform the encoding */
+Status do_encoding(EncodeInfo *encInfo);
+
+/* Store Magic String */
+Status encode_magic_string(const char *magic_string, EncodeInfo *encInfo);
+
+/* Encode secret file extenstion */
+Status encode_secret_file_extn(const char *file_extn, EncodeInfo *encInfo);
+
+
+/* Encode function, which does the real encoding */
+Status encode_data_to_image(char *data, int size, FILE *fptr_src_image, FILE *fptr_stego_image);
+
+
+
 
 #endif

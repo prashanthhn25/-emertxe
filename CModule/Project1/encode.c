@@ -1,8 +1,116 @@
 #include <stdio.h>
+#include <string.h>
 #include "encode.h"
 #include "types.h"
 
 /* Function Definitions */
+
+/* Get error message 
+ * Input: Error message
+ * Description: prints Usage format and error message
+ */
+void print_usage_error(char * message)
+{
+    fprintf(stderr, "ERROR: %s \n", message);
+    fprintf(stderr, "USAGE: lsb_steg -e secret.txt image.bmp encrypted.bmp \n");
+    fprintf(stderr, "USAGE: lsb_steg -e secret.txt image.bmp \n");
+    fprintf(stderr, "USAGE: ./lsb_steg -d encrpted.bmp message.txt\n");
+    fprintf(stderr, "USAGE: ./lsb_steg -d encrpted.bmp \n");
+}
+
+void print_file_error(char * message)
+{
+    perror("fopen");
+    fprintf(stderr, "ERROR: Unable to open file %s\n", message);
+}
+
+
+/* Check operation type
+ * Input: argv[] from command line 
+ * Output: OperationType for encoding or decoding
+ * Description: check for valid optional argument and 
+ *  return the appropriate enum values
+ */
+OperationType check_operation_type(char *argv[])
+{
+    if (strcmp(argv[1], "-e") == 0)
+    {
+        //return e_encode
+        return e_encode;
+    }
+    else if (strcmp(argv[1], "-d") == 0)
+    {
+        //return e_decode
+        return e_decode;
+    }
+    // Neither return e_unsupported
+    return e_unsupported;
+}
+
+/* Read and validate Encode args from argv 
+ * Input: argv[] from command line and EncodeInfo address
+ * Output: Status success or failure
+ * Description: check for valid optional argument and
+ *  read the appropriate argv values for filenames
+ */
+Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo)
+{
+    //Test check_operation_type
+    if (check_operation_type(argv) == e_encode)
+    {
+        // take this as secret file
+        encInfo->secret_fname = argv[2];
+        if (argv[3] != NULL)
+        {
+            // take 3rd arg as bmp file if present
+            encInfo->src_image_fname = argv[3];
+        }
+        // No failure return e_success
+        return e_success;
+    }
+    else if (check_operation_type(argv) == e_decode)
+    {
+        // take this as encrypted file
+        encInfo->stego_image_fname = argv[2];
+        if (argv[3] != NULL)
+        {
+            // take 3rd arg as secret message file if present
+            encInfo->secret_fname = argv[3];
+        }
+        // No failure return e_success
+        return e_success;
+        
+    }
+    else if (check_operation_type(argv) == e_unsupported)
+    {
+        return e_failure;
+    }
+    
+    return e_failure;
+}
+
+
+/* Get file size
+ * Input: Secret file ptr
+ * Output: uint size
+ * Description: In file.txt, go to the EOF and seek the poistion
+ * and save, once done, reset the position to 0 and return the 
+ * saved value which gives the size of the file
+ */
+uint get_file_size(FILE *fptr)
+{
+    uint file_size;
+    
+    // Seek to nth byte
+    fseek(fptr, 0L, SEEK_END);
+    // Save the current position value
+    file_size = ftell(fptr);
+    // Seek back to 0th byte
+    fseek(fptr, 0L, SEEK_SET);
+    
+    //Return the size
+    return file_size;
+}
 
 /* Get image size
  * Input: Image file ptr
@@ -12,6 +120,7 @@
  */
 uint get_image_size_for_bmp(FILE *fptr_image)
 {
+    /*
     uint width, height;
     // Seek to 18th byte
     fseek(fptr_image, 18, SEEK_SET);
@@ -26,7 +135,34 @@ uint get_image_size_for_bmp(FILE *fptr_image)
 
     // Return image capacity
     return width * height * 3;
+     */
+    
+    uint image_size;
+    
+    // Seek to nth byte
+    fseek(fptr_image, 0L, SEEK_END);
+    // Save the current position value
+    image_size = ftell(fptr_image);
+    // Seek back to 0th byte
+    fseek(fptr_image, 0L, SEEK_SET);
+    
+    //Return the size
+    return image_size;
+    
 }
+
+/* check capacity */
+Status check_capacity(EncodeInfo *encInfo)
+{
+    /* Check for Size Compatibility */
+    if ( ((((long int)encInfo->image_capacity) - 54) - (8 * encInfo->size_secret_file)) < 1)
+    {
+        return e_failure;
+    }
+    
+    return e_success;
+}
+
 
 /* Get File pointers for i/p and o/p files
  * Inputs: Src Image file, Secret file and
@@ -39,34 +175,289 @@ Status open_files(EncodeInfo *encInfo)
     // Src Image file
     encInfo->fptr_src_image = fopen(encInfo->src_image_fname, "r");
     //Do Error handling
-    if (encInfo->fptr_src_image == NULL)
+    if (NULL == encInfo->fptr_src_image)
     {
-    	perror("fopen");
-    	fprintf(stderr, "ERROR: Unable to open file %s\n", encInfo->src_image_fname);
+        print_file_error(encInfo->src_image_fname);
     	return e_failure;
     }
 
     // Secret file
     encInfo->fptr_secret = fopen(encInfo->secret_fname, "r");
     //Do Error handling
-    if (encInfo->fptr_secret == NULL)
+    if (NULL == encInfo->fptr_secret)
     {
-    	perror("fopen");
-    	fprintf(stderr, "ERROR: Unable to open file %s\n", encInfo->secret_fname);
+        print_file_error(encInfo->secret_fname);
     	return e_failure;
     }
 
     // Stego Image file
     encInfo->fptr_stego_image = fopen(encInfo->stego_image_fname, "w");
     //Do Error handling
-    if (encInfo->fptr_stego_image == NULL)
+    if (NULL == encInfo->fptr_stego_image)
     {
-    	perror("fopen");
-    	fprintf(stderr, "ERROR: Unable to open file %s\n", encInfo->stego_image_fname);
+        print_file_error(encInfo->stego_image_fname);
     	return e_failure;
     }
 
     // No failure return e_success
     return e_success;
 
+}
+
+/* Copy bmp image header */
+Status copy_bmp_header(FILE * fptr_src_image, FILE *fptr_dest_image)
+{
+    char image_header_data[55];
+    int readptr, writeptr, i;
+    
+    /* To read exactly 54 bytes that contain header info */
+    if ((readptr = fread(image_header_data, 1, 54, fptr_src_image)) != 54)
+    {
+        if (ferror(fptr_src_image) != 0)
+        {
+            fprintf(stderr, "Reading error. \n" );
+            clearerr(fptr_src_image);
+            return e_failure;
+        }
+    
+    }
+        
+    /* If failed to write what is read into dest header */
+    if ((writeptr = fwrite(image_header_data, 1, readptr, fptr_dest_image)) != readptr)
+    {
+        return e_failure;
+    }
+    
+    return e_success;
+}
+
+/* Encode secret file size */
+Status encode_secret_file_size(long file_size, EncodeInfo *encInfo)
+{
+    char MSBbits[32] = {0};
+    int i, j, readptr, writeptr, iterptr, temp;
+    
+    /* MSB is in reverse order */
+    for (i = 0; i < 32; i++)
+    {
+       // file_size & 0x00000001;
+        if( (file_size & 0x00000001) == 0)
+        {
+            MSBbits[i] = '0';
+        }
+        else if( (file_size & 0x00000001) == 1)
+        {
+            MSBbits[i] = '1';
+        }
+        file_size >>= 1;
+    }
+    MSBbits[i] = '\0';
+    
+    //reverse string to get the MSBs in order
+    for (i = 0, j = strlen(MSBbits)-1; i < j; i++, j--) {
+        temp = MSBbits[i];
+        MSBbits[i] = MSBbits[j];
+        MSBbits[j] = temp;
+    }
+    
+   // printf("%s", MSBbits);
+   // printf("\n");
+    
+    // Seek to 55th byte and onward
+    fseek(encInfo->fptr_src_image, 55L, SEEK_SET);
+    // Seek to 55th byte and onward
+    fseek(encInfo->fptr_stego_image, 55L, SEEK_SET);
+    
+    iterptr = ftell(encInfo->fptr_src_image);
+   
+    i = 0;
+    // Encode the next 32 Image data into buffer for size
+    while(iterptr < 87)
+    {
+        //printf("%d : ", iterptr);
+        
+        /* read byte by byte */
+        if ((readptr = fread( encInfo->image_data, 1, 1, encInfo->fptr_src_image)) != 1)
+        {
+            if (ferror(encInfo->fptr_src_image) != 0)
+            {
+                fprintf(stderr, "Reading error. \n" );
+                clearerr(encInfo->fptr_src_image);
+                return e_failure;
+            }
+        }
+       
+        //fetched one byte successfully, so now check for encoding
+        
+        if(encode_byte_tolsb(MSBbits[i], encInfo->image_data) == e_failure)
+        {
+            fprintf(stderr, "Encoding error. \n" );
+            return e_failure;
+        }
+    
+        
+        //encoded data saved in image_buffer is written to stegfile
+        if((writeptr = fwrite(encInfo->image_data, 1, 1, encInfo->fptr_stego_image)) != 1)
+        {
+            fprintf(stderr,"write file error.\n");
+            return e_failure;
+        }
+       
+        i++;
+        iterptr++;
+    }
+    
+    return e_success;
+}
+
+/* Encode a byte into LSB of image data array */
+Status encode_byte_tolsb(char data, char *image_buffer)
+{
+    //set LSB of the image_buffer with data and
+    *image_buffer = ((*image_buffer & ~0x01) | (data & 0x01)) ;
+    return e_success;
+}
+
+/* Encode secret file data*/
+Status encode_secret_file_data(EncodeInfo *encInfo)
+{
+    
+    int readsecretptr, readptr, writeptr, i;
+    char MSBbits[9] = {0};
+    char tempdata;
+
+    
+    // Seek to 0th byte and onward for secret file
+    fseek(encInfo->fptr_secret, 0L, SEEK_SET);
+    // Seek to 87th byte and onward for image file
+    fseek(encInfo->fptr_src_image, 87L, SEEK_SET);
+    // Seek to 87th byte and onward for steg file
+    fseek(encInfo->fptr_stego_image, 87L, SEEK_SET);
+    
+    /* Do till EOF for secret file is reached */
+    while(feof(encInfo->fptr_secret) == 0)
+    {
+        //Read 1 byte from secret file to secretdata buffer
+        if((readsecretptr = fread(encInfo->secret_data, 1, 1, encInfo->fptr_secret))!= 1)
+        {
+            if(ferror(encInfo->fptr_secret)!=0)
+            {
+                fprintf(stderr,"read file error.\n");
+                clearerr(encInfo->fptr_secret);
+                return e_failure;
+            }
+        
+        }
+    
+        //Get the MSBs in MSBbit for that secret data
+        tempdata = *encInfo->secret_data;
+        getMSB(tempdata, MSBbits);
+    
+        //printf("%s--> %lu", MSBbits, sizeof(MSBbits));
+        //printf("\n");
+    
+        //8 times for 8 bits
+        for (i = 0; i < (sizeof(MSBbits) - 1); i++)
+        {
+        
+            // read byte by byte starting from 55th in image
+            if ((readptr = fread( encInfo->image_data, 1, 1, encInfo->fptr_src_image)) != 1)
+            {
+                if (ferror(encInfo->fptr_src_image) != 0)
+                {
+                    fprintf(stderr, "Reading error. \n" );
+                    clearerr(encInfo->fptr_src_image);
+                    return e_failure;
+                }
+            }
+        
+            //fetched one byte successfully, so now check for encoding
+             if(encode_byte_tolsb(MSBbits[i], encInfo->image_data) == e_failure)
+            {
+                fprintf(stderr, "Encoding error. \n" );
+                return e_failure;
+            }
+        
+            //encoded data saved in image_buffer is written to stegfile
+        
+            if((writeptr = fwrite(encInfo->image_data, 1, 1, encInfo->fptr_stego_image)) != 1)
+            {
+                fprintf(stderr,"write file error.\n");
+                return e_failure;
+            }
+        }
+    }
+    
+    return e_success;
+}
+
+void getMSB(char data, char *MSBbits)
+{
+    /* MSB is in reverse order */
+   int i, j, temp, iterptr;
+    
+    for (i = 0; i < 8; i++ )
+    {
+        // secret_data (1 byte) & 0x01;
+        if( (data & 0x01) == 0)
+        {
+            MSBbits[i] = '0';
+        }
+        else if( (data & 0x01) == 1)
+        {
+            MSBbits[i] = '1';
+        }
+        data >>= 1;
+     }
+     MSBbits[i] = '\0';
+     
+     //reverse string to get the MSBs in order
+     for (i = 0, j = strlen(MSBbits)-1; i < j; i++, j--)
+     {
+         temp = MSBbits[i];
+         MSBbits[i] = MSBbits[j];
+         MSBbits[j] = temp;
+     }
+     
+   // printf("%s", MSBbits);
+   // printf("\n");
+
+}
+
+/* Copy remaining image bytes from src to stego image after encoding */
+Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest)
+{
+    
+    int readptr, writeptr, i;
+    char image_remaining_data[MAX_IMAGE_BUF_SIZE];
+    
+    //get the current cursor value
+    fseek(fptr_src, 0L, SEEK_CUR);
+    //printf("%ld \n", ftell(fptr_src));
+    
+    
+    while(feof(fptr_src)==0)
+    {
+        
+        // To read remaining data till end
+        if ((readptr = fread( image_remaining_data, 1, MAX_IMAGE_BUF_SIZE, fptr_src)) != MAX_IMAGE_BUF_SIZE)
+        {
+            if (ferror(fptr_src) != 0)
+            {
+                fprintf(stderr, "Reading error. \n" );
+                clearerr(fptr_src);
+                return e_failure;
+            }
+        
+        }
+    
+        // If failed to write what is read into dest header
+        if ((writeptr = fwrite( image_remaining_data, 1, readptr, fptr_dest)) != readptr)
+        {
+            return e_failure;
+        }
+    }
+
+    return e_success;
+    
 }
