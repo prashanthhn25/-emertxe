@@ -129,6 +129,11 @@ int main(int argc, char **argv)
                     fclose(secretfile);
                     exit(1);
                 }
+				else
+				{
+					encryptbmpfileName = "encryptsamp.bmp";
+				}
+				
             }
         }
         
