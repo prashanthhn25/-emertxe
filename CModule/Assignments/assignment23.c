@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXVAl 200000000
+#define MAXVAL 200000000
 #define MINVAL -200000000
 
 /* function prototype */

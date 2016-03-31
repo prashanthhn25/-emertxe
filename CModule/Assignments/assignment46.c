@@ -155,7 +155,7 @@ void print_char(char buf)
 void print_int(int intbuf)
 {
     char value[255];
-    itoa(intbuf, value);
+    my_itoa(intbuf, value);
     print(value);
 }
 
@@ -167,14 +167,14 @@ void print_string(char *s)
 void print_hexa(int intbuf)
 {
     char value[255];
-    itob(intbuf, value, 16);
+    my_itob(intbuf, value, 16);
     print(value);
 }
 
 void print_octal(int intbuf)
 {
     char value[255];
-    itob(intbuf, value, 8);
+    my_itob(intbuf, value, 8);
     print(value);
 }
 

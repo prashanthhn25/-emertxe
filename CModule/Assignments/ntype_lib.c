@@ -8,8 +8,8 @@
  *      -> int bin2dec(char binary[], int bits);
  *      -> void print_Menu(char sptr[][MAX_COL], int rows);
  *      -> void fibonacci(int givenNum);
- *      -> int itoa(int n, char *s);
- *      -> void itob(int n, char *s, int b);
+ *      -> int my_itoa(int n, char *s)
+ *      -> void my_itob(int n, char *s, int b);
  */
 
 #include <stdio.h>
@@ -106,7 +106,7 @@ void fibonacci(int givenNum)
 /*  a. Convert integer n into a string and store the string in s.
  *  b. Return the length of string from the function.
  */
-int itoa(int n, char *s)
+int my_itoa(int n, char *s)
 {
     int count = 0, temp, i;
     
@@ -153,7 +153,7 @@ int itoa(int n, char *s)
 /* Converts n value into it's base value and stores in String
  *
  */
-void itob(int n, char s[], int b)
+void my_itob(int n, char s[], int b)
 {
     int i, sign;
     int temp, j;

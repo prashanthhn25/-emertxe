@@ -1,5 +1,5 @@
 /*  
- *  Q. Implement int itoa(int n, char *s)
+ *  Q. Implement int my_itoa(int n, char *s)
  *
  *  a. Convert integer n into a string and store the string in s.
  *  b. Return the length of string from the function.
@@ -22,10 +22,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ntype_lib.c"
-
-#define MAXLEN 256
-#define MAXVAL 20000000
-#define MINVAL -20000000
 
 int main()
 {
@@ -52,8 +48,8 @@ int main()
             return 1;
         }
         
-        //printf("length of the string: %d", itoa(number, strBuf));
-        itoa(number, strBuf);
+        //printf("length of the string: %d", my_itoa(number, strBuf));
+        my_itoa(number, strBuf);
         
         /* Call getword and print the output*/
         printf("\nYou entered %s\n", strBuf);
