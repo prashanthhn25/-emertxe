@@ -24,7 +24,7 @@ int main()
     }
 
     // Test get_image_size_for_bmp
-    img_size = get_image_size_for_bmp(encInfo.fptr_src_image);
-    printf("INFO: Image size = %u\n", img_size);
+    //img_size = get_image_size_for_bmp(encInfo.fptr_src_image);
+   // printf("INFO: Image size = %u\n", img_size);
     return 0;
 }
