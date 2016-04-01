@@ -94,6 +94,13 @@ Status encode_secret_file_extn(const char *file_extn, EncodeInfo *encInfo);
 Status encode_data_to_image(char *data, int size, FILE *fptr_src_image, FILE *fptr_stego_image);
 
 
+/* Decode secret file size */
+Status decode_secret_file_size(FILE * fptr_stego_image, long *size_secret_file);
 
+/* decode a byte into array from LSB of image data  */
+Status decode_byte_fromlsb(char *data, char *image_buffer);
+
+/* Decode secret file data */
+Status decode_secret_file_data(FILE * fptr_secret, FILE * fptr_stego_image, long size_secret_file);
 
 #endif

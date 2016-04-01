@@ -29,16 +29,15 @@ int main(int argc, char **argv)
     }
     
     
-    // Test open_files
-    if (open_files(&encInfo) == e_failure)
-    {
-        printf("ERROR: %s function failed\n", "open_files" );
-        return 1;
-    }
-    
     if (check_operation_type(argv) == e_encode)
     {
-
+        // Test open_files
+        if (open_files(&encInfo) == e_failure)
+        {
+            printf("ERROR: %s function failed\n", "open_files" );
+            return 1;
+        }
+        
         // Test get_image_size_for_bmp
         encInfo.image_capacity = get_image_size_for_bmp(encInfo.fptr_src_image);
         //printf("INFO: Image size = %u\n", encInfo.image_capacity);
@@ -84,10 +83,56 @@ int main(int argc, char **argv)
             printf("Did not encode rest of the data.\n");
             return 1;
         }
+        fclose(encInfo.fptr_secret);
+        fclose(encInfo.fptr_src_image);
+        fclose(encInfo.fptr_stego_image);
     }
     else if (check_operation_type(argv) == e_decode)
     {
-
+        long size_secret_file;
+        
+        //Test Open Stego Image file
+        encInfo.fptr_stego_image = fopen(encInfo.stego_image_fname, "r");
+        
+        //Do Error handling
+        if (NULL == encInfo.fptr_stego_image)
+        {
+            print_file_error(encInfo.stego_image_fname);
+            return 1;
+        }
+        
+        
+        //Test decode_secret_file_size
+        //printf("stegno is: %s \n", encInfo.stego_image_fname);
+        if (decode_secret_file_size(encInfo.fptr_stego_image, &size_secret_file) == e_failure)
+        {
+            printf("Did not decode file size.\n");
+            return 1;
+        }
+         
+        
+        // Secret file
+        encInfo.fptr_secret = fopen(encInfo.secret_fname, "w");
+        //Do Error handling
+        
+        if (NULL == encInfo.fptr_secret)
+        {
+            print_file_error(encInfo.secret_fname);
+            fclose(encInfo.fptr_stego_image);
+            return 1;
+        }
+        
+        /*
+        //Test decode_secret_file_data
+        //size_secret_file = 24;
+        if (decode_secret_file_data(encInfo.fptr_secret, encInfo.fptr_stego_image, size_secret_file) == e_failure)
+        {
+            printf("Did not decode file data.\n");
+            return 1;
+        }
+         */
+        
+        
     }
     return 0;
 }
