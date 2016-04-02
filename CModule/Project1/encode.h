@@ -35,6 +35,24 @@ typedef struct _EncodeInfo
 
 } EncodeInfo;
 
+typedef union _MSBBYTE
+{
+	unsigned char MSB_BYTE;
+	
+	struct Bits
+	{
+		unsigned char BIT0 : 1;
+		unsigned char BIT1 : 1;
+		unsigned char BIT2 : 1;
+		unsigned char BIT3 : 1;
+		unsigned char BIT4 : 1;
+		unsigned char BIT5 : 1;
+		unsigned char BIT6 : 1;
+		unsigned char BIT7 : 1;
+	}bitaccess;	
+	
+} MsbMap;
+	
 
 /* Encoding function prototype */
 
@@ -70,7 +88,7 @@ Status encode_secret_file_size(long file_size, EncodeInfo *encInfo);
 Status encode_secret_file_data(EncodeInfo *encInfo);
 
 /*Helper*/
-void getMSB(char data, char *MSBbits);
+void getMSB(char data, MsbMap *msbbytemap);
 
 /* Encode a byte into LSB of image data array */
 Status encode_byte_tolsb(char data, char *image_buffer);

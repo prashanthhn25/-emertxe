@@ -11,6 +11,14 @@
  * Input: Error message
  * Description: prints Usage format and error message
  */
+ 
+ //! Byte swap int
+uint swap_int32( uint val )
+{
+    val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF ); 
+    return (val << 16) | ((val >> 16) & 0xFFFF);
+}
+ 
 void print_usage_error(char * message)
 {
     fprintf(stderr, "ERROR: %s \n", message);
@@ -236,6 +244,7 @@ Status copy_bmp_header(FILE * fptr_src_image, FILE *fptr_dest_image)
 /* Encode secret file size */
 Status encode_secret_file_size(long file_size, EncodeInfo *encInfo)
 {
+
     char MSBbits[32] = {0};
     int i, j, readptr, writeptr, iterptr, temp;
     
@@ -322,21 +331,28 @@ Status encode_byte_tolsb(char data, char *image_buffer)
 /* Encode secret file data*/
 Status encode_secret_file_data(EncodeInfo *encInfo)
 {
+    MsbMap msbtemp, tempValues;
     
     int readsecretptr, readptr, writeptr, i;
-    char MSBbits[9] = {0};
-    char tempdata;
+    char tempdata, mask;
+    char *tempMsb;	
 
     
     // Seek to 0th byte and onward for secret file
     fseek(encInfo->fptr_secret, 0L, SEEK_SET);
     // Seek to 87th byte and onward for image file
-    fseek(encInfo->fptr_src_image, 87L, SEEK_SET);
+    fseek(encInfo->fptr_src_image, 86L, SEEK_SET);
+	//fseek(encInfo->fptr_src_image, 0L, SEEK_CUR);
+	//printf(" %ld:", ftell(encInfo->fptr_src_image));
     // Seek to 87th byte and onward for steg file
-    fseek(encInfo->fptr_stego_image, 87L, SEEK_SET);
-    
+    fseek(encInfo->fptr_stego_image, 86L, SEEK_SET);
+    //fseek(encInfo->fptr_stego_image, 0L, SEEK_CUR);
+        //printf(" %ld:", ftell(encInfo->fptr_src_image));
+
+
     /* Do till EOF for secret file is reached */
-    while(feof(encInfo->fptr_secret) == 0)
+
+    while(feof(encInfo->fptr_secret) == '\0')
     {
         //Read 1 byte from secret file to secretdata buffer
         if((readsecretptr = fread(encInfo->secret_data, 1, 1, encInfo->fptr_secret))!= 1)
@@ -352,16 +368,30 @@ Status encode_secret_file_data(EncodeInfo *encInfo)
     
         //Get the MSBs in MSBbit for that secret data
         tempdata = *encInfo->secret_data;
-        getMSB(tempdata, MSBbits);
-    
-        //printf("%s--> %lu", MSBbits, sizeof(MSBbits));
-        //printf("\n");
-    
-        //8 times for 8 bits
-        for (i = 0; i < (sizeof(MSBbits) - 1); i++)
+	msbtemp.MSB_BYTE = *encInfo->secret_data;
+
+	/* Reverse MSB and save */
+	tempValues.bitaccess.BIT0 = msbtemp.bitaccess.BIT7;
+	tempValues.bitaccess.BIT1 = msbtemp.bitaccess.BIT6; 
+	tempValues.bitaccess.BIT2 = msbtemp.bitaccess.BIT5; 
+	tempValues.bitaccess.BIT3 = msbtemp.bitaccess.BIT4; 
+	tempValues.bitaccess.BIT4 = msbtemp.bitaccess.BIT3;
+	tempValues.bitaccess.BIT5 = msbtemp.bitaccess.BIT2;
+	tempValues.bitaccess.BIT6 = msbtemp.bitaccess.BIT1;
+	tempValues.bitaccess.BIT7 = msbtemp.bitaccess.BIT0 ; 
+	
+	//printf("%d:%#x  = %#x\n", i, msbtemp.MSB_BYTE , tempValues.MSB_BYTE  );
+		
+
+	//printf("bitaccess.BIT7 = %#x\n", msbtemp.bitaccess.BIT7);
+	//printf("\n");
+
+	//read image byte and MSBbit and Encode for 8 bits
+	//printf("\n ");
+        for (i = 0; i < 8; i++)
         {
-        
-            // read byte by byte starting from 55th in image
+		
+		// read byte by byte starting from 55th in image
             if ((readptr = fread( encInfo->image_data, 1, 1, encInfo->fptr_src_image)) != 1)
             {
                 if (ferror(encInfo->fptr_src_image) != 0)
@@ -371,59 +401,37 @@ Status encode_secret_file_data(EncodeInfo *encInfo)
                     return e_failure;
                 }
             }
-        
-            //fetched one byte successfully, so now check for encoding
-             if(encode_byte_tolsb(MSBbits[i], encInfo->image_data) == e_failure)
+		
+		// Get the MSB value in mask
+		mask = tempValues.MSB_BYTE & 0x01;
+		//printf("%x ", mask);
+	
+	    //Only MSb should be used for encoding	
+
+	    //fetched one byte successfully, so now check for encoding
+             if(encode_byte_tolsb(mask, encInfo->image_data) == e_failure)
             {
                 fprintf(stderr, "Encoding error. \n" );
                 return e_failure;
             }
-        
-            //encoded data saved in image_buffer is written to stegfile
+        		
+	    //encoded data saved in image_buffer is written to stegfile
         
             if((writeptr = fwrite(encInfo->image_data, 1, 1, encInfo->fptr_stego_image)) != 1)
             {
                 fprintf(stderr,"write file error.\n");
                 return e_failure;
             }
-        }
-    }
+	
+
+	tempValues.MSB_BYTE >>= 1;
+	}
+	/* Do this eight times */
     
+    }
     return e_success;
 }
 
-void getMSB(char data, char *MSBbits)
-{
-    /* MSB is in reverse order */
-   int i, j, temp, iterptr;
-    
-    for (i = 0; i < 8; i++ )
-    {
-        // secret_data (1 byte) & 0x01;
-        if( (data & 0x01) == 0)
-        {
-            MSBbits[i] = '0';
-        }
-        else if( (data & 0x01) == 1)
-        {
-            MSBbits[i] = '1';
-        }
-        data >>= 1;
-     }
-     MSBbits[i] = '\0';
-     
-     //reverse string to get the MSBs in order
-     for (i = 0, j = strlen(MSBbits)-1; i < j; i++, j--)
-     {
-         temp = MSBbits[i];
-         MSBbits[i] = MSBbits[j];
-         MSBbits[j] = temp;
-     }
-     
-   // printf("%s", MSBbits);
-   // printf("\n");
-
-}
 
 /* Copy remaining image bytes from src to stego image after encoding */
 Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest)
@@ -467,22 +475,22 @@ Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest)
 Status decode_secret_file_size(FILE * fptr_stego_image, long *size_secret_file)
 {
     int readptr, i, j, k, iterptr, tempnum, temp;
-    char MSBbits[33] = {0};
+    char MSBbits[32] = {0};
     char tempdata;
-    char file_size_data[9];
+    char file_size_data;
     
     // Seek to 55th byte and onward
-    fseek(fptr_stego_image, 55L, SEEK_SET);
-    iterptr = ftell(fptr_stego_image);
+    fseek(fptr_stego_image, 54L, SEEK_SET);
   
-    i = 0;
+ 
+	//printf(" %ld:", ftell(fptr_stego_image));
     // Decode the next 32 Image data into buffer for size
-    for (i = 0; iterptr < 87; i++)
+    for(i = 0; i < 32 ;i++)
     {
-         //printf(" %d:", iterptr);
-        /* To read byte by byte */
-        printf(" %ld:\n", ftell(fptr_stego_image));
-        if ((readptr = fread(file_size_data, 1, 1, fptr_stego_image)) != 1)
+         
+        //printf(" %ld:", ftell(fptr_stego_image));
+	/* To read byte by byte */
+        if ((readptr = fread(&file_size_data, 1, 1, fptr_stego_image)) != 1)
         {
             if (ferror(fptr_stego_image) != 0)
             {
@@ -491,23 +499,22 @@ Status decode_secret_file_size(FILE * fptr_stego_image, long *size_secret_file)
                 return e_failure;
             }
         }
-        else
-        {
-            fwrite(file_size_data,sizeof(char),1,stdout);
-        }
-        
-        /* Now decode */
-        if (decode_byte_fromlsb(&tempdata, file_size_data) == e_failure) {
+	        
+	//printf("%x ", file_size_data);
+
+   
+        // Now decode 
+        if (decode_byte_fromlsb(&tempdata, &file_size_data) == e_failure)
+	 {
             printf("Decoding of LSb failed.");
             return e_failure;
         }
         MSBbits[i] = tempdata;
-        iterptr++;
    }
     MSBbits[i] = '\0';
     
-    printf("%s\n", MSBbits);
-    printf("\n");
+    //printf("%s\n", MSBbits);
+    //printf("\n");
     
     //reverse MSB
     for (i = 0, j = strlen(MSBbits)-1; i < j; i++, j--)
@@ -528,21 +535,22 @@ Status decode_secret_file_size(FILE * fptr_stego_image, long *size_secret_file)
     }
     *size_secret_file = tempnum;
     //printf("%d \n", tempnum);
+
     return e_success;
     
 }
 
 /* decode a byte into array from LSB of image data  */
-Status decode_byte_fromlsb(char *data, char *image_buffer)
+Status decode_byte_fromlsb(char *data, char *image_data)
 {
     //get LSB of the data and store in imagebuffer
-    //printf("%d", (*image_buffer & 0x01));
-    *data = (*image_buffer & 0x01);
-    if ((*image_buffer & 0x01) == 0)
+    //printf("%d", (*image_data & 0x01));
+    *data = (*image_data & 0x01);
+    if ((*image_data & 0x01) == 0)
     {
         *data = '0';
     }
-    else if ((*image_buffer & 0x01) == 1)
+    else if ((*image_data & 0x01) == 1)
     {
         *data = '1';
     }
@@ -553,34 +561,28 @@ Status decode_byte_fromlsb(char *data, char *image_buffer)
 /* Decode secret file data */
 Status decode_secret_file_data(FILE * fptr_secret, FILE * fptr_stego_image, long size_secret_file)
 {
-    int readptr, writeptr, i, j, k, iterptr;
-    char MSBbits[] = {0};
-    char tempdata;
-    char file_size_data[MAX_IMAGE_BUF_SIZE];
-    int total_bytes, temp;
-    //get the total bytes that needs to be changed
-    //printf("%ld", size_secret_file);
-    
-    total_bytes = size_secret_file * 8;
+	
+    int readptr, writeptr, i, j;
+
+    char tempdata, msbdata, msbdata2;
+    char file_size_data;
     
     //get the current cursor value
     fseek(fptr_stego_image, 0L, SEEK_CUR);
+	
     //set to starting position of secret file
     fseek(fptr_secret, 0L, SEEK_SET);
     
-    iterptr = ftell(fptr_stego_image);
-    //printf("%d", iterptr);
-    
+
     // Decode the next 32 Image data into buffer for size
-    while(iterptr < total_bytes)
+    for(i = 0; i < size_secret_file; i++)
     {
-        //printf(" %d:", iterptr);
         
         //for every 8 bytes we get one byte of data
-        for (j = 0; j < 9; j++)
+        for (j = 0; j < 8; j++)
         {
             /* To read byte by byte */
-            if ((readptr = fread(file_size_data, 1, 1, fptr_stego_image)) != 1)
+            if ((readptr = fread(&file_size_data, 1, 1, fptr_stego_image)) != 1)
             {
                 if (ferror(fptr_stego_image) != 0)
                 {
@@ -589,37 +591,24 @@ Status decode_secret_file_data(FILE * fptr_secret, FILE * fptr_stego_image, long
                     return e_failure;
                 }
             }
-            
-            /* Now decode */
-            if (decode_byte_fromlsb(&tempdata, file_size_data) == e_failure)
-            {
-                printf("Decoding of LSb failed.");
-                return e_failure;
-            }
-            MSBbits[j] = tempdata;
-        }
-         MSBbits[j] = '\0';
-        
-        //printf("%s\n", MSBbits);
-        //printf("\n");
-        
-        //reverse MSB
-        for (i = 0, j = strlen(MSBbits)-1; i < j; i++, j--)
-        {
-            temp = MSBbits[i];
-            MSBbits[i] = MSBbits[j];
-            MSBbits[j] = temp;
-        }
-        //printf("%s\n", MSBbits);
-        //printf("\n");
-        
+ 
+		// Now decode to get LSB 
+		msbdata = file_size_data & 01;
+		
+		// Shift and or	
+		 msbdata2 = (msbdata2 <<= 1) | msbdata;
+	
+           }	
+		//printf("%c",  msbdata2  );
+	
+	
         //now that we have the correct byte, write to secret file
         // If failed to write what is read into dest header
-        if ((writeptr = fwrite( MSBbits, 1, 1, fptr_secret)) != 1)
+        if ((writeptr = fwrite( &msbdata2, 1, 1, fptr_secret)) != 1)
         {
             return e_failure;
         }
-        iterptr++;
+      
     }
     
     return e_success;
