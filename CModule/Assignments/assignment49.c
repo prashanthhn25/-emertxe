@@ -36,8 +36,55 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define MAXLEN 255
+#define MAXVAL 2000000
+#define MINVAL -200000
+
+void NPRSString(char str[] , int len, int k);
+
 int main()
 {
+    int n, k, i;
+    char kdistinct[MAXLEN];
     
-    return 0;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    
+    /* boundary check */
+    /* Error Check for limit */
+    if ((n < MINVAL) || (n > MAXVAL))
+    {
+        printf("Error: Invalid Number. Retry\n");
+        return 1;
+    }
+    
+    printf("Enter the value of k: ");
+    scanf("%d", &k);
+    /* Error Check for limit */
+    if ((k < 1) || (k > 10))
+    {
+        printf("Error: Invalid Number. Retry\n");
+        return 1;
+    }
+    
+    printf("Enter the k disctint characters: ");
+    for (i = 0; i < k; i++)
+    {
+          scanf("\n%c", &kdistinct[i]);
+    }
+    
+    NPRSString(kdistinct, n, k);
+      return 0;
+}
+
+void NPRSString(char str[] , int len, int k)
+{
+    int i, val = 1;;
+    
+    for (i = 0; i < len; i++)
+    {
+        
+        printf("%c", *(str+(i%k)));
+    }
+    
 }
