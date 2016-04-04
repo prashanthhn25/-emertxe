@@ -122,7 +122,7 @@ int main(int argc, char **argv)
             return 1;
         }
         
-        /*
+        
         //Test decode_secret_file_data
         //size_secret_file = 24;
         if (decode_secret_file_data(encInfo.fptr_secret, encInfo.fptr_stego_image, size_secret_file) == e_failure)
@@ -130,8 +130,6 @@ int main(int argc, char **argv)
             printf("Did not decode file data.\n");
             return 1;
         }
-         */
-        
         
     }
     return 0;
