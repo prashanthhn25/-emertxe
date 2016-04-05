@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "common.c"
 #include "encode.c"
-#include "types.h"
+#include "decode.c"
 
 int main(int argc, char **argv)
 {
@@ -32,7 +33,7 @@ int main(int argc, char **argv)
     if (check_operation_type(argv) == e_encode)
     {
         // Test open_files
-        if (open_files(&encInfo) == e_failure)
+        if (open_files_encode(&encInfo) == e_failure)
         {
             printf("ERROR: %s function failed\n", "open_files" );
             return 1;
@@ -80,7 +81,7 @@ int main(int argc, char **argv)
         //Test copy_remaining_img_data [includes null too]
         if ( copy_remaining_img_data(encInfo.fptr_src_image, encInfo.fptr_stego_image)  == e_failure)
         {
-            printf("Did not encode rest of the data.\n");
+            printf("Did not copy rest of the image data.\n");
             return 1;
         }
         fclose(encInfo.fptr_secret);
@@ -91,13 +92,10 @@ int main(int argc, char **argv)
     {
         long size_secret_file;
         
-        //Test Open Stego Image file
-        encInfo.fptr_stego_image = fopen(encInfo.stego_image_fname, "r");
-        
-        //Do Error handling
-        if (NULL == encInfo.fptr_stego_image)
+        // Test open_files_decode
+        if (open_files_decode(&encInfo) == e_failure)
         {
-            print_file_error(encInfo.stego_image_fname);
+            printf("ERROR: %s function failed\n", "open_files" );
             return 1;
         }
         
@@ -107,18 +105,6 @@ int main(int argc, char **argv)
         if (decode_secret_file_size(encInfo.fptr_stego_image, &size_secret_file) == e_failure)
         {
             printf("Did not decode file size.\n");
-            return 1;
-        }
-         
-        
-        // Secret file
-        encInfo.fptr_secret = fopen(encInfo.secret_fname, "w");
-        //Do Error handling
-        
-        if (NULL == encInfo.fptr_secret)
-        {
-            print_file_error(encInfo.secret_fname);
-            fclose(encInfo.fptr_stego_image);
             return 1;
         }
         
