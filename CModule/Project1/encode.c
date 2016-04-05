@@ -397,3 +397,10 @@ Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest)
     return e_success;
     
 }
+/* for clean exit close all files */
+void close_files_encode(EncodeInfo *encInfo)
+{
+    fclose(encInfo->fptr_secret);
+    fclose(encInfo->fptr_src_image);
+    fclose(encInfo->fptr_stego_image);
+}

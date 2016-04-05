@@ -9,6 +9,9 @@
 /* Get File pointers for i/p and o/p files */
 Status open_files_decode(EncodeInfo *encInfo);
 
+/* close files for clean exit */
+void close_files_decode(EncodeInfo *encInfo);
+
 /* Decode secret file size */
 Status decode_secret_file_size(FILE * fptr_stego_image, long *size_secret_file);
 

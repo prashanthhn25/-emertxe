@@ -9,6 +9,9 @@
 /* Get File pointers for i/p and o/p files */
 Status open_files_encode(EncodeInfo *encInfo);
 
+/* close files for clean exit */
+void close_files_encode(EncodeInfo *encInfo);
+
 /* Get file size */
 uint get_file_size(FILE *fptr);
 

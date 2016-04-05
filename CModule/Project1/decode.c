@@ -160,7 +160,7 @@ Status decode_secret_file_data(FILE * fptr_secret, FILE * fptr_stego_image, long
     fseek(fptr_secret, 0L, SEEK_SET);
     
     
-    // Decode the next 32 Image data into buffer for size
+    // Decode the data for the size_secret_file
     for(i = 0; i < size_secret_file; i++)
     {
         
@@ -202,3 +202,9 @@ Status decode_secret_file_data(FILE * fptr_secret, FILE * fptr_stego_image, long
     
 }
 
+/* close files for clean exit */
+void close_files_decode(EncodeInfo *encInfo)
+{
+    fclose(encInfo->fptr_stego_image);
+    fclose(encInfo->fptr_secret);
+}
