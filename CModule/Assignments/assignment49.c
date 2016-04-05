@@ -44,7 +44,7 @@ void NPRSString(char str[] , int len, int k);
 
 int main()
 {
-    int n, k, i;
+    int n, k, i, j;
     char kdistinct[MAXLEN];
     
     printf("Enter the value of n: ");
@@ -67,10 +67,23 @@ int main()
         return 1;
     }
     
-    printf("Enter the k disctint characters: ");
+    printf("Enter the k disctint characters: \n");
     for (i = 0; i < k; i++)
     {
           scanf("\n%c", &kdistinct[i]);
+    }
+    
+    /* check for distinct characters */
+    for (i = 0; i < k; i++)
+    {
+        for (j = (i+1); j < k; j++)
+        {
+            if(kdistinct[j] == kdistinct[i] )
+            {
+                printf("Error: values are not distinct.\n");
+                return 1;
+            }
+        }
     }
     
     NPRSString(kdistinct, n, k);
@@ -79,12 +92,18 @@ int main()
 
 void NPRSString(char str[] , int len, int k)
 {
-    int i, val = 1;;
-    
-    for (i = 0; i < len; i++)
+    int i, val = 0, count = 0;
+    char temp[MAXLEN];
+    if (len == 1)
     {
-        
-        printf("%c", *(str+(i%k)));
+        printf("%s ", temp);
     }
-    
+    else
+    {
+        for (i = 1; i <= k; i++)
+        {
+            temp[len - 1] = *(str+i);
+            NPRSString(temp, len-1, k);
+        }
+    }
 }
