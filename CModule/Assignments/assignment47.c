@@ -52,20 +52,23 @@ int main()
     char s[100];
     char ss[100];
 
-    //scanf("%d", &i);
-    //rewind(stdin); /* If rewind is removed, it considers \n */
-    //my_scanf("%d", &j);
-    //printf("scanf: i = %d\n", i);
-    //printf("my_scanf: j = %d\n", j);
+    printf("Start scanning\n");
     
-    //scanf("%c", &ci);
-    //rewind(stdin); /* If rewind is removed, it considers \n */
-    //my_scanf("%c", &cj);
-    //printf("scanf: i = %c\n", ci);
-    //printf("my_scanf: j = %c\n", cj);
+    printf("Start scanning for %%d\n");
+    scanf("%d", &i);
+    my_scanf("%d", &j);
+    printf("scanf: i = %d\n", i);
+    printf("my_scanf: j = %d\n", j);
     
+    printf("Start scanning for %%c\n");
+    scanf("%c", &ci);
+    my_scanf("%c", &cj);
+    printf("scanf: i = %c\n", ci);
+    printf("my_scanf: j = %c\n", cj);
+    
+    rewind(stdin);
+    printf("Start scanning for %%s\n");
     scanf("%s", s);
-    rewind(stdin); /* If rewind is removed, it considers \n */
     my_scanf("%s", ss);
     printf("scanf: s = %s\n", s);
     printf("my_scanf: ss = %s\n", ss);
@@ -75,6 +78,7 @@ int main()
 
 int my_scanf(char *format, ...)
 {
+    rewind(stdin);
     va_list ap;
     
     int *d_ptr = NULL;
