@@ -44,10 +44,10 @@ int main()
     }
     
     //To get string combinations- non recursively
-    stringCombinations_NonRecursion(str, len);
+    //stringCombinations_NonRecursion(str, len);
     
      //To get string combinations- recursively
-    //stringCombinations_Recursion(a, 1, 2);
+    stringCombinations_Recursion(a, 1, 2);
       return 0;
 }
 
@@ -60,7 +60,6 @@ void stringCombinations_NonRecursion(char str[] , int len)
     for (i = 0; i < len; i++)
     {
         tempstrarray[i] = str[i];
-        B[i] = str[i];
     }
     //get the array length: gives the number of characters present in the string
     templen = i;

@@ -15,8 +15,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXROW 500
-#define MAXCOL 500
+#define MAXROW 50
+#define MAXCOL 50
 
 void InverseOfMatrix(int a[MAXROW][MAXCOL], int n, float b[MAXROW][MAXCOL]);
 
@@ -24,6 +24,7 @@ void TransposeofMatrix(int matrix[MAXROW][MAXCOL], int row, int column);
 void TransposeInPlace(int matrix[MAXROW][MAXCOL], int size);
 
 int DeterminantOfMatrix(int a[MAXROW][MAXCOL],int n);
+
 void CoFactor(int a[MAXROW][MAXCOL],int n,int b[MAXROW][MAXCOL]);
 
 int main()
@@ -60,12 +61,8 @@ int main()
         printf("\n");
     }
     
-    //Transpose of entered matrix
-    TransposeofMatrix(matrix, row, column);
-    
-    /*
     //Transpose in place for square matrix
-    TransposeInPlace(matrix, row);
+    //TransposeInPlace(matrix, row);
     
     //to print the given matrix
     printf("Given Matrix after transpose: \n");
@@ -77,17 +74,30 @@ int main()
         }
         printf("\n");
     }
-     */
-   
+    
+  
+	
     //Determinant of entered matrix
     if(row != column)
     {
         printf("Error: Need Square matrix to find determinant\n");
         return 1;
     }
+	
     else
     {
-        determinant = DeterminantOfMatrix(matrix, row);
+		printf("%d\n", row);
+		
+		for (i = 0; i < row; i++)
+		{
+			for (j = 0; j < column; j++)
+			{
+				printf("%d\t", matrix[i][j]);
+			}
+			printf("\n");
+		}
+	
+		determinant = DeterminantOfMatrix(matrix, row);
         printf("Determinant of given matrix: %d \n", determinant);
         
          //Inverse of the entered matrix
@@ -113,11 +123,67 @@ int main()
             }
         }
     }
-    
    
+	//Transpose of entered matrix
+    TransposeofMatrix(matrix, row, column);
+  
    
       return 0;
 }
+
+
+/* Determinant of Matrix */
+int DeterminantOfMatrix(int a[MAXROW][MAXCOL],int n)
+{
+    int i,j,k,l;
+    int det = 0; //initialize return val to 0
+    int submatrix[MAXROW][MAXCOL]; //for submatrix with minor elements excluded
+    
+	
+    if (n < 1)
+    { 
+        printf("Error: Invalid Matrix. \n");
+        exit(1);
+    }
+    else if (n == 1) //when size of matrix is 1
+    {
+        det = a[0][0];
+    }
+    else if (n == 2) //when size of matrix is 2, base condition
+    {
+        det = a[0][0] * a[1][1] - a[1][0] * a[0][1];
+    }
+    //recursively solve for sub- matrix determinants
+	
+    else
+    {
+        det = 0;
+        for (k = 0; k < n; k++)
+        {
+          
+            for (i = 1; i < n; i++)
+            {
+                l = 0; // start at first sum-matrix column position
+                for (j = 0; j < n; j++)
+                {
+                    //No minor elements are copied
+                    if (j == k)
+                        continue;
+                    //new submatrix excluding minor elements
+                    submatrix[ i - 1][l] = a[i][j];
+                    l++;
+                }
+            }
+            //summation of determinant of sub matrix with one row and column lesser on each loop
+            det += pow(-1.0, k+2.0) * a[0][k] * DeterminantOfMatrix(submatrix, n-1);
+           
+        }
+    }
+	
+    return(det);
+}
+
+
 
 /* Inverse of a Matrix */
 void InverseOfMatrix(int a[MAXROW][MAXCOL], int n, float b[MAXROW][MAXCOL])
@@ -168,53 +234,6 @@ void InverseOfMatrix(int a[MAXROW][MAXCOL], int n, float b[MAXROW][MAXCOL])
     
 }
 
-/* Determinant of Matrix */
-int DeterminantOfMatrix(int a[MAXROW][MAXCOL],int n)
-{
-    int i,j,k,l;
-    int det = 0; //initialize return val to 0
-    int submatrix[MAXROW][MAXCOL]; //for submatrix with minor elements excluded
-    
-    if (n < 1)
-    { /* Error */
-        printf("Error: Invalid Matrix. \n");
-        exit(1);
-    }
-    else if (n == 1) //when size of matrix is 1
-    {
-        det = a[0][0];
-    }
-    else if (n == 2) //when size of matrix is 2, base condition
-    {
-        det = a[0][0] * a[1][1] - a[1][0] * a[0][1];
-    }
-    //recursively solve for sub- matrix determinants
-    else
-    {
-        det = 0;
-        for (k = 0; k < n; k++)
-        {
-          
-            for (i = 1; i < n; i++)
-            {
-                l = 0; // start at first sum-matrix column position
-                for (j = 0; j < n; j++)
-                {
-                    //No minor elements are copied
-                    if (j == k)
-                        continue;
-                    //new submatrix excluding minor elements
-                    submatrix[ i - 1][l] = a[i][j];
-                    l++;
-                }
-            }
-            //summation of determinant of sub matrix with one row and column lesser on each loop
-            det += pow(-1.0, k+2.0) * a[0][k] * DeterminantOfMatrix(submatrix, n-1);
-           
-        }
-    }
-    return(det);
-}
 
 /* Transpose of entered matrix */
 void TransposeofMatrix(int matrix[MAXROW][MAXCOL], int row, int column)

@@ -74,8 +74,8 @@ int main()
     
     /* Printing the float elements in sorted order. */
     printf("After sorting: ");
-    //sortFloatNumbers(store, floatCount);
-    sortFloatNumbersWithoutModify(store, floatCount);
+    sortFloatNumbers(store, floatCount);
+    //sortFloatNumbersWithoutModify(store, floatCount);
     
     printf("After sorting Original Array: ");
     for (i = 0; i < floatCount; i++)

@@ -56,12 +56,14 @@ int main()
     
     printf("Start scanning for %%d\n");
     scanf("%d", &i);
+	getchar();
     my_scanf("%d", &j);
     printf("scanf: i = %d\n", i);
     printf("my_scanf: j = %d\n", j);
     
     printf("Start scanning for %%c\n");
     scanf("%c", &ci);
+	getchar();
     my_scanf("%c", &cj);
     printf("scanf: i = %c\n", ci);
     printf("my_scanf: j = %c\n", cj);
@@ -69,6 +71,7 @@ int main()
     rewind(stdin);
     printf("Start scanning for %%s\n");
     scanf("%s", s);
+	getchar();
     my_scanf("%s", ss);
     printf("scanf: s = %s\n", s);
     printf("my_scanf: ss = %s\n", ss);
@@ -180,7 +183,7 @@ void scan_str(char *sptr)
         }
         (ch = getchar());
     }
-    
+    sbuf[i] = '\0';
     /* return intger value into obtained address */
     strcpy(sptr, sbuf);
     

@@ -93,17 +93,14 @@ int main()
 void NPRSString(char str[] , int len, int k)
 {
     int i, val = 0, count = 0;
-    char temp[MAXLEN];
-    if (len == 1)
+    
+    for (i = 0; i < len; i++)
     {
-        printf("%s ", temp);
+        if(i%k == 0)
+		{
+			val++;
+		}
+        printf("%c", *(str+((i+val)%k)));
     }
-    else
-    {
-        for (i = 1; i <= k; i++)
-        {
-            temp[len - 1] = *(str+i);
-            NPRSString(temp, len-1, k);
-        }
-    }
+    
 }

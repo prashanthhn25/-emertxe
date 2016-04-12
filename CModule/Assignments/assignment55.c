@@ -5,6 +5,20 @@
  *
  */
 
+ union _FLOATNUM
+ {
+	float FLOATNUM;
+	
+	struct _FLOATRANGE
+	{
+		unsigned MANTESSA :23;
+		unsigned EXPONENT :8;
+		unsigned char SIGN :1;
+		
+		 
+	} floatRange;
+	
+ } floatNum;
 #include <stdio.h>
 
 int main()
@@ -15,7 +29,9 @@ int main()
     printf("Enter a float value: ");
     scanf("%f", &fx);
     
-    printf("float actual value: %f \n", fx);
-    printf("demoted int value: %.0f \n", fx);
+	floatNum.FLOATNUM = fx;
+	
+    //printf("float actual value: %d \n", floatNum.floatRange.EXPONENT);
+    printf("demoted int value: %.f \n", fx);
     return 0;
 }
