@@ -1,0 +1,14 @@
+set pages 40
+set echo on
+
+--creating empbb02 table
+CREATE TABLE empbb02 (empno varchar2(5), ename varchar2(10), pos varchar2(12), boss varchar2(4), hiredate date, sal number(6), deptno number(2), incentives number(6));
+
+--creating deptbb02 table 
+CREATE TABLE deptbb02 (deptno number(3), dname varchar2(8), restaurant varchar2(15), location varchar2(15), motto varchar2(30));
+
+--creating infobb02 table 
+CREATE TABLE infobb02 (empno varchar2(5),fname  varchar2(10), nick varchar2(15),uni varchar2(4),average number(4),era number(6,3));
+ 
+--creating salsbb02 table
+CREATE TABLE salsbb02 (grade number(2), role varchar2(8), losal number(6), hisal number(6));

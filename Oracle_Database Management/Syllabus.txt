@@ -1,0 +1,45 @@
+   CS 514 Syllabus
+
+
+Texts: 1. Ramakrishnan Database Management Systems, McGraw-Hill
+       2. Sunderraman, Oracle 10g Programming, a Primer, Addison-Wesley
+           (older editions of these books are fine!!!!!)
+
+Syllabus: Ramakrishnan chapters mirroring 1,2,3,4,10 below
+          Sunderraman, Chapters 1,2,4,5 which is SQL, PL/SQL, and JDBC
+
+More Detailed Syllabus (topic order within an exam may vary):
+ 1. General DB background and SQL intro      1.5 weeks
+ 2. Relational algebra and relational calc   1.5 weeks
+ 3. Oracle sqlplus interpreter and SQL       2.5 weeks
+ 4. midterm-----------------------------------------------------1,2,3,[I], 1,2[II}
+ 6. Oracle PL/SQL                            2.5 weeks
+ 7. Oracle sqlldr                            0.5 weeks
+ 8. JDBC connected to Oracle                 2.0 weeks
+ 9. midterm
+ 10. DB design using ER diagrams             1   week
+ 11. Translation of ER into DB tables        1   week 
+ 12. Normalization thru 4'th normal form     2   weeks
+ 13. Final
+     
+Hw: pencil and paper hw from Rama...., Oracle code for SQL and PL/SQL,
+   and Java code for JDBC     Hw counts 25%, no more, no less.
+
+Tests: 2 midterms and a non-comprehensive final (25%, 25%, 25%)
+  Hw should be done individually.   We reserve the right to ask you
+questions at any time to determine if you at least understood and 
+mastered the hw you turned in.  There is, unfortunately, no way to
+make sure you did it.  Provable copying or other plagiarism will result
+in severe downgrading, including a possible F for ther class.
+
+  If I say so, I will leave the exam room precisely  two minutes after I
+say the exam has ended.  Any exam not in my possession when I leave the 
+room will not be accepted, and you will get a zero for that exam.  I 
+will do this if the exam writing does not end when I ask it to.  It is
+WRONG to want kinder treatment for yourself than others.  Refusing to
+stop when asked is a perfect example.
+
+You may view exams in my office, but may not keep them for reasons of 
+fairness vis-a-vis aggressive and non-aggressive students.  Please 
+announce in advance by email if you want to view an exam at an office
+hour.
