@@ -96,7 +96,7 @@ void NPRSString(char str[] , int len, int k)
     
     for (i = 0; i < len; i++)
     {
-        if(i%k == 0)
+        if(i%k == 0 && i != 0)
 		{
 			val++;
 		}
