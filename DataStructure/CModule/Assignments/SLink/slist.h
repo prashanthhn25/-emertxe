@@ -3,6 +3,8 @@
 
 #define SUCCESS 0
 #define FAILURE -1
+#define EMPTYLIST 1
+#define NOELEMENT -1
 
 typedef int data_t;
 typedef struct snode
@@ -14,3 +16,9 @@ typedef struct snode
 void print_list(SLink *);
 int insert_at_first(SLink **, data_t);
 int insert_at_last(SLink **, SLink **, data_t);
+int delete_first(SLink **head, SLink **tail);
+int delete_last(SLink **head, SLink **tail);
+int delete_element(SLink **head, SLink **tail, data_t data);
+int delete_list(SLink **head, SLink **tail);
+
+

@@ -55,6 +55,64 @@ public class SingleLinkedList implements SingleLink
         }
         
     }
+	
+	//override: method to delete Node from the first of the List
+	public void deleteFirst()
+	{
+		//if empty list
+        if (head == null)
+        {
+            System.out.println("List is Empty");
+        }
+		else
+		{
+			//Single node list
+			if (head == tail)
+			{	
+				head = null;
+				tail = null;
+			}
+			else
+			{
+				head = head.getLink();
+			}	
+		}
+			
+	}	
+	
+	//override: method to delete Node from the last of the List
+	public void deleteLast()
+	{
+		//take a local reference of head
+		Node temp = head;
+		//if empty list
+        if (head == null)
+        {
+            System.out.println("List is Empty");
+        }
+		else
+		{
+			//Single node list
+			if (head == tail)
+			{	
+				head = null;
+				tail = null;
+			}
+			else
+			{
+				//iterate till tail - 1 node in the link
+				while(temp.getLink != null)
+				{
+					temp = temp.getLink();
+				}
+				//update the temp link to null
+				temp.setLink(null);
+				//update tail value to this temp
+				tail = temp;	
+			}	
+		}		
+	}	
+	
 	//override: method to print the list
 	public void printList()
 	{
