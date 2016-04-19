@@ -13,16 +13,21 @@ public class SingleLinkedListTest
         slist.addAtLast(40);
 		
         slist.printList();
-        slist.addAtFirst(30);
+        slist.addAtFirst(60);
         slist.addAtFirst(40);
+        slist.addAtFirst(50);
         slist.printList();
 		
 		slist.deleteFirst();
 		slist.printList();
-		
+        
 		slist.deleteLast();
 		slist.printList();
 		
+        slist.deleteElement(10);
+        slist.printList();
+        slist.deleteList();
+        slist.printList();
 		
 	}
 

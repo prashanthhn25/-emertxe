@@ -21,7 +21,10 @@ int main()
 	delete_last(&head, &tail);
 	print_list(head);
 
-	delete_element(&head, &tail, 30);
+	if (delete_element(&head, &tail, 30) == NOELEMENT)
+    {
+        printf("No such element found\n");
+    }
 	print_list(head);
 
 	delete_list(&head, &tail);

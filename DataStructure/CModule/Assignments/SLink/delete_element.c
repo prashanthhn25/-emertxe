@@ -39,11 +39,26 @@ int delete_element(SLink **head, SLink **tail, data_t data)
 		}
 		else
 		{
-			/* if list has multiple nodes then, iterate till tail-1 node */
-			while ( ((temp->link)-> data ) != data)
-			{
-				temp = temp -> link;
-			}
+            /* if list has multiple nodes then, iterate till tail node */
+            while ((temp -> link))
+            {
+                /* check if next node is given element */
+                if (((temp->link)-> data ) != data)
+                {
+                    /* if no element is found at all then return */
+                    if (temp -> link == (*tail))
+                    {
+                        return NOELEMENT;
+                    }
+                    temp = temp -> link;
+                }
+                else
+                {
+                    /* if element is present break */
+                    break;
+                }
+                
+            }
 	
 			/* take a local reference to the element node */
 			temp2 = temp -> link;

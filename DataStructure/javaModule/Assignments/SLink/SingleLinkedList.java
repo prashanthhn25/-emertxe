@@ -80,6 +80,12 @@ public class SingleLinkedList implements SingleLink
 			
 	}	
 	
+    //override: Methhd to delete the element if present
+    public void deleteElement(Object _data)
+    {
+    
+    }
+    
 	//override: method to delete Node from the last of the List
 	public void deleteLast()
 	{
@@ -101,7 +107,7 @@ public class SingleLinkedList implements SingleLink
 			else
 			{
 				//iterate till tail - 1 node in the link
-				while(temp.getLink != null)
+				while(temp.getLink() != tail )
 				{
 					temp = temp.getLink();
 				}
@@ -111,7 +117,42 @@ public class SingleLinkedList implements SingleLink
 				tail = temp;	
 			}	
 		}		
-	}	
+	}
+    
+    //override: method to delete all Nodes from the List
+    public void deleteList()
+    {
+        Node temp = head;
+        Node temp2;
+        
+        //if empty list
+        if (head == null)
+        {
+            System.out.println("List is Empty");
+        }
+        else
+        {
+            //Single node list
+            if (head == tail)
+            {
+                head = null;
+                tail = null;
+            }
+            else
+            {
+                while(temp != null)
+                {
+                    temp2 = temp;
+                    temp = temp.getLink();
+                    temp2 = null;
+                }
+                head = null;
+                tail = null;
+            }
+        }
+        
+    }	
+    
 	
 	//override: method to print the list
 	public void printList()

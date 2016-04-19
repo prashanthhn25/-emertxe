@@ -4,7 +4,7 @@
 #define SUCCESS 0
 #define FAILURE -1
 #define EMPTYLIST 1
-#define NOELEMENT -1
+#define NOELEMENT 2
 
 typedef int data_t;
 typedef struct snode
