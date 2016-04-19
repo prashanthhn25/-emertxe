@@ -24,7 +24,7 @@ public class SingleLinkedListTest
 		slist.deleteLast();
 		slist.printList();
 		
-        slist.deleteElement(10);
+        slist.deleteElement(30);
         slist.printList();
         slist.deleteList();
         slist.printList();

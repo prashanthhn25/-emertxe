@@ -63,6 +63,7 @@ public class SingleLinkedList implements SingleLink
         if (head == null)
         {
             System.out.println("List is Empty");
+            return;
         }
 		else
 		{
@@ -83,7 +84,71 @@ public class SingleLinkedList implements SingleLink
     //override: Methhd to delete the element if present
     public void deleteElement(Object _data)
     {
-    
+        //take a local reference of head
+        Node temp = head;
+        Node temp2;
+        
+        //if empty list
+        if (head == null)
+        {
+            System.out.println("List is Empty");
+            return;
+        }
+        else
+        {
+            //Single node list
+            if (head == tail)
+            {
+                if (head.getData() == _data)
+                {
+                    head = null;
+                    tail = null;
+                }
+                else
+                {
+                     System.out.println("No such Element");
+                    return;
+                }
+            }
+            else
+            {
+                //if element is head node
+                if (head.getData() == _data)
+                {
+                    temp2 = head;
+                    head = head.getLink();
+                    temp2 = null;
+                }
+                else
+                {
+                    //in middle or end
+                    while(temp.getLink() != null)
+                    {
+                        //check if next node is given element
+                        if ((temp.getLink()).getData() != _data)
+                        {
+                            if (temp.getLink() == tail)
+                            {
+                                System.out.println("No such Element");
+                                return;
+                            }
+                            temp = temp.getLink();
+                        }
+                        else
+                        {
+                            // if element is present break
+                            break;
+                        }
+                    }
+                    // take a local reference to the element node
+                    temp2 = temp.getLink();
+                    
+                    // update that node's link, free the next node that contains element
+                    temp.setLink(temp2.getLink());
+                    temp2 = null;
+                }
+            }
+        }
     }
     
 	//override: method to delete Node from the last of the List
@@ -95,6 +160,7 @@ public class SingleLinkedList implements SingleLink
         if (head == null)
         {
             System.out.println("List is Empty");
+            return;
         }
 		else
 		{
@@ -129,6 +195,7 @@ public class SingleLinkedList implements SingleLink
         if (head == null)
         {
             System.out.println("List is Empty");
+            return;
         }
         else
         {
