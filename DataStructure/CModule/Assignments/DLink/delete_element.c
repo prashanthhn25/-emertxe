@@ -47,14 +47,14 @@ int delete_element(DLink **head, data_t data)
 		{
 			while(temp)
 			{
-				// check if next node is given element 
+				// check if node is given element 
 				if ((temp-> data ) != data)
-                {
+                		{
 					// if no element is found at all then return
 					if (temp -> next == NULL)
-                    {
-                        return NOELEMENT;
-                    }
+                    			{
+                        			return NOELEMENT;
+                    			}
 				}
 				else
 				{

@@ -20,5 +20,6 @@ int delete_first(SLink **head, SLink **tail);
 int delete_last(SLink **head, SLink **tail);
 int delete_element(SLink **head, SLink **tail, data_t data);
 int delete_list(SLink **head, SLink **tail);
-
+int insert_after(SLink **head, data_t a_data, data_t n_data);
+int insert_before(SLink **head, data_t b_data, data_t n_data);
 
