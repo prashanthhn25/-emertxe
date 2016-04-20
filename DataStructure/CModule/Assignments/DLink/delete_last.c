@@ -22,9 +22,9 @@ int delete_last(DLink **head)
 	}
 	else
 	{
-		/* if list has multiple nodes then, update head and free the first node */
+		/* if list has multiple nodes then, update last -1 node and free the last node */
 
-		/* iterate till tail node */
+		/* iterate till last node */
 		while((temp -> next))
 		{
 			temp = temp -> next;

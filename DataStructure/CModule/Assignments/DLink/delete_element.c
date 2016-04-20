@@ -31,7 +31,7 @@ int delete_element(DLink **head, data_t data)
 	/* if list has multiple nodes */
 	else
 	{
-		/* If the element is in the head no then check for next values */
+		/* If the element is in the head then check for next values */
 		if( ((*head) -> data) == data)
 		{
 			//update the head to next value
@@ -49,12 +49,12 @@ int delete_element(DLink **head, data_t data)
 			{
 				// check if next node is given element 
 				if ((temp-> data ) != data)
-                		{
+                {
 					// if no element is found at all then return
 					if (temp -> next == NULL)
-                    			{
-                        			return NOELEMENT;
-                    			}
+                    {
+                        return NOELEMENT;
+                    }
 				}
 				else
 				{
