@@ -26,6 +26,8 @@ int insert_before(DLink **head, data_t b_data, data_t n_data)
 		{
 			//establish link between newnode and first node
 			new -> next = *head;
+			(*head) -> prev = new;
+
 			//update head
 			(*head) = new;
 			return SUCCESS;	
@@ -43,6 +45,8 @@ int insert_before(DLink **head, data_t b_data, data_t n_data)
 		{
 			//establish link between newnode and first node
 			new -> next = *head;
+			(*head) -> prev = new;
+
 			//update head
 			(*head) = new;
 			return SUCCESS;	

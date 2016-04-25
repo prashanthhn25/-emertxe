@@ -26,6 +26,7 @@ int insert_after(DLink **head, data_t a_data, data_t n_data)
 		{
 			/* update first + newNode */
 			((*head) -> next) = new;
+			(new -> prev) = *head;	
 			return SUCCESS;	
 		}
 		else
