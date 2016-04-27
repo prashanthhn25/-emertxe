@@ -3,8 +3,8 @@
 
 #define SUCCESS 0
 #define FAILURE -1
-#define STACKEMPTY 1
-#define STACKFULL 2
+#define QEMPTY 1
+#define QFULL 2
 
 typedef int data_t;
 
@@ -14,13 +14,11 @@ typedef struct snode
 	struct snode *link;
 }SLink;
 
-
 typedef struct
 {
-	SLink *top;
-}Stack;
+	SLink *rear;
+	SLink *front;
+}Queue;
 
-int push(Stack *, data_t);
-int pop(Stack *, data_t *);
-int peep(Stack);
-int peek(Stack);
+int enqueue(Queue *, data_t);
+int dequeue(Queue *, data_t *);

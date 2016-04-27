@@ -3,8 +3,8 @@
 
 #define SUCCESS 0
 #define FAILURE -1
-#define STACKEMPTY 1
-#define STACKFULL 2
+#define STACKEMPTY -2
+#define STACKFULL -3
 #define STACKSIZE 25
 
 typedef int data_t;
