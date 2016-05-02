@@ -1,6 +1,6 @@
 #include "slist.h"
 
-int delete_list(SLink **head, SLink **tail)
+int delete_list(SLink **head)
 {
 	/* take a local reference of head */
 	SLink *temp, *temp2;
@@ -26,7 +26,6 @@ int delete_list(SLink **head, SLink **tail)
 		}
 		/* update the linked list as empty list */
 		(*head) = NULL;
-		(*tail) = NULL;
 	
 		return SUCCESS;	
 	}	

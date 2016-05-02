@@ -1,6 +1,6 @@
 #include "slist.h"
 
-int delete_element(SLink **head, SLink **tail, data_t data)
+int delete_element(SLink **head, data_t data)
 {
 	/* take a local reference of head */
 	SLink *temp, *temp2;
@@ -13,14 +13,13 @@ int delete_element(SLink **head, SLink **tail, data_t data)
 	}
 	
 	/* check for if list has only one node */
-	if ((*head) == (*tail))
+	if ( ((*head) -> link ) == NULL)
 	{
 		if (((*head) -> data) == data)
 		{
 			/* free the node, and update tail and head with null */
 			free(temp);
 			(*head) = NULL;
-			(*tail) = NULL;
 			return SUCCESS;
 		}
 		else
@@ -28,6 +27,7 @@ int delete_element(SLink **head, SLink **tail, data_t data)
 			return NOELEMENT;
 		}
 	}
+	//multi node
 	else
 	{
 		/* If the element is in the head */
@@ -35,21 +35,23 @@ int delete_element(SLink **head, SLink **tail, data_t data)
 		{
 			temp2 = (*head);
 			(*head) = (*head) -> link;
+			
+			temp2 -> link = NULL;
 			free(temp2);
 		}
 		else
 		{
             		/* if list has multiple nodes then, iterate till tail node */
-           		 while ((temp -> link))
-            		{
+           		 while (temp -> link)
+            		 {
                 		/* check if next node is given element */
                			 if (((temp->link)-> data ) != data)
                 		 {
                   			/* if no element is found at all then return */
-                    			if (temp -> link == (*tail))
-                    			{
-                        			return NOELEMENT;
-                    			}
+                    			if (((temp->link)-> link ) == NULL)
+					{
+						return NOELEMENT;
+					}
                     			temp = temp -> link;
                 		}
                 		else
@@ -68,6 +70,7 @@ int delete_element(SLink **head, SLink **tail, data_t data)
 			free(temp2);
 		}
 		return SUCCESS; 
-	}	
+	}
+	printf("not entering any cond\n");	
 	return FAILURE;
 }

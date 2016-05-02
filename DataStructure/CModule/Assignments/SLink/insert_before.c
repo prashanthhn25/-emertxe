@@ -14,6 +14,11 @@ int insert_before(SLink **head, data_t b_data, data_t n_data)
 
 	//create newNode and update newnode data and link
 	SLink *new = malloc(sizeof(SLink));
+	if (NULL == new)
+	{
+		return FAILURE;
+	}
+
 	new -> data = n_data;
 	new -> link = NULL;
 

@@ -1,7 +1,11 @@
 #include "slist.h"
 
-int insert_at_last(SLink **head, SLink **tail, data_t data)
+int insert_at_last(SLink **head, data_t data)
 {
+	/* take a local reference of head */
+	SLink *temp;
+	temp = *head;
+
 	SLink *new = malloc(sizeof(SLink));
 
 	if (NULL == new)
@@ -14,17 +18,21 @@ int insert_at_last(SLink **head, SLink **tail, data_t data)
 	new -> link = NULL;
 
 	/* If empty list */
-	if ( (NULL == (*head)) && (NULL == (*tail)) )
+	if ( NULL == (*head) )
 	{
 		/* update head and tail */
 		(*head) = new;
-		(*tail) = new;
+		return SUCCESS;
 	} 
 	else
 	{
+		//iterate till the last
+		while(temp->link)
+		{
+			temp = temp -> link;
+		}
 		/* establish link between last + new Node and updte tail */
-		((*tail) -> link) = new;
-		(*tail) = new;
+		(temp -> link) = new;
 	}
 	return SUCCESS;
 }

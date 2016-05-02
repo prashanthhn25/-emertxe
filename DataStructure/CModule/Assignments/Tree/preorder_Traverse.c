@@ -7,7 +7,9 @@ void preorder_Traverse(TreeLink * root)
 	if(root)
 	{
 		printf("%d ", root -> data);
-		preorder_Traverse(root -> left);		
+		//move to left sub tree
+		preorder_Traverse(root -> left);
+		//move to right sub tree		
 		preorder_Traverse(root -> right);
 	}
 }

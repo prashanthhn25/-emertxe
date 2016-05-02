@@ -17,6 +17,7 @@ int insert_at_first(SLink **head, data_t data)
 	if (NULL == (*head))
 	{
 		(*head) = new;
+		return SUCCESS;
 	}
 	else
 	{
@@ -25,7 +26,8 @@ int insert_at_first(SLink **head, data_t data)
 	
 		//update head
 		(*head) = new;
+		return SUCCESS;
 	}
 
-	return SUCCESS;
+	return FAILURE;
 }

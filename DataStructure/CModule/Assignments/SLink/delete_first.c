@@ -1,6 +1,6 @@
 #include "slist.h"
 
-int delete_first(SLink **head, SLink **tail)
+int delete_first(SLink **head)
 {
 	/* take a local reference of head */
 	SLink *temp;
@@ -13,12 +13,11 @@ int delete_first(SLink **head, SLink **tail)
 	}
 	
 	/* check for if list has only one node */
-	if ((*head) == (*tail))
+	if ((*head) -> link == NULL)
 	{
 		/* free the node, and update tail and head with null */
 		free(temp);
 		(*head) = NULL;
-		(*tail) = NULL;
 		return SUCCESS;
 	}
 	else

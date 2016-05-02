@@ -46,7 +46,7 @@ int main()
 			break;
 		case 3: 
 			result = mergeSort(elementArray, totalElements);
-			(result == SUCCESS)? printf("mergeSort SUCCESS\n"): printf("mergeSort FAILURE\n") ;
+			//(result == SUCCESS)? printf("mergeSort SUCCESS\n"): printf("mergeSort FAILURE\n") ;
 			
 			//check the list for validating
 			print_array(elementArray, totalElements);

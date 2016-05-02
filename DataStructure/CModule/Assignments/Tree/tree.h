@@ -15,8 +15,26 @@ typedef struct treenode
 	struct treenode *right;
 }TreeLink;
 
-int insert_BST(TreeLink **, data_t);
+int create_BST(TreeLink **, data_t);
+int search_BST(TreeLink * root, data_t data);
+TreeLink* delete_BST(TreeLink * root, data_t data);
+
 void inorder_Traverse(TreeLink * root);
 void preorder_Traverse(TreeLink * root);
 void postorder_Traverse(TreeLink * root);
 
+/* Compute the number of nodes in a tree
+ */
+int getTotalNodes(TreeLink * root);
+
+/* Compute the height or maximum depth of a tree
+ */
+int getTreeHeight(TreeLink * root);
+
+/* To find minimum most in BST
+ */
+int findMin_BST(TreeLink * root);
+
+/* To find maximum most in BST
+ */
+int findMaxx_BST(TreeLink * root);
