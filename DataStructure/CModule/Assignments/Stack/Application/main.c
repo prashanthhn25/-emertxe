@@ -50,9 +50,15 @@ int main()
 				printf("%s \n", postfixexp);
 				break;
 			case 3:
-				
+				printf("Enter the infix expression: ");
+				scanf("%s", infixexp);
+
+				result = infixEval(infixexp);
+				printf("in fix evaluation: %d \n", result);
 				break;
 			case 4:
+				result = prefixEval(prefixexp);
+				printf("pre fix evaluation: %d \n", result);
 				break;
 			case 5:
 				result = postfixEval(postfixexp);

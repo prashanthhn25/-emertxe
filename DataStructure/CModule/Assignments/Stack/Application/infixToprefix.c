@@ -21,8 +21,6 @@ int infixToprefix(char infixexp[STACKSIZE], char prefixexp[STACKSIZE])
 	int infixexplen, i, j = 0;
 	char data;
 
-	static char reverseinfix[STACKSIZE];
-
 	//initialize the stack
 	Stack operatorstackArray;
 	operatorstackArray.top = -1;
@@ -54,6 +52,7 @@ int infixToprefix(char infixexp[STACKSIZE], char prefixexp[STACKSIZE])
 			//if the operator is '(' 
 			else if (infixexp[i] == '(')
 			{
+				
 				//if there are no other inner brackets
 				while (peek(operatorstackArray) != ')')
 				{
@@ -93,7 +92,7 @@ int infixToprefix(char infixexp[STACKSIZE], char prefixexp[STACKSIZE])
 	}	
 
 	//after the operator check, till stack becomes empty, pop the values and save in prefixexp and increment the index	
-	while (peep(operatorstackArray) != STACKEMPTY)
+	while (operatorstackArray.top != -1)
 	{
 		pop(&operatorstackArray, &data);
 		prefixexp[j] = data;

@@ -42,18 +42,22 @@ int postfixEval(char postfixexp[STACKSIZE])
 			push(&evaluationStackArray, postfixexp[i]);
 		}
 		//else, if it is an operator
-		else 
+		 
+		if(isOperator(postfixexp[i]))
 		{
-			// Pop the stack and call the value A
-			pop(&evaluationStackArray, &data);
-			int_valueA = data;
-			
 			// Pop the stack and call the value B
 			pop(&evaluationStackArray, &data);
-			int_valueB = data;	
+			int_valueB = data;
+			
+			// Pop the stack and call the value A
+			pop(&evaluationStackArray, &data);
+			int_valueA = data;	
 
 			//Evaluate B op A using the operator just found.
 			int_result = expressionEvaluation(int_valueA, int_valueB, postfixexp[i]);
+			
+			//change this int to ascii equivalent
+			int_result += '0';				
 			//printf("%d and %d: %d\n", int_valueA, int_valueB, int_result);	
 			
 			//Push the resulting value onto the stack
@@ -66,6 +70,6 @@ int postfixEval(char postfixexp[STACKSIZE])
 
 	//Pop the stack (this is the final value)
 	pop(&evaluationStackArray, &data);
-	return data;
+	return (data - '0');
 }
 

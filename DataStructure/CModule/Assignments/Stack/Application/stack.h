@@ -23,9 +23,12 @@ int peek(Stack);
 int infixToprefix(char infixexp[STACKSIZE], char prefixexp[STACKSIZE]);
 int infixTopostfix(char infixexp[STACKSIZE], char postfixexp[STACKSIZE]);
 int postfixEval(char postfixexp[STACKSIZE]);
+int prefixEval(char prefixexp[STACKSIZE]);
+int infixEval(char infixexp[STACKSIZE]);
 
 int isOperator(char sym);
 int checkPrecedence(char sym);
 void reverseString( char *string);
 int expressionEvaluation(int valueA, int valueB, char sym );
+
 

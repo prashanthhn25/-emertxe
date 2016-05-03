@@ -31,63 +31,48 @@ int infixTopostfix(char infixexp[STACKSIZE], char postfixexp[STACKSIZE])
 	//push the values into stack and pop to get postfix exp while traversing
 	for(i = 0; i < infixexplen; i++)
 	{
-		//if it is not any operator, copy to postfixexp and increment the index			
-		if(! isOperator(infixexp[i]))
+		//if the operator is '(' then push this onto stack
+		if(infixexp[i] == '(')
+		{
+			push(&operatorstackArray, infixexp[i]);
+		}
+		else if(! isOperator(infixexp[i]))
 		{	
 			postfixexp[j] = infixexp[i];
 			j++;
 		}
-		//else, if it is an operator
-		else 
+		//if the operator is ')' 
+		else if (infixexp[i] == ')')
 		{
-			//if the operator is '(' then push this onto stack
-			if(infixexp[i] == '(')
+			//if there are no other inner brackets
+			while (peek(operatorstackArray) != '(')
 			{
-				push(&operatorstackArray, infixexp[i]);
+				//get the operator from the top and save it onto postfix and increment the index
+				pop(&operatorstackArray, &data);
+				postfixexp[j] = data;
+				j++;
 			}
-			//if the operator is ')' 
-			else if (infixexp[i] == ')')
-			{
-				//if there are no other inner brackets
-				while (peek(operatorstackArray) != '(')
-				{
-					//get the operator from the top and save it onto postfix and increment the index
-					pop(&operatorstackArray, &data);
-					postfixexp[j] = data;
-					j++;
-				}
-				//pop that operator out of the stack, as it is copied
-				pop(&operatorstackArray, &data);				
-			}
-			//for any other operators 
-			else
-			{
-				//check for precedency rule, if the top of the stack operator is less then push then push new operator
-				if ( checkPrecedence(peek(operatorstackArray)) <= checkPrecedence(infixexp[i]) )
-				{
-					push(&operatorstackArray, infixexp[i]);
-				}
-				//else, 
-				else
-				{
-					//pop out the operators and save in prefixexp till it becomes less than
-					while ( checkPrecedence(peek(operatorstackArray)) >= checkPrecedence(infixexp[i]) )
-					{
-						pop(&operatorstackArray, &data);
-						postfixexp[j] = data;
-						j++;
-					}
-					//once the stack is cleared of that , push the new operator
-					push(&operatorstackArray, infixexp[i]);
-				}
-			}	
+			//pop that operator out of the stack, as it is copied
+			pop(&operatorstackArray, &data);				
 		}
-		
+		//for any other operators 
+		else
+		{
+			//pop out the operators and save in prefixexp till it becomes less than
+			while ( checkPrecedence(peek(operatorstackArray)) >= checkPrecedence(infixexp[i]) )
+			{
+				pop(&operatorstackArray, &data);
+				postfixexp[j] = data;
+				j++;
+			}
+			//once the stack is cleared of that , push the new operator
+			push(&operatorstackArray, infixexp[i]);
+		}		
 
 	}	
 
 	//after the operator check, till stack becomes empty, pop the values and save in prefixexp and increment the index	
-	while (peep(operatorstackArray) != STACKEMPTY)
+	while (operatorstackArray.top != -1)
 	{
 		pop(&operatorstackArray, &data);
 		postfixexp[j] = data;
