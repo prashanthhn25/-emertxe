@@ -89,8 +89,7 @@ int main()
 			printf("Enter the element to be deleted from BST: ");
 			scanf("%d", &data);
 			root = delete_BST(root, data);
-			
-				
+							
 			break;
 		default:
 			printf("Invalid entry.\n");

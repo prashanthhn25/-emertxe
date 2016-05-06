@@ -28,28 +28,40 @@ TreeLink* delete_BST(TreeLink * root, data_t data)
 	// if key is same as root's key, then This is the node to be deleted
     	else
     	{
+		//check for leaf node
+		if (root->left == NULL && root->right == NULL)
+        	{
+            		temp = NULL;
+            		free(root);
+            		return temp;
+        	}
         	// node with only one child or no child
-        	if (root->left == NULL)
+        	if (root->left == NULL && root->right != NULL)
         	{
             		temp = root->right;
             		free(root);
             		return temp;
         	}
-        	else if (root->right == NULL)
+        	else if (root->right == NULL && root->left != NULL)
         	{
             		temp = root->left;
             		free(root);
            		return temp;
        		}
- 
-        	// node with two children: Get the inorder successor (smallest in the right subtree)
-        	temp -> data = findMin_BST(root->right);
- 
-        	// Copy the inorder successor's content to this node
-        	root->data = temp->data;
- 
-        	// Delete the inorder successor
-       		root->right = delete_BST(root->right, temp->data);
+ 		else
+		{
+			// node with two children: Get the inorder successor (smallest in the right subtree)
+			//temp -> data = findMin_BST(root->right);
+			 			
+
+        		// Copy the inorder successor's content to this node
+        		temp = findMin_index_BST(root->right);
+			
+			root->data = temp->data; 			
+			
+        		// Delete the inorder successor
+       			root->right = delete_BST(root->right, temp->data);
+		}
     	}
 
 	return root;

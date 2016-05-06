@@ -37,4 +37,7 @@ int findMin_BST(TreeLink * root);
 
 /* To find maximum most in BST
  */
-int findMaxx_BST(TreeLink * root);
+int findMax_BST(TreeLink * root);
+
+/* Send the index of the minimum value */
+TreeLink * findMin_index_BST(TreeLink * root);
