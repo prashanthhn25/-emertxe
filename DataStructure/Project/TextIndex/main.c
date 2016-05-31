@@ -1,10 +1,16 @@
-
 #include "textindex.h"
 
 int main(int argc, char **argv)
 {
-	int i;
-
+	int i, fileCount = 0, fileTotalCount = 0;
+	int choice;
+	char option;
+	char searchWord[NAMELENGTH];
+     
+	//File_Word_Table  file_database_array[10];
+	File_Word_Table  *file_database_array;
+	file_database_array = (File_Word_Table *)malloc(10 * sizeof(File_Word_Table));
+		
 	//check for argc
 	if(argc < 2)
 	{
@@ -13,21 +19,130 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-
-	//for multiple file cases
-	for (i = 1; i < argc; i++)
+	do
 	{
-		if (process_file(argv[i]) == FAILURE)
+		printf("Enter the option:\n");
+		printf("1. Search for a word\n");	
+		printf("2. Save the database\n");	
+		printf("3. Update to existing database\n");	
+		printf("4. Destroy HashTable\n");
+		printf("5. Print Database\n");
+		printf("6. initialization\n");
+		
+		printf("Choice: ");
+		scanf("%d", &choice);
+
+		switch(choice)
 		{
-			printf("processing the file failed.\n");
-			return -1;
+			case 1:
+				
+				printf("Enter the word to be searched: \n");
+				scanf("%s", searchWord);
+				
+				for(i = 0; i < fileTotalCount; i++)
+				{
+					//print_hashTable(file_database_array[i]);
+					//to search that element
+					if(hashTableSearch(&file_database_array[i], searchWord) == SUCCESS)
+					{
+						printf("SUCCESS: element found\n");
+					}
+					else
+					{
+						printf("FAILURE: no element found\n");
+					}
+					printf("\n");
+				}
+
+				break;
+			case 2:
+				for(i = 0; i < fileTotalCount; i++)
+				{
+					save_to_database(&file_database_array[i]);
+				}
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				for(i = 0; i < fileTotalCount; i++)
+				{
+					print_hashTable(&file_database_array[i]);
+				}
+				break;
+			case 6: 
+				
+				fileTotalCount = argc -1;
+				//when files are given
+				for (i = 1; i < argc; i++)
+				{
+					File_Word_Table file_words;	//file and words hashtable
+
+					//initialize the table for words in a file
+					wordCountHTInit(&file_words);
+       
+					//process the files to get wordcount and save it in the database
+					if (process_file(argv[i], &file_words ) == FAILURE)
+					{
+						printf("processing the file failed.\n");
+						return -1;
+					}
+		
+					//update the database array for all files
+					//fileCount = update_database(&file_database_array, file_words, fileCount);
+
+					printf("adrees is: %p\n", &file_words);
+					file_database_array[i-1] = file_words;
+					printf("adrees is: %p\n", &file_database_array);
+					
+					//print hashtable
+					print_hashTable(&file_database_array[i-1]);
+
+				}
+
+			break;
+			default:
+				printf("Invalid option\n");
+				break;
+
 		}
+
+		/* check for continue */
+        	printf("Continue (y/n): ");
+        	scanf("\n%c", &option);
+            
+    	} while (option == 'y');
+	return 0;
+
+}
+
+int update_database(File_Word_Table *s[], const File_Word_Table unit, int count)
+{
+   *s[count] = unit;
+    
+    // count represents the number of fields updated in array s
+    return (count + 1);
+}
+
+void wordCountHTInit(File_Word_Table *temptable)
+{
+	
+    	int i;
+
+	//initialize the values for the table
+		
+	for( i = 0; i < INITIAL_SIZE; i++)
+	{
+		//temptable -> wordCountTable[i] = (Link *)malloc(INITIAL_SIZE * sizeof(Link));
+		temptable -> wordCountTable[i] = NULL;
 	}
+	
 
 }
 
 // to process words i.e to open the file, get the words and its each count and update the hashtable
-int process_file(char *pathname)
+int process_file(char *pathname, File_Word_Table *temptable)
 {
 	FILE *fd;
 	
@@ -39,13 +154,11 @@ int process_file(char *pathname)
             return FAILURE;
         }
 
-	File_Word_Table file_words;	//file and words hashtable
+	//initialize the value of the filename
+	strcpy(temptable -> fileName, pathname);
 
-	//initialize the table for words in a file
-	wordCountHTInit(&file_words);
-        
 	/* to get the words and its count in the file */
-	if ( process_word_count(fd, &file_words) == FAILURE )
+	if ( process_word_count(fd, temptable) == FAILURE )
 	{
 		perror("process_word_count");
 		return FAILURE;	
@@ -53,20 +166,8 @@ int process_file(char *pathname)
 
 	/* close the file */
 	fclose(fd);
+
 	return SUCCESS;	
-}
-
-void wordCountHTInit(File_Word_Table *temptable)
-{
-	
-    	int i;
-
-	//initialize the values for the table
-	for( i = 0; i < INITIAL_SIZE; i++)
-	{
-		temptable -> wordCountTable[i] = NULL;
-	}
-
 }
 
 int process_word_count(FILE *fd, File_Word_Table *temptable)
@@ -85,14 +186,11 @@ int process_word_count(FILE *fd, File_Word_Table *temptable)
 	{
 		//to generate key 
         	key = hash_function(word_freq_array[i].word);
-		//printf(" %s\t   %d : %d\n", word_freq_array[i].word, word_freq_array[i].frequency, key);
+		printf(" %s\t   %d : %d\n", word_freq_array[i].word, word_freq_array[i].frequency, key);
 		//insert the values in the hash table
 		hashTableInsert(temptable, key, &word_freq_array[i]);
       	}
-		
-	//print hashtable
-	print_hashTable(temptable);
-	
+	printf("\n");
 }		
 
 int create_array_of_word_freq(FILE *fd, struct word_count_table_t word_freq[] )
@@ -165,6 +263,7 @@ int update_wordfreq(struct word_count_table_t s[], const char unit[], int count)
     // count represents the number of fields updated in array s
     return (count + 1);
 }
+
 
 int hash_function(char *value)
 {
@@ -239,6 +338,7 @@ int print_hashTable(File_Word_Table *temptable)
 	//take local reference to Link
 	Link *element;
 	
+	printf("%s has:\n", temptable -> fileName);
 	//iterate through each link in each table row
 	for(i = 0; i < INITIAL_SIZE; i++)
 	{
@@ -251,4 +351,92 @@ int print_hashTable(File_Word_Table *temptable)
 		printf("; ");	
 	}
 	printf("\n");	
+}
+
+int hashTableSearch(File_Word_Table *temptable, char *value)
+{
+
+
+	//print hashtable
+	print_hashTable(temptable);
+	
+	int key;
+	
+	//get the key value for the given value
+	key = hash_function(value);	
+	
+	printf("key :---> %d\n", key);
+	
+	//take local reference to traverse through the list
+	Link *temp;
+	temp = temptable -> wordCountTable[key];
+	
+	//if no elements at all then do nothing	
+	if(temptable -> wordCountTable[key] == NULL)
+	{
+		return NOELEMENT;
+	}
+	else
+	{
+		printf("word : ---> %s\n", temptable -> wordCountTable[key] ->  wordFreq -> word);
+	
+		/* if list has multiple nodes then, iterate till tail node */
+         	while (temp)
+         	{
+			if(strcmp((temp -> wordFreq -> word), value) == 0)
+			{
+				printf("%s :\t", temptable -> fileName);
+				//print values
+				printf("%s \t", temp -> wordFreq -> word);
+				printf("%d \n", temp -> wordFreq -> frequency);
+				return SUCCESS;
+			}
+			temp = temp -> link;
+		}
+		return FAILURE;
+	}
+	
+}
+
+int save_to_database(File_Word_Table *temptable)
+{
+	FILE *fd;
+	
+	/* To open file to read */
+	fd = fopen("backup_database.txt", "a");
+        if (NULL == fd)
+        {
+            perror("fopen");
+            return FAILURE;
+        }
+
+	save_hashTable(fd, temptable);
+	
+	/* close the file */
+	fclose(fd);
+
+	return SUCCESS;	
+}
+
+void save_hashTable(FILE *fd, File_Word_Table *temptable)
+{
+	int i;	
+	
+	//take local reference to Link
+	Link *element;
+	
+	fprintf(fd, "%s:", temptable -> fileName);
+	//iterate through each link in each table row
+	for(i = 0; i < INITIAL_SIZE; i++)
+	{
+		for(element = temptable -> wordCountTable[i]; element != NULL; element = element -> link)
+		{
+			//print values
+			fprintf(fd, "%s ", element -> wordFreq -> word);
+			fprintf(fd, "%d ", element -> wordFreq -> frequency);
+		}
+		fprintf(fd,"; ");	
+	}
+
+	fprintf(fd, "\n");
 }
