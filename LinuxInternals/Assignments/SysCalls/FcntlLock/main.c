@@ -41,6 +41,7 @@ int main(int argc, char **argv)
 	int fd; 
 	struct flock lock;
 	pid_t pid;
+	int status;
 
 	/* Do arg count check */
     	if (argc < 2)
@@ -50,6 +51,13 @@ int main(int argc, char **argv)
         	return 1;
     	}	
 
+	printf ("opening.....\n");
+	/* open the file on which synchronization is performed */
+	if ( (fd = open(argv[1], O_APPEND|O_WRONLY)) == -1 )
+	{
+		perror("open");
+		return -1;	
+	}
 
 	/* Create a new process */
 	pid = fork();
@@ -61,18 +69,10 @@ int main(int argc, char **argv)
 
 	if(pid == 0)
 	{
-           	pause();
+           	//pause();
            	/* I'm the child */
            	printf("Child's turn!\n");
-
-		printf ("opening.....\n");
-		/* open the file on which synchronization is performed */
-		if ( (fd = open(argv[1], O_APPEND|O_WRONLY)) == -1 )
-		{
-			perror("open");
-			return -1;	
-		}
-
+		sleep(2);
 		//if lock is present wait for release
 		 if ( 0 == fcntl(fd, F_SETLK, &lock) )
 		 {
@@ -95,7 +95,6 @@ int main(int argc, char **argv)
 			/* Place a write lock on the file. */
  			fcntl (fd, F_SETLKW, &lock);
 
-			
 		}
           
 		close (fd);	
@@ -105,15 +104,8 @@ int main(int argc, char **argv)
 	{
 		/* I'm the parent */
 	        printf("Parent's turn!\n");
-		
-		printf ("opening.....\n");
-		/* open the file on which synchronization is performed */
-		if ( (fd = open(argv[1], O_APPEND|O_WRONLY)) == -1 )
-		{
-			perror("open");
-			return -1;	
-		}
-
+		int wpid = waitpid(&status);
+			
 		//if lock is present wait for release
 		 if ( 0 == fcntl(fd, F_SETLK, &lock) )
 		 {
