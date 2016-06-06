@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <string.h>		
 
-#define SERVER_IP 	"192.168.12.141"
+#define SERVER_IP 	"127.0.0.1"
 #define	SERVER_PORT	5000
 #define SERVER_LENGTH	10
 #define CLIENT_BUFF	20
@@ -23,10 +23,9 @@ int main()
 	char client_buffer[CLIENT_BUFF];
 
 	printf("Client requesting\n");
-
 	
-	//create a client TCP Socket
-	if( (sock_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) 
+	//create a client UDP Socket
+	if( (sock_fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) 
 	{
 		printf("Error: Could not create socket");
 		return 1;
@@ -44,22 +43,12 @@ int main()
 	printf("Enter the data to be sent to the server: \n");
 	fgets(client_buffer, CLIENT_BUFF, stdin);
 	
-	//connect  it to a particular IP address & port
-	if( (connect (sock_fd, (struct sockaddr*) &serv_addr, sizeof(serv_addr))) != 0)
-	{
-		printf("Error: Connecting to server failed\n");
-	}
-	else
-	{
-		printf("Connection successful\n");
-	}
-	
 	//send the data to the server
-	c_size = send(sock_fd, (void *)&client_buffer, CLIENT_BUFF, 0);
+	c_size = sendto(sock_fd, (void *)&client_buffer, CLIENT_BUFF, 0, (struct sockaddr*) &serv_addr, sizeof(serv_addr));
 
 	if(c_size)
 	{
-		printf("Message sent to server successfully, please check\n");
+		printf("Connection successful\nMessage sent to server successfully, please check\n");
 	}
 	else
 	{

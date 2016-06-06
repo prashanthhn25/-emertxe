@@ -1,2 +1,0 @@
-file1.txt:; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; also 2 ; This 1 work 1 ; ; ; should 1 will 0 ; ; ; ; 
-file2.txt:also 2 ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; should 1 ; This 1 ; ; ; work 1 ; ; ; ; 
