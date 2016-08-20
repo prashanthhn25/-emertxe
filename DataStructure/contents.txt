@@ -1,1 +1,20 @@
-Single Linked List:
+CModule:
+Double Linked List: delete_element, delete_first, delete_last, delete_list, insert_after, insert_at_first, insert_at_last, insert_before, print_list
+
+Single Linked List: delete_element, delete_first, delete_last, delete_list, insert_after, insert_at_first, insert_at_last, insert_before, print_list, count_key, find_mid, findLength, getNth, insert_Nth, insert_sort, merge_sortedlinks, remove_duplicate, reverse, sorted_insert, split_alternatively, split half
+
+Hash: seperateChain CRT- Hash ADT
+
+Queue:Array and Link: enqueue and dequeue 
+
+Search : binarySearchIterative, recursive
+
+Sort: bubble, insertion, merge sort, quick sort, selection sort
+Stack: Application, array and single linked list: peek, pop, push, peep, postfixEval, prefixEval, reverseString, infix to postfix, infix to prefix, infixEval, checkPrecedence, expression Evaluation
+
+Tree: BST-create, insert, delete, search, findMax, findMin, findMin_index, totalNodes, tree height, post order traverse, pre order traverse
+
+JavaModule:
+Double Linked List: delete_element, delete_first, delete_last, delete_list, insert_after, insert_at_first, insert_at_last, insert_before, print_list
+
+Single Linked List: delete_element, delete_first, delete_last, delete_list, insert_after, insert_at_first, insert_at_last, insert_before, print_list
