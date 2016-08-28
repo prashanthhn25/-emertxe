@@ -37,7 +37,6 @@ int main()
 		write(fds[1], &str_len, sizeof(str_len));
 		write(fds[1], &buf, sizeof(buf));
 	
-	
 	}
 	else
 	{
@@ -55,8 +54,7 @@ int main()
 		read(fds[0], &str_len, sizeof(str_len));
 		read(fds[0], &buf, sizeof(str_len));
 		printf("string received from parent: %s\n", buf);
-
-		
+	
 	}
 
 	return 0;

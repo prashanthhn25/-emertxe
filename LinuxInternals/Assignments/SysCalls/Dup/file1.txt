@@ -1,3 +1,7 @@
 This should be in the file and not on the screen
 dup2: This should be in the file and not on the screen
 dup: This should be in the file and not on the screen
+dup2: This should be in the file and not on the screen
+dup: This should be in the file and not on the screen
+dup2: This should be in the file and not on the screen
+dup: This should be in the file and not on the screen
