@@ -1,0 +1,628 @@
+2016-11-06T17:44:55.286+0530 I CONTROL  [main] ***** SERVER RESTARTED *****
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] MongoDB starting : pid=1313 port=27003 dbpath=/Users/nandithasmurthy/Desktop/Emertxe/mongodb/M102/chapter_4_replication/3 64-bit host=Nandithas-iMac.local
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] db version v3.2.8
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] git version: ed70e33130c977bda0024c125b56d159573dbaf0
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 0.9.8zh 14 Jan 2016
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] allocator: system
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] modules: none
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] build environment:
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten]     distarch: x86_64
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-11-06T17:44:55.306+0530 I CONTROL  [initandlisten] options: { net: { port: 27003 }, processManagement: { fork: true }, replication: { oplogSizeMB: 50, replSet: "h42rs" }, storage: { dbPath: "3", mmapv1: { smallFiles: true } }, systemLog: { destination: "file", logAppend: true, path: "log.3" } }
+2016-11-06T17:44:55.307+0530 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=4G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-11-06T17:45:01.961+0530 W STORAGE  [initandlisten] Detected configuration for non-active storage engine mmapv1 when current storage engine is wiredTiger
+2016-11-06T17:45:02.830+0530 I REPL     [initandlisten] Did not find local voted for document at startup;  NoMatchingDocument: Did not find replica set lastVote document in local.replset.election
+2016-11-06T17:45:02.830+0530 I REPL     [initandlisten] Did not find local replica set configuration document at startup;  NoMatchingDocument: Did not find replica set configuration document in local.system.replset
+2016-11-06T17:45:02.830+0530 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/Users/nandithasmurthy/Desktop/Emertxe/mongodb/M102/chapter_4_replication/3/diagnostic.data'
+2016-11-06T17:45:02.830+0530 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-11-06T17:45:03.537+0530 I NETWORK  [initandlisten] waiting for connections on port 27003
+2016-11-06T17:47:30.469+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51903 #1 (1 connection now open)
+2016-11-06T17:47:30.470+0530 I NETWORK  [conn1] end connection 192.168.1.4:51903 (0 connections now open)
+2016-11-06T17:47:30.470+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51905 #2 (1 connection now open)
+2016-11-06T17:47:30.471+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51907 #3 (2 connections now open)
+2016-11-06T17:47:30.472+0530 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to Nandithas-iMac.local:27001
+2016-11-06T17:47:30.473+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51911 #4 (3 connections now open)
+2016-11-06T17:47:30.473+0530 I NETWORK  [conn4] end connection 192.168.1.4:51911 (2 connections now open)
+2016-11-06T17:47:30.474+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51915 #5 (3 connections now open)
+2016-11-06T17:47:30.476+0530 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to Nandithas-iMac.local:27002
+2016-11-06T17:47:31.595+0530 I REPL     [replExecDBWorker-1] Starting replication applier threads
+2016-11-06T17:47:31.595+0530 W REPL     [rsSync] did not receive a valid config yet
+2016-11-06T17:47:31.595+0530 I REPL     [ReplicationExecutor] New replica set config in use: { _id: "h42rs", version: 3, protocolVersion: 1, members: [ { _id: 0, host: "Nandithas-iMac.local:27001", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 1, host: "Nandithas-iMac.local:27002", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 2, host: "Nandithas-iMac.local:27003", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 } ], settings: { chainingAllowed: true, heartbeatIntervalMillis: 2000, heartbeatTimeoutSecs: 10, electionTimeoutMillis: 10000, getLastErrorModes: {}, getLastErrorDefaults: { w: 1, wtimeout: 0 }, replicaSetId: ObjectId('581f1d8c11debf364e5d9743') } }
+2016-11-06T17:47:31.596+0530 I REPL     [ReplicationExecutor] This node is Nandithas-iMac.local:27003 in the config
+2016-11-06T17:47:31.596+0530 I REPL     [ReplicationExecutor] transition to STARTUP2
+2016-11-06T17:47:31.596+0530 I REPL     [ReplicationExecutor] Member Nandithas-iMac.local:27001 is now in state PRIMARY
+2016-11-06T17:47:31.596+0530 I REPL     [ReplicationExecutor] Member Nandithas-iMac.local:27002 is now in state SECONDARY
+2016-11-06T17:47:32.597+0530 I REPL     [rsSync] ******
+2016-11-06T17:47:32.597+0530 I REPL     [rsSync] creating replication oplog of size: 50MB...
+2016-11-06T17:47:32.778+0530 I STORAGE  [rsSync] Starting WiredTigerRecordStoreThread local.oplog.rs
+2016-11-06T17:47:32.779+0530 I STORAGE  [rsSync] The size storer reports that the oplog contains 0 records totaling to 0 bytes
+2016-11-06T17:47:32.779+0530 I STORAGE  [rsSync] Scanning the oplog to determine where to place markers for truncation
+2016-11-06T17:47:34.729+0530 I REPL     [rsSync] ******
+2016-11-06T17:47:34.729+0530 I REPL     [rsSync] initial sync pending
+2016-11-06T17:47:35.391+0530 I REPL     [ReplicationExecutor] syncing from: Nandithas-iMac.local:27002
+2016-11-06T17:47:35.537+0530 I REPL     [rsSync] initial sync drop all databases
+2016-11-06T17:47:35.537+0530 I STORAGE  [rsSync] dropAllDatabasesExceptLocal 1
+2016-11-06T17:47:35.537+0530 I REPL     [rsSync] initial sync clone all databases
+2016-11-06T17:47:35.537+0530 I REPL     [rsSync] fetching and creating collections for replication
+2016-11-06T17:47:35.863+0530 I REPL     [rsSync] initial sync cloning db: replication
+2016-11-06T17:47:36.252+0530 I INDEX    [rsSync] build index on: replication.foo properties: { v: 1, key: { _id: 1 }, name: "_id_", ns: "replication.foo" }
+2016-11-06T17:47:36.252+0530 I INDEX    [rsSync] 	 building index using bulk method
+2016-11-06T17:47:36.401+0530 I INDEX    [rsSync] build index done.  scanned 5000 total records. 0 secs
+2016-11-06T17:47:36.401+0530 I REPL     [rsSync] initial sync data copy, starting syncup
+2016-11-06T17:47:36.401+0530 I REPL     [rsSync] oplog sync 1 of 3
+2016-11-06T17:47:36.402+0530 I REPL     [rsSync] oplog sync 2 of 3
+2016-11-06T17:47:36.402+0530 I REPL     [rsSync] initial sync building indexes
+2016-11-06T17:47:36.402+0530 I REPL     [rsSync] initial sync cloning indexes for : replication
+2016-11-06T17:47:36.403+0530 I STORAGE  [rsSync] copying indexes for: { name: "foo", options: {} }
+2016-11-06T17:47:36.403+0530 I REPL     [rsSync] oplog sync 3 of 3
+2016-11-06T17:47:36.404+0530 I REPL     [rsSync] initial sync finishing up
+2016-11-06T17:47:36.404+0530 I REPL     [rsSync] set minValid=(term: 1, timestamp: Nov  6 17:47:30:1)
+2016-11-06T17:47:36.607+0530 I REPL     [ReplicationExecutor] could not find member to sync from
+2016-11-06T17:47:36.747+0530 I REPL     [rsSync] initial sync done
+2016-11-06T17:47:36.749+0530 I REPL     [ReplicationExecutor] transition to RECOVERING
+2016-11-06T17:47:36.749+0530 I REPL     [ReplicationExecutor] transition to SECONDARY
+2016-11-06T17:49:42.449+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51928 #6 (4 connections now open)
+2016-11-06T17:55:41.890+0530 I ASIO     [ReplicationExecutor] dropping unhealthy pooled connection to Nandithas-iMac.local:27001
+2016-11-06T17:55:41.890+0530 I ASIO     [ReplicationExecutor] after drop, pool was empty, going to spawn some connections
+2016-11-06T17:55:41.891+0530 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to Nandithas-iMac.local:27001
+2016-11-06T17:55:41.891+0530 I REPL     [ReplicationExecutor] Member Nandithas-iMac.local:27001 is now in state SECONDARY
+2016-11-06T17:55:47.774+0530 I REPL     [ReplicationExecutor] Starting an election, since we've seen no PRIMARY in the past 10000ms
+2016-11-06T17:55:47.774+0530 I REPL     [ReplicationExecutor] conducting a dry run election to see if we could be elected
+2016-11-06T17:55:47.775+0530 I REPL     [ReplicationExecutor] dry election run succeeded, running for election
+2016-11-06T17:55:49.023+0530 I REPL     [ReplicationExecutor] election succeeded, assuming primary role in term 2
+2016-11-06T17:55:49.023+0530 I REPL     [ReplicationExecutor] transition to PRIMARY
+2016-11-06T17:55:49.023+0530 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to Nandithas-iMac.local:27002
+2016-11-06T17:55:49.024+0530 I ASIO     [NetworkInterfaceASIO-Replication-0] Successfully connected to Nandithas-iMac.local:27002
+2016-11-06T17:55:49.916+0530 I REPL     [rsSync] transition to primary complete; database writes are now permitted
+2016-11-06T17:55:50.805+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51949 #7 (5 connections now open)
+2016-11-06T17:55:50.805+0530 I NETWORK  [conn7] end connection 192.168.1.4:51949 (4 connections now open)
+2016-11-06T17:55:50.806+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51950 #8 (5 connections now open)
+2016-11-06T17:55:50.806+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51952 #9 (6 connections now open)
+2016-11-06T17:55:51.924+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51953 #10 (7 connections now open)
+2016-11-06T17:55:51.925+0530 I NETWORK  [conn10] end connection 192.168.1.4:51953 (6 connections now open)
+2016-11-06T17:55:51.925+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51954 #11 (7 connections now open)
+2016-11-06T17:55:51.925+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:51956 #12 (8 connections now open)
+2016-11-06T17:57:07.084+0530 I NETWORK  [conn11] end connection 192.168.1.4:51954 (7 connections now open)
+2016-11-06T17:57:07.147+0530 I ASIO     [ReplicationExecutor] dropping unhealthy pooled connection to Nandithas-iMac.local:27001
+2016-11-06T17:57:07.147+0530 I ASIO     [ReplicationExecutor] after drop, pool was empty, going to spawn some connections
+2016-11-06T17:57:07.148+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:07.149+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:07.150+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:08.171+0530 I NETWORK  [conn12] end connection 192.168.1.4:51956 (6 connections now open)
+2016-11-06T17:57:08.171+0530 I NETWORK  [conn3] end connection 192.168.1.4:51907 (6 connections now open)
+2016-11-06T17:57:08.171+0530 I NETWORK  [conn2] end connection 192.168.1.4:51905 (6 connections now open)
+2016-11-06T17:57:09.151+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:09.152+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:09.153+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:11.155+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:11.156+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:11.157+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:13.159+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:13.160+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:13.161+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:15.164+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:15.165+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:15.166+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:17.170+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:17.171+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:17.172+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:19.174+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:19.175+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:19.176+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:21.177+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:21.178+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:21.179+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:23.180+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:23.181+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:23.182+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:25.184+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:25.185+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:25.186+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:27.190+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:27.191+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:27.191+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:29.196+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:29.197+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:29.198+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:31.201+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:31.202+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:31.203+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:33.205+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:33.206+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:33.207+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:35.209+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:35.210+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:35.211+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:37.217+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:37.218+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:37.219+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:39.224+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:39.225+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:39.226+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:41.228+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:41.229+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:41.230+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:43.232+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:43.233+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:43.233+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:45.239+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:45.240+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:45.241+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:47.242+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:47.243+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:47.244+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:49.247+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:49.248+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:49.249+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:51.255+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:51.256+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:51.256+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:53.257+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:53.258+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:53.259+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:55.264+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:55.265+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:55.265+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:57.267+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:57.267+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:57.268+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:59.270+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:59.271+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:57:59.272+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:01.273+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:01.274+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:01.275+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:03.276+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:03.277+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:03.278+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:05.284+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:05.285+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:05.286+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:07.289+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:07.290+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:07.290+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:09.293+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:09.294+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:09.295+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:11.296+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:11.297+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:11.298+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:13.302+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:13.303+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:13.303+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:15.310+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:15.310+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:15.311+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:17.315+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:17.316+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:17.317+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:19.319+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:19.320+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:19.320+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:21.325+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:21.326+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:21.327+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:23.331+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:23.332+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:23.333+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:25.337+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:25.338+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:25.339+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:27.346+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:27.347+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:27.348+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:29.349+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:29.350+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:29.351+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:31.356+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:31.357+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:31.358+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:33.364+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:33.365+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:33.366+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:35.368+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:35.369+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:35.369+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:37.375+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:37.376+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:37.377+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:39.381+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:39.382+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:39.383+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:41.389+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:41.390+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:41.391+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:43.394+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:43.395+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:43.395+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:45.402+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:45.402+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:45.403+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:47.406+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:47.407+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:47.407+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:49.413+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:49.414+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:49.415+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:51.421+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:51.422+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:51.423+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:53.429+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:53.429+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:53.430+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:55.434+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:55.435+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:55.435+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:57.440+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:57.441+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:57.442+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:59.443+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:59.443+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:58:59.444+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:01.445+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:01.446+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:01.447+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:03.451+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:03.452+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:03.453+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:05.455+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:05.456+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:05.457+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:07.459+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:07.460+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:07.461+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:09.464+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:09.465+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:09.466+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:11.473+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:11.473+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:11.474+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:13.476+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:13.477+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:13.478+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:15.479+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:15.480+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:15.481+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:17.484+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:17.485+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:17.485+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:19.490+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:19.491+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:19.492+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:21.494+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:21.495+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:21.496+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:23.500+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:23.501+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:23.502+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:25.508+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:25.509+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:25.509+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:27.515+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:27.516+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:27.517+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:29.523+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:29.524+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:29.525+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:31.529+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:31.530+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:31.531+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:33.532+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:33.533+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:33.534+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:35.538+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:35.539+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:35.540+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:37.545+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:37.546+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:37.547+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:39.553+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:39.554+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:39.555+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:41.560+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:41.561+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:41.562+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:43.566+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:43.567+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:43.568+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:45.573+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:45.574+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:45.575+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:47.581+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:47.582+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:47.582+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:49.585+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:49.586+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:49.587+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:51.592+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:51.593+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:51.594+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:53.599+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:53.600+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:53.601+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27001; HostUnreachable: Connection refused
+2016-11-06T17:59:55.068+0530 I REPL     [conn6] replSetReconfig admin command received from client
+2016-11-06T17:59:55.071+0530 I REPL     [conn6] replSetReconfig config object with 2 members parses ok
+2016-11-06T17:59:55.071+0530 I REPL     [ReplicationExecutor] New replica set config in use: { _id: "h42rs", version: 4, protocolVersion: 1, members: [ { _id: 1, host: "Nandithas-iMac.local:27002", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 2, host: "Nandithas-iMac.local:27003", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 } ], settings: { chainingAllowed: true, heartbeatIntervalMillis: 2000, heartbeatTimeoutSecs: 10, electionTimeoutMillis: 10000, getLastErrorModes: {}, getLastErrorDefaults: { w: 1, wtimeout: 0 }, replicaSetId: ObjectId('581f1d8c11debf364e5d9743') } }
+2016-11-06T17:59:55.071+0530 I REPL     [ReplicationExecutor] This node is Nandithas-iMac.local:27003 in the config
+2016-11-06T17:59:55.073+0530 I NETWORK  [initandlisten] connection accepted from 192.168.1.4:52966 #13 (5 connections now open)
+2016-11-06T17:59:55.073+0530 I NETWORK  [conn13] end connection 192.168.1.4:52966 (4 connections now open)
+2016-11-06T18:00:05.515+0530 W NETWORK  [HostnameCanonicalizationWorker] Failed to obtain name info for: [ (192.168.1.4, "nodename nor servname provided, or not known"), (192.168.1.4, "nodename nor servname provided, or not known") ]
+2016-11-06T18:04:03.272+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: End of file
+2016-11-06T18:04:03.272+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: End of file
+2016-11-06T18:04:05.557+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection reset by peer
+2016-11-06T18:04:05.558+0530 I NETWORK  [conn8] end connection 192.168.1.4:51950 (3 connections now open)
+2016-11-06T18:04:06.572+0530 I NETWORK  [conn9] end connection 192.168.1.4:51952 (2 connections now open)
+2016-11-06T18:04:06.573+0530 I NETWORK  [conn5] end connection 192.168.1.4:51915 (1 connection now open)
+2016-11-06T18:04:07.562+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:07.562+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:07.563+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:09.565+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:09.566+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:09.566+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:11.276+0530 I REPL     [ReplicationExecutor] can't see a majority of the set, relinquishing primary
+2016-11-06T18:04:11.276+0530 I REPL     [ReplicationExecutor] Stepping down from primary in response to heartbeat
+2016-11-06T18:04:11.315+0530 I REPL     [replExecDBWorker-2] transition to SECONDARY
+2016-11-06T18:04:11.315+0530 I NETWORK  [conn6] end connection 127.0.0.1:51928 (0 connections now open)
+2016-11-06T18:04:11.567+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:11.567+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:11.568+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:16.573+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:16.573+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:16.574+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:21.575+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:21.575+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:21.576+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:22.209+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:04:26.577+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:26.578+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:26.579+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:31.580+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:31.580+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:31.581+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:33.099+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:04:36.582+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:36.583+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:36.583+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:41.583+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:41.584+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:41.585+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:43.406+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:04:46.585+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:46.586+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:46.587+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:51.588+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:51.588+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:51.589+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:53.624+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:04:56.591+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:56.591+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:04:56.592+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:01.593+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:01.593+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:01.594+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:04.196+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:05:06.826+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:06.826+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:06.827+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:11.833+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:11.833+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:11.834+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:15.309+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:05:16.835+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:16.835+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:16.836+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:21.837+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:21.837+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:21.838+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:26.400+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:05:26.839+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:26.840+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:26.840+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:28.365+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:53090 #14 (1 connection now open)
+2016-11-06T18:05:31.844+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:31.844+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:31.845+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:36.846+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:36.847+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:36.847+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:37.163+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:05:41.848+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:41.849+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:41.850+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:46.851+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:46.852+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:46.852+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:48.654+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:05:51.854+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:51.854+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:51.855+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:56.855+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:56.856+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:56.857+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:05:59.431+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:06:01.858+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:01.859+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:01.860+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:06.861+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:06.862+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:06.862+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:10.121+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:06:11.863+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:11.864+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:11.865+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:16.866+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:16.866+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:16.867+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:20.302+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:06:21.869+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:21.870+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:21.870+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:26.871+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:26.872+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:26.872+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:30.749+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:06:31.873+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:31.874+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:31.874+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:36.875+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:36.876+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:36.877+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:41.076+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:06:41.883+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:41.883+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:41.884+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:46.888+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:46.889+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:46.889+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:51.446+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:06:51.891+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:51.892+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:51.892+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:56.894+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:56.895+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:06:56.895+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:01.896+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:01.897+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:01.897+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:02.021+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:07:07.257+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:07.258+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:07.258+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:12.225+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:07:12.260+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:12.260+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:12.261+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:17.264+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:17.265+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:17.265+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:22.267+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:22.267+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:22.268+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:23.598+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:07:27.270+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:27.271+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:27.271+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:32.273+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:32.273+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:32.274+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:34.146+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:07:37.275+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:37.276+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:37.277+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:42.278+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:42.279+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:42.280+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:44.357+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:07:47.281+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:47.282+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:47.282+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:52.284+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:52.285+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:52.285+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:55.835+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:07:57.286+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:57.287+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:07:57.287+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:02.289+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:02.290+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:02.291+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:06.549+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:08:07.292+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:07.293+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:07.294+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:12.295+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:12.296+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:12.296+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:17.088+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:08:17.299+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:17.299+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:17.300+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:22.305+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:22.306+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:22.306+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:27.310+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:27.311+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:27.311+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:28.544+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:08:32.315+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:32.316+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:32.317+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:37.321+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:37.321+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:37.322+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:38.823+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:08:42.327+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:42.328+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:42.328+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:47.332+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:47.332+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:47.333+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:48.972+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:08:52.338+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:52.339+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:52.340+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:57.343+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:57.344+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:57.345+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:08:59.516+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:09:02.350+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:02.351+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:02.351+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:07.584+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:07.585+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:07.586+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:10.890+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:09:12.593+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:12.594+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:12.595+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:17.600+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:17.601+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:17.602+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:21.040+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:09:22.606+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:22.607+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:22.607+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:27.610+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:27.611+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:27.612+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:31.481+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:09:32.614+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:32.614+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:32.615+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:37.616+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:37.617+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:37.618+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:42.386+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:09:42.624+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:42.625+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:42.626+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:47.627+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:47.628+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:47.629+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:52.631+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:52.632+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:52.633+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:53.873+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:09:57.634+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:57.635+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:09:57.636+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:02.642+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:02.643+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:02.644+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:04.938+0530 I REPL     [ReplicationExecutor] Not starting an election, since we are not electable
+2016-11-06T18:10:07.645+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:07.646+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:07.647+0530 I REPL     [ReplicationExecutor] Error in heartbeat request to Nandithas-iMac.local:27002; HostUnreachable: Connection refused
+2016-11-06T18:10:07.853+0530 I COMMAND  [conn14] terminating, shutdown command received
+2016-11-06T18:10:07.853+0530 I FTDC     [conn14] Shutting down full-time diagnostic data capture
+2016-11-06T18:10:07.856+0530 I REPL     [conn14] Stopping replication applier threads
+2016-11-06T18:10:09.471+0530 I CONTROL  [conn14] now exiting
+2016-11-06T18:10:09.471+0530 I NETWORK  [conn14] shutdown: going to close listening sockets...
+2016-11-06T18:10:09.471+0530 I NETWORK  [conn14] closing listening socket: 6
+2016-11-06T18:10:09.471+0530 I NETWORK  [conn14] closing listening socket: 7
+2016-11-06T18:10:09.471+0530 I NETWORK  [conn14] removing socket file: /tmp/mongodb-27003.sock
+2016-11-06T18:10:09.472+0530 I NETWORK  [conn14] shutdown: going to flush diaglog...
+2016-11-06T18:10:09.472+0530 I NETWORK  [conn14] shutdown: going to close sockets...
+2016-11-06T18:10:09.472+0530 I STORAGE  [conn14] WiredTigerKVEngine shutting down
+2016-11-06T18:10:10.562+0530 I STORAGE  [conn14] shutdown: removing fs lock...
+2016-11-06T18:10:10.563+0530 I CONTROL  [conn14] dbexit:  rc: 0
