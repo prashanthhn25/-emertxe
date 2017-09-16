@@ -1,0 +1,275 @@
+HW2	Spring 2013  CS615
+Nanditha S Murthy
+816274154
+
+
+Script started on Tue Feb 19 01:09:27 2013
+> sqlplus st114/CS514@cfedb.sdsu.edu
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue Feb 19 01:10:13 2013
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+SQL> --to echo instructions on display
+SQL> set echo on
+SQL> start lab1
+SQL> --HW2	Spring 2013  CS615
+SQL> --Nanditha S Murthy
+SQL> --816274154
+SQL> 
+SQL> -- to set pages to 500
+SQL> set pages 500
+SQL> 
+SQL> --To create a type called cap_type with 3 'fields',
+SQL> --a name field, a lat field, and a long field.
+SQL> 
+SQL> CREATE OR REPLACE TYPE cap_type AS OBJECT (name varchar2(25), latitude float, longitude float);
+  2  /
+
+Type created.
+
+SQL> 
+SQL> --To create a db table, top15, in your Oracle account containing the top 15 countries for GDP.
+SQL> --It has fields:
+SQL> --   name of country, GDP of country, population of country, GDP per capita,
+SQL> --   capitol city of the country, name of the primary stock index of the
+SQL> --   country, location of the primary stock exchange (city it is in), name of
+SQL> --   the currency of the country (e.g. dollar).
+SQL> --The type of the capitol city field should of course be cap_type.
+SQL> --Since no two countries have the same name, country name is the primary key.
+SQL> 
+SQL> CREATE TABLE top15(Name_of_Country varchar2(50) PRIMARY KEY,
+  2  GDP_of_country_US$ number,
+  3  Population_of_country number,
+  4  GDP_per_capita_US$ number,
+  5  capitol_city cap_type,
+  6  primary_stockindex varchar2(55),
+  7  location_Primary_stockexchange varchar2(55),
+  8  currency varchar2(28));
+
+Table created.
+
+SQL> 
+SQL> --NOTES:  different sources will give different values for population and GDP,
+SQL> --    so pick SOME credible source.
+SQL> --    if there are multiple stock indexes, try to give the best known one;
+SQL> --    for example in the US, it is the DJIA  (Dow Jones Industrial Average),
+SQL> --    located in New York City
+SQL> 
+SQL> --SOURCE: "http://www.tradingeconomics.com"
+SQL> --	  "http://en.wikipedia.org/wiki/List_of_stock_exchanges"
+SQL> --	  "http://exploredia.com/list-of-countries-by-gdp-2012/"
+SQL> 
+SQL> INSERT INTO top15 VALUES('European Union',18084.866,503492041,31607,cap_type('Brussels','50.85034','4.35171'),'Euronext 100','Amsterdam','Euro');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('United States',15880.207,315487000,49000,cap_type('Washington DC','38.895112','-77.036366'),'Dow Jones Industrial Average','New York City','Dollar');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Peoples Republic of China',7209.418,1353821000,9146,cap_type('Beijing','39.90403','116.407526'),'SSE Composite','Shanghai','Yuan');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Japan',5920.556,126659683,39578.07,cap_type('Tokyo','35.689488','139.691706'),'JAPAN STOCK MARKET ie NIKKEI 225','TOKYO','Yen');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Germany',3599.981,81799600,26080.52,cap_type('Berlin','52.519171','13.406091'),'Deutsche Borse AG German Stock Index DAX','Frankfurt','Euro');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('France',2834.353,65350000,35600,cap_type('Paris','48.856614','2.352222'),'FTSE 100','Paris','Euro');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('United Kingdom',2602.487,63181775,36600,cap_type('London','51.507335','-0.127683'),'United Kingdom Stock Market ie FTSE 100','London','Pound sterling');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Brazil',2576.244,193946886,11900,cap_type('Brasilia','-15.823966','-47.900391'),'BMF Bovespa','Sao Paulo','Real');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Italy',2245.905,60813326,30900,cap_type('Rome','41.901514','12.460774'),'ITALY STOCK MARKET ie FTSE MIB','Milan','Euro');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Russia',2197.71,143300000,17000,cap_type('Moscow','55.751077','37.617702'),'Russia Stock Market ie MICEX','Moscow','Ruble');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Canada',1809.315,33476688,41100,cap_type('Ottawa','45.42153','-75.697193'),'CANADA STOCK MARKET ie SPTSX','Toronto','Canadian dollar');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('India',1858.969,1210193422,3700,cap_type('New Delhi','28.635308','-77.22496'),'India Stock Market ie SENSEX','Mumbai','Rupee');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Spain',1524.063,47265321,31000,cap_type('Madrid','40.416775','-3.70379'),'Spain Stock Market ie IBEX 35','Madrid','Euro');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Australia',1470.027,22899449,27427.64,cap_type('Canberra','-35.308235','149.124224'),'Australia Stock Market ie SPASX 200','Sydney','Australian dollar');
+
+1 row created.
+
+SQL> INSERT INTO top15 VALUES('Mexico',1231.642,115296767,17554.12,cap_type('Mexico City','19.432608','-99.133208'),'Mexican Stock Exchange Mexican Bolsa IPC','Paseo de la Reforma','Peso');
+
+1 row created.
+
+SQL> 
+SQL> --To describe cap_type and table top15
+SQL> desc top15
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME_OF_COUNTRY			   NOT NULL VARCHAR2(50)
+ GDP_OF_COUNTRY_US$				    NUMBER
+ POPULATION_OF_COUNTRY				    NUMBER
+ GDP_PER_CAPITA_US$				    NUMBER
+ CAPITOL_CITY					    CAP_TYPE
+ PRIMARY_STOCKINDEX				    VARCHAR2(55)
+ LOCATION_PRIMARY_STOCKEXCHANGE 		    VARCHAR2(55)
+ CURRENCY					    VARCHAR2(28)
+
+SQL> 
+SQL> --To check the inserted values in top15
+SQL> SELECT * FROM top15;
+
+NAME_OF_COUNTRY 				   GDP_OF_COUNTRY_US$
+-------------------------------------------------- ------------------
+POPULATION_OF_COUNTRY GDP_PER_CAPITA_US$
+--------------------- ------------------
+CAPITOL_CITY(NAME, LATITUDE, LONGITUDE)
+--------------------------------------------------------------------------------
+PRIMARY_STOCKINDEX
+-------------------------------------------------------
+LOCATION_PRIMARY_STOCKEXCHANGE
+-------------------------------------------------------
+CURRENCY
+----------------------------
+European Union						    18084.866
+	    503492041		   31607
+CAP_TYPE('Brussels', 50.85034, 4.35171)
+Euronext 100
+Amsterdam
+Euro
+
+United States						    15880.207
+	    315487000		   49000
+CAP_TYPE('Washington DC', 38.895112, -77.036366)
+Dow Jones Industrial Average
+New York City
+Dollar
+
+Peoples Republic of China				     7209.418
+	   1353821000		    9146
+CAP_TYPE('Beijing', 39.90403, 116.407526)
+SSE Composite
+Shanghai
+Yuan
+
+Japan							     5920.556
+	    126659683		39578.07
+CAP_TYPE('Tokyo', 35.689488, 139.691706)
+JAPAN STOCK MARKET ie NIKKEI 225
+TOKYO
+Yen
+
+Germany 						     3599.981
+	     81799600		26080.52
+CAP_TYPE('Berlin', 52.519171, 13.406091)
+Deutsche Borse AG German Stock Index DAX
+Frankfurt
+Euro
+
+France							     2834.353
+	     65350000		   35600
+CAP_TYPE('Paris', 48.856614, 2.352222)
+FTSE 100
+Paris
+Euro
+
+United Kingdom						     2602.487
+	     63181775		   36600
+CAP_TYPE('London', 51.507335, -.127683)
+United Kingdom Stock Market?ie FTSE 100
+London
+Pound sterling
+
+Brazil							     2576.244
+	    193946886		   11900
+CAP_TYPE('Brasilia', -15.823966, -47.900391)
+BMF Bovespa
+Sao Paulo
+Real
+
+Italy							     2245.905
+	     60813326		   30900
+CAP_TYPE('Rome', 41.901514, 12.460774)
+ITALY STOCK MARKET ie FTSE MIB
+Milan
+Euro
+
+Russia							      2197.71
+	    143300000		   17000
+CAP_TYPE('Moscow', 55.751077, 37.617702)
+Russia Stock Market ie MICEX
+Moscow
+Ruble
+
+Canada							     1809.315
+	     33476688		   41100
+CAP_TYPE('Ottawa', 45.42153, -75.697193)
+CANADA STOCK MARKET ie SPTSX
+Toronto
+Canadian dollar
+
+India							     1858.969
+	   1210193422		    3700
+CAP_TYPE('New Delhi', 28.635308, -77.22496)
+India Stock Market ie SENSEX
+Mumbai
+Rupee
+
+Spain							     1524.063
+	     47265321		   31000
+CAP_TYPE('Madrid', 40.416775, -3.70379)
+Spain Stock Market ie IBEX 35
+Madrid
+Euro
+
+Australia						     1470.027
+	     22899449		27427.64
+CAP_TYPE('Canberra', -35.308235, 149.124224)
+Australia Stock Market ie SPASX 200
+Sydney
+Australian dollar
+
+Mexico							     1231.642
+	    115296767		17554.12
+CAP_TYPE('Mexico City', 19.432608, -99.133208)
+Mexican Stock Exchange Mexican Bolsa IPC
+Paseo de la Reforma
+Peso
+
+
+15 rows selected.
+
+SQL> quit
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+> exit
+
+exit
+
+script done on Tue Feb 19 01:10:52 2013
+
