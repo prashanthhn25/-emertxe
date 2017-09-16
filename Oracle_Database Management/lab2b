@@ -1,0 +1,162 @@
+Lab 2.5	  CS514      Spring 2013
+Nanditha S Murthy
+816274154
+
+
+
+Script started on Tue Mar 05 09:52:34 2013
+> sqlplus st19/CS514@cfedb.sdsu.edu
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue Mar 5 09:53:28 2013
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+SQL> set pages 50
+SQL> start lab2b
+SQL> 
+SQL> --Lab 2.5	  CS514      Spring 2013
+SQL> --Nanditha S Murthy
+SQL> --816274154
+SQL> 
+SQL> 
+SQL> --1.While not a db invariant, Oracle has a way to change the name of
+SQL> --     a column and other db's use the same syntax.  This used to be hard
+SQL> --     to do.  The syntax is   ALTER TABLE......RENAME COLUMN oldname TO
+SQL> --     newname.  Google it maybe.	Then change the name of losal of salsbb02 to
+SQL> --     payscale, verify the change by a describe, and then change it back.
+SQL> 
+SQL> ALTER TABLE salsbb02 RENAME COLUMN losal TO payscale;
+
+Table altered.
+
+SQL> 
+SQL> desc salsbb02
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ GRADE					   NOT NULL NUMBER(2)
+ ROLE					   NOT NULL VARCHAR2(8)
+ PAYSCALE					    NUMBER(6)
+ HISAL						    NUMBER(6)
+
+SQL> 
+SQL> ALTER TABLE salsbb02 RENAME COLUMN payscale TO losal;
+
+Table altered.
+
+SQL> 
+SQL> --2.Display full names by displaying first name, last name, and nickname
+SQL> --     with 'nice' column headers, e.g. Last Name.   If a player has no
+SQL> --     nickname, give them the nickname: no_nickname.
+SQL> 
+SQL> SELECT i.fname AS FirstName,e.ename AS LastName,CASE WHEN i.nick IS NULL THEN 'no_nickname'  ELSE i.nick END AS nickname FROM empbb02 e INNER JOIN infobb02 i ON e.empno=i.empno ;
+
+FIRSTNAME  LASTNAME   NICKNAME
+---------- ---------- ---------------
+branch	   rickey     no_nickname
+tommy	   lasorda    no_nickname
+bruce	   bochy      no_nickname
+larry	   berra      yogi
+stan	   musial     the man
+lou	   gehrig     iron horse
+orestes    minoso     minnie
+ryne	   sandberg   rhino
+ron	   cey	      penguin
+ted	   williams   teddy ballgame
+randy	   johnson    the big unit
+mordecai   brown      3 fingers
+willie	   mays       say hey kid
+van lingle mungo      no_nickname
+ivan	   rodriguez  pudge
+
+15 rows selected.
+
+SQL> 
+SQL> --3.Display last name, salary, uniform number and restaurant for all
+SQL> --     employees, ordering by decreasing salary.
+SQL> 
+SQL> SELECT e.ename,e.sal,i.uni,d.restaurant FROM empbb02 e,infobb02 i,deptbb02 d WHERE e.empno=i.empno AND e.deptno=d.deptno ORDER BY e.sal DESC;
+
+ENAME		  SAL UNI  RESTAURANT
+---------- ---------- ---- ---------------
+mays	       240000 12   House of Pasta
+williams       150000 10   House of Pasta
+rodriguez      100000 4    Pinnacle Peak
+minoso		85000 27   Jade
+gehrig		85000 14   Jade
+johnson 	50000 8    Crab Shack
+musial		42000 19   House of Pasta
+brown		40000 25   Crab Shack
+sandberg	25000 17   Jade
+mungo		20000 31   Crab Shack
+cey		15000 35   Jade
+rickey		10000 56   Burger King
+berra		 2000 66   Burger King
+bochy		 2000 64   Burger King
+lasorda 	 2000 62   Burger King
+
+15 rows selected.
+
+SQL> 
+SQL> --4.Use a subquery to find every player who makes more than the lowest
+SQL> --     paid player hired in febrary of 1998.  Display date hired as well
+SQL> --     as last name, in the format   April 13, 2001.
+SQL> 
+SQL> SELECT TO_CHAR(hiredate,'MONTH DD,YYYY') AS Hiredate ,ename AS last_name FROM empbb02 WHERE sal>(SELECT min(sal) FROM empbb02 WHERE hiredate BETWEEN '01-FEB-98' and '28-FEB-98');
+
+HIREDATE	  LAST_NAME
+----------------- ----------
+FEBRUARY  01,1998 musial
+MARCH	  11,1998 gehrig
+MAY	  05,1998 minoso
+JANUARY   05,1999 williams
+NOVEMBER  08,1998 johnson
+OCTOBER   18,1999 brown
+JANUARY   01,1998 mays
+OCTOBER   16,2001 rodriguez
+
+8 rows selected.
+
+SQL> 
+SQL> 
+SQL> --5.Find the minimum and maximum salary of every department except
+SQL> --     department 50.	Show department name and department number.
+SQL> 
+SQL> SELECT stab.MinSal,stab.MaxSal,stab.DeptNo,d.dname FROM (SELECT min(sal) AS MinSal,max(sal) AS MaxSal,deptno FROM empbb02 GROUP BY deptno HAVING deptno<>50) stab INNER JOIN deptbb02 d ON stab.deptno=d.deptno;
+
+    MINSAL     MAXSAL	  DEPTNO DNAME
+---------- ---------- ---------- --------
+     20000	50000	      30 pitcher
+     42000     240000	      20 outfield
+      2000	10000	      40 staff
+     15000	85000	      10 infield
+
+SQL> 
+SQL> --6.Find all players whose last name contains only one vowel.  Do
+SQL> --    not count 'y' as a vowel.  Show last name, and title the column
+SQL> --    One Vowel Owls,  assuming the team mascot is an owl.
+SQL> 
+SQL> SELECT ename AS "One Vowel Owls" FROM empbb02 WHERE (length(ename)-nvl(length(REPLACE(TRANSLATE(lower(ename),'aeiou','aaaaa'),'a','')),0))=1;
+
+One Vowel
+----------
+bochy
+cey
+brown
+mays
+
+SQL> 
+SQL> quit
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+> exit
+
+exit
+
+script done on Tue Mar 05 09:53:56 2013
+
