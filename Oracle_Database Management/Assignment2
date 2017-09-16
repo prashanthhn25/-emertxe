@@ -1,0 +1,275 @@
+Lab 2	 CS 514   Spring 2013
+Nanditha S Murthy
+816274154
+
+
+Script started on Thu Feb 21 09:49:22 2013
+> sqlplus st19/CS514@cfedb.sdsu.edu
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Feb 21 09:49:44 2013
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+SQL> start lab2
+SQL> 
+SQL> --	Lab 2	 CS 514   Spring 2013
+SQL> --Nanditha S Murthy
+SQL> --816274154
+SQL> 
+SQL> spool lab2
+SQL> 
+SQL> --1. Make empno the primary key of both empbb02 and infobb02.  Make
+SQL> --    deptno the primary key for deptbb02.  Create the primary key
+SQL> --    discussed in class for salsbb02.	Use the naming convention for
+SQL> --    all constraints in Lab2, that was given in class.
+SQL> 
+SQL> 
+SQL> ALTER TABLE empbb02
+  2  ADD CONSTRAINT empbb02_EMPNO_pk PRIMARY KEY (EMPNO);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> ALTER TABLE infobb02
+  2  ADD CONSTRAINT infobb02_EMPNO_pk PRIMARY KEY (EMPNO);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> ALTER TABLE deptbb02
+  2  ADD CONSTRAINT deptbb02_DEPTNO_pk PRIMARY KEY (DEPTNO);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> ALTER TABLE salsbb02
+  2  ADD CONSTRAINT salsbb02_GRADE_ROLE_pk PRIMARY KEY (GRADE,ROLE);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> --2.  Check your primary key for empbb02 by attempting to add a player
+SQL> --     with a null value for empno.
+SQL> 
+SQL> INSERT into empbb02 values(NULL,'nand','pitcher',999,'09-DEC-99',40000,30,5000);
+INSERT into empbb02 values(NULL,'nand','pitcher',999,'09-DEC-99',40000,30,5000)
+                           *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("ST19"."EMPBB02"."EMPNO")
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> --3.  Add a unique constraint for ename in empbb02.
+SQL> 
+SQL> ALTER TABLE empbb02
+  2  ADD CONSTRAINT empbb02_ENAME_uc UNIQUE (ENAME);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> --4.  The team has decided that, except for coaches (dept. 40), a player
+SQL> --     name should not exceed 9 letters.  Implement this as a check constraint.
+SQL> 
+SQL> 
+SQL> ALTER TABLE EMPBB02
+  2  ADD CONSTRAINT empbb02_ENAME_ck CHECK (pos = 'coach' or (pos<>'coach' and length(ename)<10));
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> --To clarify whether CHECK  constraint is correct i tried executing the following insert statements :
+SQL> --1) Pos=Coach and name=10 - Pass
+SQL> --SQL>insert into empbb02 values('345','Nandithasm','coach','912','01-jan-13', 10000, 40,900);
+SQL> 
+SQL> 
+SQL> --2) Pos=coach and name <10 - Pass
+SQL> --SQL>insert into empbb02 values('345','Nandithas','coach','912','01-jan-13', 10000, 40,900);
+SQL> 
+SQL> --3) Pos != coach and name<10 - pass
+SQL> --SQL>insert into empbb02 values('345','Nandithas','gm','912','01-jan-13', 10000, 40,900);
+SQL> 
+SQL> 
+SQL> 
+SQL> --   5.  Violate the constraint in 4. to make sure you did it correctly.
+SQL> 
+SQL> insert into empbb02 values('345','Nandithasm','gm','912','01-jan-13', 10000, 40,900);
+insert into empbb02 values('345','Nandithasm','gm','912','01-jan-13', 10000, 40,900)
+*
+ERROR at line 1:
+ORA-02290: check constraint (ST19.EMPBB02_ENAME_CK) violated
+
+
+SQL> 
+SQL> 
+SQL> --   6.  Make empno a foreign key in infobb02, with parent table empbb02
+SQL> 
+SQL> ALTER TABLE infobb02
+  2  ADD CONSTRAINT	infobb02_EMPNO_fk FOREIGN KEY(EMPNO) REFERENCES empbb02(EMPNO);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> --   7.  Make depno a foreign key in empbb02, with parent table deptbb02
+SQL> 
+SQL> ALTER TABLE empbb02
+  2  ADD CONSTRAINT	empbb02_DEPTNO_fk FOREIGN KEY(DEPTNO) REFERENCES deptbb02(DEPTNO);
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> --   8.  Test one of your foreign key constraints to make sure it is working.
+SQL> 
+SQL> insert into empbb02 values('12','Nandu','gm','712','01-jan-13', 10000, 60,900);
+insert into empbb02 values('12','Nandu','gm','712','01-jan-13', 10000, 60,900)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (ST19.EMPBB02_DEPTNO_FK) violated - parent key
+not found
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> --   9.  Display ename, pos, sal from empbb02 for all employees not in
+SQL> --	  department 40.  Make the column headers Last Name, Position, Salary.
+SQL> 
+SQL> 
+SQL> SELECT ename as Last_Name,pos as Position,sal as Salary from empbb02 WHERE deptno<>40;
+
+LAST_NAME  POSITION	    SALARY
+---------- ------------ ----------
+musial	   right field	     42000
+gehrig	   first base	     85000
+minoso	   shortstop	     85000
+sandberg   second base	     25000
+cey	   third base	     15000
+williams   left field	    150000
+johnson    pitcher	     50000
+brown	   pitcher	     40000
+mays	   center field     240000
+mungo	   pitcher	     20000
+rodriguez  catcher	    100000
+
+11 rows selected.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> -- 10.	Describe the meta-table user_constraints, and notice the first
+SQL> --	  five fields.	Display your constraints, using these five fields.
+SQL> 
+SQL> 
+SQL> desc user_constraints;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ OWNER					   NOT NULL VARCHAR2(30)
+ CONSTRAINT_NAME			   NOT NULL VARCHAR2(30)
+ CONSTRAINT_TYPE				    VARCHAR2(1)
+ TABLE_NAME				   NOT NULL VARCHAR2(30)
+ SEARCH_CONDITION				    LONG
+ R_OWNER					    VARCHAR2(30)
+ R_CONSTRAINT_NAME				    VARCHAR2(30)
+ DELETE_RULE					    VARCHAR2(9)
+ STATUS 					    VARCHAR2(8)
+ DEFERRABLE					    VARCHAR2(14)
+ DEFERRED					    VARCHAR2(9)
+ VALIDATED					    VARCHAR2(13)
+ GENERATED					    VARCHAR2(14)
+ BAD						    VARCHAR2(3)
+ RELY						    VARCHAR2(4)
+ LAST_CHANGE					    DATE
+ INDEX_OWNER					    VARCHAR2(30)
+ INDEX_NAME					    VARCHAR2(30)
+ INVALID					    VARCHAR2(7)
+ VIEW_RELATED					    VARCHAR2(14)
+
+SQL> 
+SQL> SELECT OWNER,CONSTRAINT_NAME, CONSTRAINT_TYPE,TABLE_NAME,SEARCH_CONDITION	FROM USER_CONSTRAINTS where OWNER = 'ST19';
+
+OWNER			       CONSTRAINT_NAME		      C
+------------------------------ ------------------------------ -
+TABLE_NAME
+------------------------------
+SEARCH_CONDITION
+--------------------------------------------------------------------------------
+ST19			       INFOBB02_EMPNO_FK	      R
+INFOBB02
+
+
+ST19			       EMPBB02_DEPTNO_FK	      R
+EMPBB02
+
+
+ST19			       EMPBB02_EMPNO_PK 	      P
+EMPBB02
+
+
+ST19			       INFOBB02_EMPNO_PK	      P
+INFOBB02
+
+
+ST19			       DEPTBB02_DEPTNO_PK	      P
+DEPTBB02
+
+
+ST19			       SALSBB02_GRADE_ROLE_PK	      P
+SALSBB02
+
+
+ST19			       EMPBB02_ENAME_UC 	      U
+EMPBB02
+
+
+ST19			       EMPBB02_ENAME_CK 	      C
+EMPBB02
+pos = 'coach' or (pos<>'coach' and length(ename)<10)
+
+
+8 rows selected.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> -- 11. Drop the check constraint that you made earlier.
+SQL> 
+SQL> 
+SQL> ALTER TABLE empbb02
+  2  DROP CONSTRAINT empbb02_ENAME_ck;
+
+Table altered.
+
+SQL> 
+SQL> 
+SQL> spool off
+SQL> set echo off
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+> exit
+
+exit
+
+script done on Thu Feb 21 09:50:08 2013
+
