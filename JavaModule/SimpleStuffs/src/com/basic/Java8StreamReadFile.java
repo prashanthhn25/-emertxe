@@ -123,6 +123,20 @@ public class Java8StreamReadFile {
         
 	}
 	
+		
+	public static void fileListInFolder(String filepath) {
+		List<String> results = new ArrayList<String>();
+		
+		File[] files = new File(filepath).listFiles();
+		
+		for(File file : files) {
+			if (file.isFile()) {
+				results.add(file.getName());
+			}
+		}
+        System.out.println(results);
+	}
+	
 	public static void copyToSplitFile(String fileName, String fileName2) {
 		try {
 			BufferedReader br = Files.newBufferedReader(Paths.get(fileName));

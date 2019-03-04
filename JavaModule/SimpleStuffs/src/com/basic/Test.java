@@ -31,7 +31,8 @@ public class Test {
 		String inputFileName = "data/test.txt";
 		String outputFileName = "data/test2";
 		//Java8StreamReadFile.replaceTabWithComma(inputFileName, outputFileName);
-		Java8StreamReadFile.copyToSplitFile(inputFileName, outputFileName);
+		//Java8StreamReadFile.copyToSplitFile(inputFileName, outputFileName);
+		Java8StreamReadFile.fileListInFolder("data/");
 		
 		//Java8StreamReadFile.readCsvFileFormatDateColumn(inputFileName, outputFileName);
 		
